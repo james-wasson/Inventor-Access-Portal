@@ -48,6 +48,7 @@ ipch/
 *.psess
 *.vsp
 *.vspx
+*.suo
 
 # Guidance Automation Toolkit
 *.gpState
@@ -119,3 +120,7 @@ Templates/All-In-One-Template/MySpaProject/MySpaProject.Web/Logs/Logs.txt
 /src/.vs/InventorAccessPortal/v15/Server/sqlite3/storage.ide
 /src/.vs/InventorAccessPortal/v15/sqlite3/storage.ide-wal
 /src/.vs/InventorAccessPortal/v15/sqlite3/storage.ide-shm
+
+# sqlite3
+*/storage.ide-wal
+
