@@ -119,5 +119,6 @@ UpgradeLog*.XML
 /.vs/InventorAccessPortal/v15/Server/sqlite3/storage.ide-shm
 /.vs/InventorAccessPortal/v15/Server/sqlite3/storage.ide
 /.vs/InventorAccessPortal/v15/sqlite3/storage.ide-wal
+/.vs/InventorAccessPortal/v15/sqlite3/storage.ide
 /.vs/InventorAccessPortal/v15/sqlite3/storage.ide-shm
 
