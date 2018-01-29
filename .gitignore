@@ -122,7 +122,3 @@ UpgradeLog*.XML
 /.vs/InventorAccessPortal/v15/sqlite3/storage.ide
 /.vs/InventorAccessPortal/v15/sqlite3/storage.ide-shm
 
-# Removes direct modification of the inital Access DB
-*.accdb
-*.laccdb
-
