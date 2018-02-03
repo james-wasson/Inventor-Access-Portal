@@ -9,9 +9,8 @@ namespace InventorAccessPortal.Web.Controllers
     public class AuthorizationController : Controller
     {
         // GET: Authorization
-        public ActionResult Index()
-        {
-            return View();
+        public bool Authorize() {
+            return false;
         }
     }
 }
