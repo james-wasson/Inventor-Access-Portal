@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
-using System.Web;
-using System.Web.UI;
 using System.Configuration;
 
-namespace InventorAccessPortal.Web.DB.Controllers
+namespace InventorAccessPortal.Web.DB
 {
-    public class Connections
+    public class Context
     {
         /// <summary>
         /// A touple storing the connection string, Ole connection, and name
@@ -44,7 +42,7 @@ namespace InventorAccessPortal.Web.DB.Controllers
         /// <summary>
         /// Defult connection of database
         /// </summary>
-        public Connections()
+        public Context()
         {
             foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
             {
