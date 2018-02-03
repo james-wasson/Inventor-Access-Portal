@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("InventorAccessPortal.Web")]
+[assembly: AssemblyTitle("InventorAccessPortal.Web.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("InventorAccessPortal.Web")]
+[assembly: AssemblyProduct("InventorAccessPortal.Web.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("86c98fe3-a064-4893-b9b3-76f60f113143")]
+[assembly: Guid("02827850-6425-4f08-a020-803dc68454c9")]
 
 // Version information for an assembly consists of the following four values:
 //
