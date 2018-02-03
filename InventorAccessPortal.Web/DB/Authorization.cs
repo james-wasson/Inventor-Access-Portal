@@ -7,7 +7,7 @@ namespace InventorAccessPortal.Web.DB
 {
     public static class Authorization
     {
-        public static void check(Context DBContext) {
+        public static void check(Context DBContext = null) {
             if (DBContext == null) DBContext = new Context();
             var a = DBContext.GetConnections();
         }
