@@ -5,7 +5,7 @@ using System.Data.OleDb;
 using System.Configuration;
 using InventorAccessPortal.DB.Objects;
 
-namespace InventorAccessPortal.Web.DB
+namespace InventorAccessPortal.DB
 {
     public class Context : System.IDisposable
     {

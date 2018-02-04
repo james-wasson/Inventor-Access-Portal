@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InventorAccessPortal.Web.DB.Objects;
+using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.Web.Models;
 
 namespace InventorAccessPortal.Web.Controllers

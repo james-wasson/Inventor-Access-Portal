@@ -192,9 +192,6 @@
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
-    <Compile Include="DB\Context.cs" />
-    <Compile Include="DB\Authorization.cs" />
-    <Compile Include="DB\Objects\Connection.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +257,12 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InventorAccessPortal.DB\InventorAccessPortal.DB.csproj">
+      <Project>{881db57a-358f-47f7-84df-f17a6506b7b4}</Project>
+      <Name>InventorAccessPortal.DB</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

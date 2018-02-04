@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using InventorAccessPortal.Web.DB.Objects;
+using InventorAccessPortal.DB.Objects;
 
 namespace InventorAccessPortal.Web.Models
 {
