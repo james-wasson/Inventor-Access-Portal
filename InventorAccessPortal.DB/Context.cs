@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Configuration;
-using InventorAccessPortal.Web.DB.Objects;
+using InventorAccessPortal.DB.Objects;
 
 namespace InventorAccessPortal.Web.DB
 {

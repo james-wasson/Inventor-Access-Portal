@@ -4,7 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Configuration;
 
-namespace InventorAccessPortal.Web.DB.Objects
+namespace InventorAccessPortal.DB.Objects
 {
     /// <summary>
     /// A touple storing the connection string, Ole connection, and name
