@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="_DB1_DataSet" targetNamespace="http://tempuri.org/_DB1_DataSet.xsd" xmlns:mstns="http://tempuri.org/_DB1_DataSet.xsd" xmlns="http://tempuri.org/_DB1_DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="_DB_DataSet" targetNamespace="http://tempuri.org/_DB_DataSet.xsd" xmlns:mstns="http://tempuri.org/_DB_DataSet.xsd" xmlns="http://tempuri.org/_DB_DataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -1041,7 +1041,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="_DB1_DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="_DB1_DataSet" msprop:Generator_UserDSName="_DB1_DataSet">
+  <xs:element name="_DB_DataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="_DB_DataSet" msprop:Generator_UserDSName="_DB_DataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="All_x0020_Investigators" msprop:Generator_TableClassName="All_InvestigatorsDataTable" msprop:Generator_TableVarName="tableAll_Investigators" msprop:Generator_TablePropName="All_Investigators" msprop:Generator_RowDeletingName="All_InvestigatorsRowDeleting" msprop:Generator_RowChangingName="All_InvestigatorsRowChanging" msprop:Generator_RowEvHandlerName="All_InvestigatorsRowChangeEventHandler" msprop:Generator_RowDeletedName="All_InvestigatorsRowDeleted" msprop:Generator_UserTableName="All Investigators" msprop:Generator_RowChangedName="All_InvestigatorsRowChanged" msprop:Generator_RowEvArgName="All_InvestigatorsRowChangeEvent" msprop:Generator_RowClassName="All_InvestigatorsRow">
