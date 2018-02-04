@@ -10,10 +10,6 @@ namespace InventorAccessPortal.Web.Controllers
     {
         public ActionResult Index()
         {
-            using (var authContext = new DB.Auth.Authorize())
-            {
-                authContext.ByUsername("adam");
-            }
             return View();
         }
 

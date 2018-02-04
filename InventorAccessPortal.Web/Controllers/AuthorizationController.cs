@@ -14,9 +14,9 @@ namespace InventorAccessPortal.Web.Controllers
         // GET: Authorization
         public bool Authorize(String username)
         {
-            using (var authContext = new DB.Auth.Authorize())
+            using (var DbContext = new Context())
             {
-                authContext.ByUsername("adam");
+                DB.Auth.Authorize.ByUsername("adam", DbContext);
             }
             return false;
         }

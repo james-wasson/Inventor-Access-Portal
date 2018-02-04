@@ -3,22 +3,20 @@ using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
-using System.Xml.Schema;
+using InventorAccessPortal.DB.Objects;
 
 namespace InventorAccessPortal.DB.Auth
 {
-    public class Authorize : Context
+    public static class Authorize
     {
-        public bool ByUsername(String username)
+        public static bool LoginData(String username, Context context = null)
         {
-            //.All_InvestigatorsTableAdapter users = new All_InvestigatorsTableAdapter();
-            //var data = users.GetData();
-            //foreach (var row in data.Rows)
-            //{
-            //    var a = row;
-            //}
+            if (context == null) { context = new Context(); }
+            foreach (var conn in context.GetConnections())
+            {
+                var Investigator = conn.AllInvestigatorsTableAdapter.GetData().AsQueryable().FirstOrDefault(p => p.ID == 153);
+                Console.Write("{0}", Investigator.Investigator);
+            }
             return false;
         }
     }

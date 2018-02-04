@@ -21,10 +21,11 @@ namespace InventorAccessPortal.DB
             {
                 Connections.Add(new Connection(css.ConnectionString, css.Name, css.ProviderName));
             }
-            foreach (var conn in Connections)
-            {
-                var a = conn.AllInvestigatorsTableAdapter.GetData().Rows;
-            }
+        }
+
+        public List<Connection> GetConnections()
+        {
+            return Connections;
         }
 
         public void Dispose()

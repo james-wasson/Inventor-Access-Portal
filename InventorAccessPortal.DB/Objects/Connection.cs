@@ -124,7 +124,27 @@ namespace InventorAccessPortal.DB.Objects
 
         public void Dispose()
         {
-
+            DBConnection.Dispose();
+            AllInvestigatorsTableAdapter.Connection.Dispose();
+            CodesTableAdapter.Connection.Dispose();
+            CollegesTableAdapter.Connection.Dispose();
+            ComboFamiliesTableAdapter.Connection.Dispose();
+            ComboFamilyListingsTableAdapter.Connection.Dispose();
+            DepartmentsTableAdapter.Connection.Dispose();
+            EndingFiscalYearTableAdapter.Connection.Dispose();
+            FamiliesTableAdapter.Connection.Dispose();
+            FamilyListingsTableAdapter.Connection.Dispose();
+            FileNumbersTableAdapter.Connection.Dispose();
+            GenderTableAdapter.Connection.Dispose();
+            InvestigatorsTableAdapter.Connection.Dispose();
+            OrganizationsTableAdapter.Connection.Dispose();
+            ProjectNumbersTableAdapter.Connection.Dispose();
+            RecordsStatusTableAdapter.Connection.Dispose();
+            RemindersTableAdapter.Connection.Dispose();
+            StartingFiscalYearTableAdapter.Connection.Dispose();
+            StatusTableAdapter.Connection.Dispose();
+            TransactionsTableAdapter.Connection.Dispose();
+            TableAdapterManager.Connection.Dispose();
         }
     }
 }
