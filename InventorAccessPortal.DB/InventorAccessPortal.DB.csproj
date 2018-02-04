@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authorization.cs" />
+    <Compile Include="Auth\Authorize.cs" />
+    <Compile Include="Auth\Hash.cs" />
     <Compile Include="Context.cs" />
     <Compile Include="Objects\Connection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

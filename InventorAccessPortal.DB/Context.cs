@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Configuration;
 using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.DB.Auth;
 
 namespace InventorAccessPortal.DB
 {
