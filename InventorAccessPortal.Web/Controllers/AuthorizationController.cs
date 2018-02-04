@@ -12,11 +12,11 @@ namespace InventorAccessPortal.Web.Controllers
     public class AuthorizationController : Controller
     {
         // GET: Authorization
-        public bool Authorize(String username)
+        public bool Credentials(String username, String password)
         {
             using (var DbContext = new Context())
             {
-                DB.Auth.Authorize.ByUsername("adam", DbContext);
+                DB.Auth.Authorize.Credentials("username", "password", DbContext);
             }
             return false;
         }

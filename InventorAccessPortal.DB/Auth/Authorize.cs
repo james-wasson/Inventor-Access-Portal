@@ -9,13 +9,12 @@ namespace InventorAccessPortal.DB.Auth
 {
     public static class Authorize
     {
-        public static bool LoginData(String username, Context context = null)
+        public static bool Credentials(String username, String password, Context context = null)
         {
             if (context == null) { context = new Context(); }
             foreach (var conn in context.GetConnections())
             {
-                var Investigator = conn.AllInvestigatorsTableAdapter.GetData().AsQueryable().FirstOrDefault(p => p.ID == 153);
-                Console.Write("{0}", Investigator.Investigator);
+                conn.AllInvestigatorsTableAdapter.GetData().AsQueryable().FirstOrDefault(p => p.ID == 153).ID = 123;
             }
             return false;
         }
