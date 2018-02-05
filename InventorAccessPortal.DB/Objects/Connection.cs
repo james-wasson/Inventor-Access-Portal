@@ -6,10 +6,12 @@ namespace InventorAccessPortal.DB.Objects
 {
     public class Connection : IDisposable
     {
+        // connection data
         public string ConnectionString { get; private set; }
         public string Name { get; private set; }
         public string ProviderName { get; private set; }
         public OleDbConnection DBConnection { get; private set; }
+        // Adapter storage so we can set the connection string fro each Adapter instance
         public All_InvestigatorsTableAdapter AllInvestigatorsTableAdapter { get; private set; }
         public CodesTableAdapter CodesTableAdapter { get; private set; }
         public CollegesTableAdapter CollegesTableAdapter { get; private set; }
