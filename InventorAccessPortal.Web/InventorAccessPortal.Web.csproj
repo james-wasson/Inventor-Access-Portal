@@ -192,9 +192,11 @@
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="DB\CustomPasswordHasher.cs" />
     <Compile Include="DB\Context.cs" />
     <Compile Include="DB\Authorization.cs" />
     <Compile Include="DB\Objects\Connection.cs" />
+    <Compile Include="DB\Encrypt.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
