@@ -10,10 +10,7 @@ namespace InventorAccessPortal.Web.Controllers
     {
         public ActionResult Index()
         {
-            using (var dbContext = new DB.Context()) {
-                DB.Authorization.check(dbContext);
-                return View();
-            }
+            return View();
         }
 
         public ActionResult About()

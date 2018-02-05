@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
 
-namespace InventorAccessPortal.Web
+namespace InventorAccessPortal.DB
 {
     public class Encrypt
     {

@@ -7,7 +7,6 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using InventorAccessPortal.Web;
 using InventorAccessPortal.Web.Controllers;
-using InventorAccessPortal.Web.DB.Objects;
 using System.Web.UI;
 
 namespace InventorAccessPortal.Web.Tests.Controllers
