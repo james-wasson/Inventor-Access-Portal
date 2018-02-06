@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.DB._DB_DatasetTableAdapters;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -26,7 +27,7 @@ namespace InventorAccessPortal.DB.Auth
             {
 
                 // get the users with those credntals
-                var accessGranted = conn.LoginDataAdapterManager().GetData().FirstOrDefault(p =>
+                var accessGranted = conn.LoginDataAdapterManager.GetData().FirstOrDefault(p =>
                     !p.Suspended && p.Username == username && p.Password == hashedPassword
                 );
                 // if there are any users return true
@@ -53,18 +54,12 @@ namespace InventorAccessPortal.DB.Auth
             foreach (var conn in context.GetConnections())
             {
                 // get the users with those credntals
-                var loginAllowed = conn.LoginDataAdapterManager().GetData().FirstOrDefault(p =>
+                var loginAllowed = conn.LoginDataAdapterManager.GetData().FirstOrDefault(p =>
                     !p.Suspended && p.Password == hashedPassword &&
-                    conn.InvestigatorsTableAdapter().GetData().Where(q =>
+                    conn.InvestigatorsTableAdapter.GetData().Where(q =>
                         q.Investigator_Number == p.Investigator_Number && q.Email.ToLower() == lowerEmail
                     ).Any()
                 ) != null;
-
-                /*var loginAllowed = conn.LoginDataAdapterManager().GetData().FirstOrDefault(p =>
-                    !p.Suspended && p.Password == hashedPassword &&
-                    p.InvestigatorsRow.Email.ToLower() == lowerEmail
-                ) != null;*/
-
 
                 // if there are any users return true
                 if (loginAllowed)
@@ -72,5 +67,6 @@ namespace InventorAccessPortal.DB.Auth
             }
             return false;
         }
+
     }
 }

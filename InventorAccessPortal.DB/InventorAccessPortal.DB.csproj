@@ -82,10 +82,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="_DB_DataSet.Designer.cs">
+    <Compile Include="_DB_Dataset.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>_DB_DataSet.xsd</DependentUpon>
+      <DependentUpon>_DB_Dataset.xsd</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -95,16 +95,16 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="_DB_DataSet.xsc">
-      <DependentUpon>_DB_DataSet.xsd</DependentUpon>
+    <None Include="_DB_Dataset.xsc">
+      <DependentUpon>_DB_Dataset.xsd</DependentUpon>
     </None>
-    <None Include="_DB_DataSet.xsd">
+    <None Include="_DB_Dataset.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>_DB_DataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>_DB_Dataset.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="_DB_DataSet.xss">
-      <DependentUpon>_DB_DataSet.xsd</DependentUpon>
+    <None Include="_DB_Dataset.xss">
+      <DependentUpon>_DB_Dataset.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup />

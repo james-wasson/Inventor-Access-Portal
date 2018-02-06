@@ -20,9 +20,9 @@ namespace InventorAccessPortal.DB {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("_DB_DataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("_DB_Dataset")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class _DB_DataSet : global::System.Data.DataSet {
+    public partial class _DB_Dataset : global::System.Data.DataSet {
         
         private All_InvestigatorsDataTable tableAll_Investigators;
         
@@ -64,8 +64,6 @@ namespace InventorAccessPortal.DB {
         
         private TransactionsDataTable tableTransactions;
         
-        private global::System.Data.DataRelation relationLogin_DataInvestigators;
-        
         private global::System.Data.DataRelation relationInvestigatorsAdditional_Investigators;
         
         private global::System.Data.DataRelation relationProject_NumbersAdditional_Investigators;
@@ -87,6 +85,8 @@ namespace InventorAccessPortal.DB {
         private global::System.Data.DataRelation relationDepartmentsInvestigators;
         
         private global::System.Data.DataRelation relationGenderInvestigators;
+        
+        private global::System.Data.DataRelation relationLogin_DataInvestigators;
         
         private global::System.Data.DataRelation relationOrganizationInvestigators;
         
@@ -110,7 +110,7 @@ namespace InventorAccessPortal.DB {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public _DB_DataSet() {
+        public _DB_Dataset() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -121,7 +121,7 @@ namespace InventorAccessPortal.DB {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected _DB_DataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected _DB_Dataset(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -454,7 +454,7 @@ namespace InventorAccessPortal.DB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            _DB_DataSet cln = ((_DB_DataSet)(base.Clone()));
+            _DB_Dataset cln = ((_DB_Dataset)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -692,7 +692,6 @@ namespace InventorAccessPortal.DB {
                     this.tableTransactions.InitVars();
                 }
             }
-            this.relationLogin_DataInvestigators = this.Relations["Login DataInvestigators"];
             this.relationInvestigatorsAdditional_Investigators = this.Relations["InvestigatorsAdditional Investigators"];
             this.relationProject_NumbersAdditional_Investigators = this.Relations["Project NumbersAdditional Investigators"];
             this.relationCodesCombo_Family_Listings = this.Relations["CodesCombo Family Listings"];
@@ -704,6 +703,7 @@ namespace InventorAccessPortal.DB {
             this.relationCollegesInvestigators = this.Relations["CollegesInvestigators"];
             this.relationDepartmentsInvestigators = this.Relations["DepartmentsInvestigators"];
             this.relationGenderInvestigators = this.Relations["GenderInvestigators"];
+            this.relationLogin_DataInvestigators = this.Relations["Login DataInvestigators"];
             this.relationOrganizationInvestigators = this.Relations["OrganizationInvestigators"];
             this.relationEnding_Fiscal_YearProject_Numbers = this.Relations["Ending Fiscal YearProject Numbers"];
             this.relationInvestigatorsProject_Numbers = this.Relations["InvestigatorsProject Numbers"];
@@ -718,9 +718,9 @@ namespace InventorAccessPortal.DB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "_DB_DataSet";
+            this.DataSetName = "_DB_Dataset";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/_DB_DataSet.xsd";
+            this.Namespace = "http://tempuri.org/_DB_Dataset.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableAll_Investigators = new All_InvestigatorsDataTable();
@@ -763,11 +763,6 @@ namespace InventorAccessPortal.DB {
             base.Tables.Add(this.tableStatus);
             this.tableTransactions = new TransactionsDataTable();
             base.Tables.Add(this.tableTransactions);
-            this.relationLogin_DataInvestigators = new global::System.Data.DataRelation("Login DataInvestigators", new global::System.Data.DataColumn[] {
-                        this.tableInvestigators.Investigator_NumberColumn}, new global::System.Data.DataColumn[] {
-                        this.tableLogin_Data.Investigator_NumberColumn}, false);
-            this.relationLogin_DataInvestigators.Nested = true;
-            this.Relations.Add(this.relationLogin_DataInvestigators);
             this.relationInvestigatorsAdditional_Investigators = new global::System.Data.DataRelation("InvestigatorsAdditional Investigators", new global::System.Data.DataColumn[] {
                         this.tableInvestigators.Investigator_NameColumn}, new global::System.Data.DataColumn[] {
                         this.tableAll_Investigators.InvestigatorColumn}, false);
@@ -812,6 +807,10 @@ namespace InventorAccessPortal.DB {
                         this.tableGender.GenderColumn}, new global::System.Data.DataColumn[] {
                         this.tableInvestigators.GenderColumn}, false);
             this.Relations.Add(this.relationGenderInvestigators);
+            this.relationLogin_DataInvestigators = new global::System.Data.DataRelation("Login DataInvestigators", new global::System.Data.DataColumn[] {
+                        this.tableLogin_Data.Investigator_NumberColumn}, new global::System.Data.DataColumn[] {
+                        this.tableInvestigators.Investigator_NumberColumn}, false);
+            this.Relations.Add(this.relationLogin_DataInvestigators);
             this.relationOrganizationInvestigators = new global::System.Data.DataRelation("OrganizationInvestigators", new global::System.Data.DataColumn[] {
                         this.tableOrganizations.Organization_NameColumn}, new global::System.Data.DataColumn[] {
                         this.tableInvestigators.OrganizationColumn}, false);
@@ -981,7 +980,7 @@ namespace InventorAccessPortal.DB {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            _DB_DataSet ds = new _DB_DataSet();
+            _DB_Dataset ds = new _DB_Dataset();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -1322,7 +1321,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1595,7 +1594,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1854,7 +1853,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2128,7 +2127,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2425,7 +2424,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2684,7 +2683,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -2942,7 +2941,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3216,7 +3215,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3513,7 +3512,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -3882,7 +3881,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4141,7 +4140,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4367,12 +4366,12 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InvestigatorsRow AddInvestigatorsRow(string Investigator_Name, OrganizationsRow parentOrganizationsRowByOrganizationInvestigators, int Investigator_Number, CollegesRow parentCollegesRowByCollegesInvestigators, DepartmentsRow parentDepartmentsRowByDepartmentsInvestigators, string Home_Address, string Citizenship, GenderRow parentGenderRowByGenderInvestigators, string Email) {
+            public InvestigatorsRow AddInvestigatorsRow(string Investigator_Name, OrganizationsRow parentOrganizationsRowByOrganizationInvestigators, Login_DataRow parentLogin_DataRowByLogin_DataInvestigators, CollegesRow parentCollegesRowByCollegesInvestigators, DepartmentsRow parentDepartmentsRowByDepartmentsInvestigators, string Home_Address, string Citizenship, GenderRow parentGenderRowByGenderInvestigators, string Email) {
                 InvestigatorsRow rowInvestigatorsRow = ((InvestigatorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Investigator_Name,
                         null,
-                        Investigator_Number,
+                        null,
                         null,
                         null,
                         Home_Address,
@@ -4381,6 +4380,9 @@ namespace InventorAccessPortal.DB {
                         Email};
                 if ((parentOrganizationsRowByOrganizationInvestigators != null)) {
                     columnValuesArray[1] = parentOrganizationsRowByOrganizationInvestigators[0];
+                }
+                if ((parentLogin_DataRowByLogin_DataInvestigators != null)) {
+                    columnValuesArray[2] = parentLogin_DataRowByLogin_DataInvestigators[0];
                 }
                 if ((parentCollegesRowByCollegesInvestigators != null)) {
                     columnValuesArray[3] = parentCollegesRowByCollegesInvestigators[0];
@@ -4531,7 +4533,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -4717,17 +4719,14 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Login_DataRow AddLogin_DataRow(InvestigatorsRow parentInvestigatorsRowByLogin_DataInvestigators, string Username, string Password, bool Suspended, bool Temp_Password) {
+            public Login_DataRow AddLogin_DataRow(int Investigator_Number, string Username, string Password, bool Suspended, bool Temp_Password) {
                 Login_DataRow rowLogin_DataRow = ((Login_DataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        Investigator_Number,
                         Username,
                         Password,
                         Suspended,
                         Temp_Password};
-                if ((parentInvestigatorsRowByLogin_DataInvestigators != null)) {
-                    columnValuesArray[0] = parentInvestigatorsRowByLogin_DataInvestigators[2];
-                }
                 rowLogin_DataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLogin_DataRow);
                 return rowLogin_DataRow;
@@ -4850,7 +4849,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -5109,7 +5108,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -5499,7 +5498,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -5758,7 +5757,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -6066,7 +6065,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -6324,7 +6323,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -6583,7 +6582,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -6938,7 +6937,7 @@ namespace InventorAccessPortal.DB {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                _DB_DataSet ds = new _DB_DataSet();
+                _DB_Dataset ds = new _DB_Dataset();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -8128,6 +8127,17 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Login_DataRow Login_DataRow {
+                get {
+                    return ((Login_DataRow)(this.GetParentRow(this.Table.ParentRelations["Login DataInvestigators"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Login DataInvestigators"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public OrganizationsRow OrganizationsRow {
                 get {
                     return ((OrganizationsRow)(this.GetParentRow(this.Table.ParentRelations["OrganizationInvestigators"])));
@@ -8231,17 +8241,6 @@ namespace InventorAccessPortal.DB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetEmailNull() {
                 this[this.tableInvestigators.EmailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Login_DataRow[] GetLogin_DataRows() {
-                if ((this.Table.ChildRelations["Login DataInvestigators"] == null)) {
-                    return new Login_DataRow[0];
-                }
-                else {
-                    return ((Login_DataRow[])(base.GetChildRows(this.Table.ChildRelations["Login DataInvestigators"])));
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8358,17 +8357,6 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InvestigatorsRow InvestigatorsRow {
-                get {
-                    return ((InvestigatorsRow)(this.GetParentRow(this.Table.ParentRelations["Login DataInvestigators"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Login DataInvestigators"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsUsernameNull() {
                 return this.IsNull(this.tableLogin_Data.UsernameColumn);
             }
@@ -8413,6 +8401,17 @@ namespace InventorAccessPortal.DB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTemp_PasswordNull() {
                 this[this.tableLogin_Data.Temp_PasswordColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public InvestigatorsRow[] GetInvestigatorsRows() {
+                if ((this.Table.ChildRelations["Login DataInvestigators"] == null)) {
+                    return new InvestigatorsRow[0];
+                }
+                else {
+                    return ((InvestigatorsRow[])(base.GetChildRows(this.Table.ChildRelations["Login DataInvestigators"])));
+                }
             }
         }
         
@@ -9921,7 +9920,7 @@ namespace InventorAccessPortal.DB {
         }
     }
 }
-namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
+namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
     
     
     /// <summary>
@@ -10102,7 +10101,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.All_InvestigatorsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.All_InvestigatorsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -10115,9 +10114,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.All_InvestigatorsDataTable GetData() {
+        public virtual _DB_Dataset.All_InvestigatorsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.All_InvestigatorsDataTable dataTable = new _DB_DataSet.All_InvestigatorsDataTable();
+            _DB_Dataset.All_InvestigatorsDataTable dataTable = new _DB_Dataset.All_InvestigatorsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10125,14 +10124,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.All_InvestigatorsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.All_InvestigatorsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "All Investigators");
         }
         
@@ -10444,7 +10443,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.CodesDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.CodesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -10457,9 +10456,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.CodesDataTable GetData() {
+        public virtual _DB_Dataset.CodesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.CodesDataTable dataTable = new _DB_DataSet.CodesDataTable();
+            _DB_Dataset.CodesDataTable dataTable = new _DB_Dataset.CodesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10467,14 +10466,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.CodesDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.CodesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Codes");
         }
         
@@ -10779,7 +10778,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.CollegesDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.CollegesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -10792,9 +10791,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.CollegesDataTable GetData() {
+        public virtual _DB_Dataset.CollegesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.CollegesDataTable dataTable = new _DB_DataSet.CollegesDataTable();
+            _DB_Dataset.CollegesDataTable dataTable = new _DB_Dataset.CollegesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10802,14 +10801,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.CollegesDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.CollegesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Colleges");
         }
         
@@ -11096,7 +11095,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Combo_FamiliesDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Combo_FamiliesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11109,9 +11108,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Combo_FamiliesDataTable GetData() {
+        public virtual _DB_Dataset.Combo_FamiliesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Combo_FamiliesDataTable dataTable = new _DB_DataSet.Combo_FamiliesDataTable();
+            _DB_Dataset.Combo_FamiliesDataTable dataTable = new _DB_Dataset.Combo_FamiliesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11119,14 +11118,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Combo_FamiliesDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Combo_FamiliesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Combo Families");
         }
         
@@ -11447,7 +11446,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Combo_Family_ListingsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Combo_Family_ListingsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11460,9 +11459,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Combo_Family_ListingsDataTable GetData() {
+        public virtual _DB_Dataset.Combo_Family_ListingsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Combo_Family_ListingsDataTable dataTable = new _DB_DataSet.Combo_Family_ListingsDataTable();
+            _DB_Dataset.Combo_Family_ListingsDataTable dataTable = new _DB_Dataset.Combo_Family_ListingsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11470,14 +11469,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Combo_Family_ListingsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Combo_Family_ListingsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Combo Family Listings");
         }
         
@@ -11780,7 +11779,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.DepartmentsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.DepartmentsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -11793,9 +11792,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.DepartmentsDataTable GetData() {
+        public virtual _DB_Dataset.DepartmentsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.DepartmentsDataTable dataTable = new _DB_DataSet.DepartmentsDataTable();
+            _DB_Dataset.DepartmentsDataTable dataTable = new _DB_Dataset.DepartmentsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -11803,14 +11802,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.DepartmentsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.DepartmentsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Departments");
         }
         
@@ -12088,7 +12087,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Ending_Fiscal_YearDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Ending_Fiscal_YearDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12101,9 +12100,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Ending_Fiscal_YearDataTable GetData() {
+        public virtual _DB_Dataset.Ending_Fiscal_YearDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Ending_Fiscal_YearDataTable dataTable = new _DB_DataSet.Ending_Fiscal_YearDataTable();
+            _DB_Dataset.Ending_Fiscal_YearDataTable dataTable = new _DB_Dataset.Ending_Fiscal_YearDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12111,14 +12110,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Ending_Fiscal_YearDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Ending_Fiscal_YearDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Ending Fiscal Year");
         }
         
@@ -12404,7 +12403,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.FamiliesDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.FamiliesDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12417,9 +12416,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.FamiliesDataTable GetData() {
+        public virtual _DB_Dataset.FamiliesDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.FamiliesDataTable dataTable = new _DB_DataSet.FamiliesDataTable();
+            _DB_Dataset.FamiliesDataTable dataTable = new _DB_Dataset.FamiliesDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12427,14 +12426,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.FamiliesDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.FamiliesDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Families");
         }
         
@@ -12755,7 +12754,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Family_ListingsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Family_ListingsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -12768,9 +12767,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Family_ListingsDataTable GetData() {
+        public virtual _DB_Dataset.Family_ListingsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Family_ListingsDataTable dataTable = new _DB_DataSet.Family_ListingsDataTable();
+            _DB_Dataset.Family_ListingsDataTable dataTable = new _DB_Dataset.Family_ListingsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -12778,14 +12777,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Family_ListingsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Family_ListingsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Family Listings");
         }
         
@@ -13136,7 +13135,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.File_NumbersDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.File_NumbersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -13149,9 +13148,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.File_NumbersDataTable GetData() {
+        public virtual _DB_Dataset.File_NumbersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.File_NumbersDataTable dataTable = new _DB_DataSet.File_NumbersDataTable();
+            _DB_Dataset.File_NumbersDataTable dataTable = new _DB_Dataset.File_NumbersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13159,14 +13158,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.File_NumbersDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.File_NumbersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "File Numbers");
         }
         
@@ -13623,7 +13622,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.GenderDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.GenderDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -13636,9 +13635,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.GenderDataTable GetData() {
+        public virtual _DB_Dataset.GenderDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.GenderDataTable dataTable = new _DB_DataSet.GenderDataTable();
+            _DB_Dataset.GenderDataTable dataTable = new _DB_Dataset.GenderDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -13646,14 +13645,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.GenderDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.GenderDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Gender");
         }
         
@@ -13990,7 +13989,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.InvestigatorsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.InvestigatorsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -14003,9 +14002,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.InvestigatorsDataTable GetData() {
+        public virtual _DB_Dataset.InvestigatorsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.InvestigatorsDataTable dataTable = new _DB_DataSet.InvestigatorsDataTable();
+            _DB_Dataset.InvestigatorsDataTable dataTable = new _DB_Dataset.InvestigatorsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14013,14 +14012,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.InvestigatorsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.InvestigatorsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Investigators");
         }
         
@@ -14564,7 +14563,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Login_DataDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Login_DataDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -14577,9 +14576,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Login_DataDataTable GetData() {
+        public virtual _DB_Dataset.Login_DataDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Login_DataDataTable dataTable = new _DB_DataSet.Login_DataDataTable();
+            _DB_Dataset.Login_DataDataTable dataTable = new _DB_Dataset.Login_DataDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14587,14 +14586,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Login_DataDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Login_DataDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Login Data");
         }
         
@@ -14920,7 +14919,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.OrganizationsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.OrganizationsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -14933,9 +14932,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.OrganizationsDataTable GetData() {
+        public virtual _DB_Dataset.OrganizationsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.OrganizationsDataTable dataTable = new _DB_DataSet.OrganizationsDataTable();
+            _DB_Dataset.OrganizationsDataTable dataTable = new _DB_Dataset.OrganizationsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -14943,14 +14942,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.OrganizationsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.OrganizationsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Organizations");
         }
         
@@ -15283,7 +15282,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Project_NumbersDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Project_NumbersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -15296,9 +15295,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Project_NumbersDataTable GetData() {
+        public virtual _DB_Dataset.Project_NumbersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Project_NumbersDataTable dataTable = new _DB_DataSet.Project_NumbersDataTable();
+            _DB_Dataset.Project_NumbersDataTable dataTable = new _DB_Dataset.Project_NumbersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15306,14 +15305,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Project_NumbersDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Project_NumbersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Project Numbers");
         }
         
@@ -15831,7 +15830,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Records_StatusDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Records_StatusDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -15844,9 +15843,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Records_StatusDataTable GetData() {
+        public virtual _DB_Dataset.Records_StatusDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Records_StatusDataTable dataTable = new _DB_DataSet.Records_StatusDataTable();
+            _DB_Dataset.Records_StatusDataTable dataTable = new _DB_Dataset.Records_StatusDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -15854,14 +15853,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Records_StatusDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Records_StatusDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Records Status");
         }
         
@@ -16159,7 +16158,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.RemindersDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.RemindersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16172,9 +16171,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.RemindersDataTable GetData() {
+        public virtual _DB_Dataset.RemindersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.RemindersDataTable dataTable = new _DB_DataSet.RemindersDataTable();
+            _DB_Dataset.RemindersDataTable dataTable = new _DB_Dataset.RemindersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -16182,14 +16181,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.RemindersDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.RemindersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Reminders");
         }
         
@@ -16505,7 +16504,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.Starting_Fiscal_YearDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.Starting_Fiscal_YearDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16518,9 +16517,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.Starting_Fiscal_YearDataTable GetData() {
+        public virtual _DB_Dataset.Starting_Fiscal_YearDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.Starting_Fiscal_YearDataTable dataTable = new _DB_DataSet.Starting_Fiscal_YearDataTable();
+            _DB_Dataset.Starting_Fiscal_YearDataTable dataTable = new _DB_Dataset.Starting_Fiscal_YearDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -16528,14 +16527,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.Starting_Fiscal_YearDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.Starting_Fiscal_YearDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Starting Fiscal Year");
         }
         
@@ -16812,7 +16811,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.StatusDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.StatusDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16825,9 +16824,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.StatusDataTable GetData() {
+        public virtual _DB_Dataset.StatusDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.StatusDataTable dataTable = new _DB_DataSet.StatusDataTable();
+            _DB_Dataset.StatusDataTable dataTable = new _DB_Dataset.StatusDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -16835,14 +16834,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.StatusDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.StatusDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Status");
         }
         
@@ -17153,7 +17152,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(_DB_DataSet.TransactionsDataTable dataTable) {
+        public virtual int Fill(_DB_Dataset.TransactionsDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -17166,9 +17165,9 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual _DB_DataSet.TransactionsDataTable GetData() {
+        public virtual _DB_Dataset.TransactionsDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            _DB_DataSet.TransactionsDataTable dataTable = new _DB_DataSet.TransactionsDataTable();
+            _DB_Dataset.TransactionsDataTable dataTable = new _DB_Dataset.TransactionsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -17176,14 +17175,14 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet.TransactionsDataTable dataTable) {
+        public virtual int Update(_DB_Dataset.TransactionsDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(_DB_DataSet dataSet) {
+        public virtual int Update(_DB_Dataset dataSet) {
             return this.Adapter.Update(dataSet, "Transactions");
         }
         
@@ -17932,7 +17931,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateUpdatedRows(_DB_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(_DB_Dataset dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._collegesTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Colleges.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -17940,24 +17939,6 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._collegesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._organizationsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._organizationsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._genderTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Gender.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._genderTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17970,12 +17951,30 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._investigatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._genderTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Gender.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._investigatorsTableAdapter.Update(updatedRows));
+                    result = (result + this._genderTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._login_DataTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._organizationsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._organizationsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -17985,15 +17984,6 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._starting_Fiscal_YearTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._records_StatusTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._records_StatusTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18015,6 +18005,24 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._investigatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._investigatorsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._records_StatusTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._records_StatusTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._project_NumbersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Project_Numbers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -18033,12 +18041,12 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._familiesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._codesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._familiesTableAdapter.Update(updatedRows));
+                    result = (result + this._codesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18051,30 +18059,12 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._codesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._familiesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._codesTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._combo_Family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._combo_Family_ListingsTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._all_InvestigatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.All_Investigators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._all_InvestigatorsTableAdapter.Update(updatedRows));
+                    result = (result + this._familiesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18087,12 +18077,21 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._all_InvestigatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.All_Investigators.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(updatedRows));
+                    result = (result + this._all_InvestigatorsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._combo_Family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._combo_Family_ListingsTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18122,29 +18121,13 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateInsertedRows(_DB_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(_DB_Dataset dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._collegesTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Colleges.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._collegesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._organizationsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._organizationsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._genderTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Gender.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._genderTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18156,11 +18139,27 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._investigatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._genderTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Gender.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._investigatorsTableAdapter.Update(addedRows));
+                    result = (result + this._genderTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._login_DataTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._organizationsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._organizationsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18169,14 +18168,6 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._starting_Fiscal_YearTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._records_StatusTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._records_StatusTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18196,6 +18187,22 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._investigatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._investigatorsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._records_StatusTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._records_StatusTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._project_NumbersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Project_Numbers.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -18212,11 +18219,11 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._familiesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._codesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._familiesTableAdapter.Update(addedRows));
+                    result = (result + this._codesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18228,27 +18235,11 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._codesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._familiesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._codesTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._combo_Family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._combo_Family_ListingsTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._all_InvestigatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.All_Investigators.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._all_InvestigatorsTableAdapter.Update(addedRows));
+                    result = (result + this._familiesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18260,11 +18251,19 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._all_InvestigatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.All_Investigators.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(addedRows));
+                    result = (result + this._all_InvestigatorsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._combo_Family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._combo_Family_ListingsTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18292,7 +18291,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private int UpdateDeletedRows(_DB_DataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(_DB_Dataset dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._transactionsTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Transactions.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -18310,19 +18309,11 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._combo_Family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._remindersTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Reminders.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._remindersTableAdapter.Update(deletedRows));
+                    result = (result + this._combo_Family_ListingsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18334,19 +18325,19 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._combo_Family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._remindersTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Reminders.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._combo_Family_ListingsTableAdapter.Update(deletedRows));
+                    result = (result + this._remindersTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._codesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._familiesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._codesTableAdapter.Update(deletedRows));
+                    result = (result + this._familiesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18358,11 +18349,11 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._familiesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Families.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._codesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Codes.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._familiesTableAdapter.Update(deletedRows));
+                    result = (result + this._codesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18382,6 +18373,22 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._records_StatusTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._records_StatusTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._investigatorsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._investigatorsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._statusTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Status.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -18398,14 +18405,6 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._records_StatusTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Records_Status.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._records_StatusTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._starting_Fiscal_YearTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Starting_Fiscal_Year.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -18414,19 +18413,19 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._investigatorsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Investigators.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._organizationsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._investigatorsTableAdapter.Update(deletedRows));
+                    result = (result + this._organizationsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._departmentsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Departments.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._departmentsTableAdapter.Update(deletedRows));
+                    result = (result + this._login_DataTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18438,11 +18437,11 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._organizationsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._departmentsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Departments.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._organizationsTableAdapter.Update(deletedRows));
+                    result = (result + this._departmentsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18486,7 +18485,7 @@ namespace InventorAccessPortal.DB._DB_DataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public virtual int UpdateAll(_DB_DataSet dataSet) {
+        public virtual int UpdateAll(_DB_Dataset dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

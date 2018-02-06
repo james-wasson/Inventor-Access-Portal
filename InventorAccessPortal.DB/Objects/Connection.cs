@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.OleDb;
-using InventorAccessPortal.DB._DB_DataSetTableAdapters;
+using InventorAccessPortal.DB._DB_DatasetTableAdapters;
 using JetEntityFrameworkProvider;
 
 namespace InventorAccessPortal.DB.Objects
@@ -38,7 +40,6 @@ namespace InventorAccessPortal.DB.Objects
 
                 // sets the object variables
                 DBConnection = new OleDbConnection(connString);
-                
                 ConnectionString = connString;
                 ConnectionStringName = name;
                 ProviderName = providerName;
@@ -64,254 +65,338 @@ namespace InventorAccessPortal.DB.Objects
 
         // A method to instanciate codesTableAdapter only when needed
         private CodesTableAdapter codesTableAdapter = null;
-        public CodesTableAdapter CodesTableAdapter()
+        public CodesTableAdapter CodesTableAdapter
         {
-            if (codesTableAdapter == null)
+            get
             {
-                codesTableAdapter = new CodesTableAdapter();
-                codesTableAdapter.Connection = DBConnection;
+                if (codesTableAdapter == null)
+                {
+                    codesTableAdapter = new CodesTableAdapter();
+                    codesTableAdapter.Connection = DBConnection;
+                }
+                return codesTableAdapter;
             }
-            return codesTableAdapter;
+            private set { }
         }
 
         // A method to instanciate allInvestigatorsTableAdapters only when needed
         private All_InvestigatorsTableAdapter allInvestigatorsTableAdapters = null;
-        public All_InvestigatorsTableAdapter AllInvestigatorsTableAdapters()
+        public All_InvestigatorsTableAdapter AllInvestigatorsTableAdapters
         {
-            if (allInvestigatorsTableAdapters == null)
+            get
             {
-                allInvestigatorsTableAdapters = new All_InvestigatorsTableAdapter();
-                allInvestigatorsTableAdapters.Connection = DBConnection;
+                if (allInvestigatorsTableAdapters == null)
+                {
+                    allInvestigatorsTableAdapters = new All_InvestigatorsTableAdapter();
+                    allInvestigatorsTableAdapters.Connection = DBConnection;
+                }
+                return allInvestigatorsTableAdapters;
             }
-            return allInvestigatorsTableAdapters;
+            private set { }
         }
 
         // A method to instanciate collegesTableAdapter only when needed
         private CollegesTableAdapter collegesTableAdapter = null;
-        public CollegesTableAdapter CollegesTableAdapter()
+        public CollegesTableAdapter CollegesTableAdapter
         {
-            if (collegesTableAdapter == null)
+            get
             {
-                collegesTableAdapter = new CollegesTableAdapter();
-                collegesTableAdapter.Connection = DBConnection;
+                if (collegesTableAdapter == null)
+                {
+                    collegesTableAdapter = new CollegesTableAdapter();
+                    collegesTableAdapter.Connection = DBConnection;
+                }
+                return collegesTableAdapter;
             }
-            return collegesTableAdapter;
+            private set { }
         }
 
         // A method to instanciate comboFamiliesTableAdapter only when needed
         private Combo_FamiliesTableAdapter comboFamiliesTableAdapter = null;
-        public Combo_FamiliesTableAdapter ComboFamiliesTableAdapter()
+        public Combo_FamiliesTableAdapter ComboFamiliesTableAdapter
         {
-            if (comboFamiliesTableAdapter == null)
+            get
             {
-                comboFamiliesTableAdapter = new Combo_FamiliesTableAdapter();
-                comboFamiliesTableAdapter.Connection = DBConnection;
+                if (comboFamiliesTableAdapter == null)
+                {
+                    comboFamiliesTableAdapter = new Combo_FamiliesTableAdapter();
+                    comboFamiliesTableAdapter.Connection = DBConnection;
+                }
+                return comboFamiliesTableAdapter;
             }
-            return comboFamiliesTableAdapter;
+            private set { }
         }
 
         // A method to instanciate comboFamilyListingsTableAdapter only when needed
         private Combo_Family_ListingsTableAdapter comboFamilyListingsTableAdapter = null;
-        public Combo_Family_ListingsTableAdapter ComboFamilyListingsTableAdapter()
+        public Combo_Family_ListingsTableAdapter ComboFamilyListingsTableAdapter
         {
-            if (comboFamilyListingsTableAdapter == null)
+            get
             {
-                comboFamilyListingsTableAdapter = new Combo_Family_ListingsTableAdapter();
-                comboFamilyListingsTableAdapter.Connection = DBConnection;
+                if (comboFamilyListingsTableAdapter == null)
+                {
+                    comboFamilyListingsTableAdapter = new Combo_Family_ListingsTableAdapter();
+                    comboFamilyListingsTableAdapter.Connection = DBConnection;
+                }
+                return comboFamilyListingsTableAdapter;
             }
-            return comboFamilyListingsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate departmentsTableAdapter only when needed
         private DepartmentsTableAdapter departmentsTableAdapter = null;
-        public DepartmentsTableAdapter DepartmentsTableAdapter()
+        public DepartmentsTableAdapter DepartmentsTableAdapter
         {
-            if (departmentsTableAdapter == null)
+            get
             {
-                departmentsTableAdapter = new DepartmentsTableAdapter();
-                departmentsTableAdapter.Connection = DBConnection;
+                if (departmentsTableAdapter == null)
+                {
+                    departmentsTableAdapter = new DepartmentsTableAdapter();
+                    departmentsTableAdapter.Connection = DBConnection;
+                }
+                return departmentsTableAdapter;
             }
-            return departmentsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate endingFiscalYearTableAdapter only when needed
         private Ending_Fiscal_YearTableAdapter endingFiscalYearTableAdapter = null;
-        public Ending_Fiscal_YearTableAdapter EndingFiscalYearTableAdapter()
+        public Ending_Fiscal_YearTableAdapter EndingFiscalYearTableAdapter
         {
-            if (endingFiscalYearTableAdapter == null)
+            get
             {
-                endingFiscalYearTableAdapter = new Ending_Fiscal_YearTableAdapter();
-                endingFiscalYearTableAdapter.Connection = DBConnection;
+                if (endingFiscalYearTableAdapter == null)
+                {
+                    endingFiscalYearTableAdapter = new Ending_Fiscal_YearTableAdapter();
+                    endingFiscalYearTableAdapter.Connection = DBConnection;
+                }
+                return endingFiscalYearTableAdapter;
             }
-            return endingFiscalYearTableAdapter;
+            private set { }
         }
 
         // A method to instanciate familiesTableAdapter only when needed
         private FamiliesTableAdapter familiesTableAdapter = null;
-        public FamiliesTableAdapter FamiliesTableAdapter()
+        public FamiliesTableAdapter FamiliesTableAdapter
         {
-            if (familiesTableAdapter == null)
+            get
             {
-                familiesTableAdapter = new FamiliesTableAdapter();
-                familiesTableAdapter.Connection = DBConnection;
+                if (familiesTableAdapter == null)
+                {
+                    familiesTableAdapter = new FamiliesTableAdapter();
+                    familiesTableAdapter.Connection = DBConnection;
+                }
+                return familiesTableAdapter;
             }
-            return familiesTableAdapter;
+            private set { }
         }
 
         // A method to instanciate familyListingsTableAdapter only when needed
         private Family_ListingsTableAdapter familyListingsTableAdapter = null;
-        public Family_ListingsTableAdapter FamilyListingsTableAdapter()
+        public Family_ListingsTableAdapter FamilyListingsTableAdapter
         {
-            if (familyListingsTableAdapter == null)
+            get
             {
-                familyListingsTableAdapter = new Family_ListingsTableAdapter();
-                familyListingsTableAdapter.Connection = DBConnection;
+                if (familyListingsTableAdapter == null)
+                {
+                    familyListingsTableAdapter = new Family_ListingsTableAdapter();
+                    familyListingsTableAdapter.Connection = DBConnection;
+                }
+                return familyListingsTableAdapter;
             }
-            return familyListingsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate fileNumbersTableAdapter only when needed
         private File_NumbersTableAdapter fileNumbersTableAdapter = null;
-        public File_NumbersTableAdapter FileNumbersTableAdapter()
+        public File_NumbersTableAdapter FileNumbersTableAdapter
         {
-            if (fileNumbersTableAdapter == null)
+            get
             {
-                fileNumbersTableAdapter = new File_NumbersTableAdapter();
-                fileNumbersTableAdapter.Connection = DBConnection;
+                if (fileNumbersTableAdapter == null)
+                {
+                    fileNumbersTableAdapter = new File_NumbersTableAdapter();
+                    fileNumbersTableAdapter.Connection = DBConnection;
+                }
+                return fileNumbersTableAdapter;
             }
-            return fileNumbersTableAdapter;
+            private set { }
         }
 
         // A method to instanciate genderTableAdapter only when needed
         private GenderTableAdapter genderTableAdapter = null;
-        public GenderTableAdapter GenderTableAdapter()
+        public GenderTableAdapter GenderTableAdapter
         {
-            if (genderTableAdapter == null)
+            get
             {
-                genderTableAdapter = new GenderTableAdapter();
-                genderTableAdapter.Connection = DBConnection;
+                if (genderTableAdapter == null)
+                {
+                    genderTableAdapter = new GenderTableAdapter();
+                    genderTableAdapter.Connection = DBConnection;
+                }
+                return genderTableAdapter;
             }
-            return genderTableAdapter;
+            private set { }
         }
 
         // A method to instanciate investigatorsTableAdapter only when needed
         private InvestigatorsTableAdapter investigatorsTableAdapter = null;
-        public InvestigatorsTableAdapter InvestigatorsTableAdapter()
+        public InvestigatorsTableAdapter InvestigatorsTableAdapter
         {
-            if (investigatorsTableAdapter == null)
+            get
             {
-                investigatorsTableAdapter = new InvestigatorsTableAdapter();
-                investigatorsTableAdapter.Connection = DBConnection;
+                if (investigatorsTableAdapter == null)
+                {
+                    investigatorsTableAdapter = new InvestigatorsTableAdapter();
+                    investigatorsTableAdapter.Connection = DBConnection;
+                }
+                return investigatorsTableAdapter;
             }
-            return investigatorsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate organizationsTableAdapter only when needed
         private OrganizationsTableAdapter organizationsTableAdapter = null;
-        public OrganizationsTableAdapter OrganizationsTableAdapter()
+        public OrganizationsTableAdapter OrganizationsTableAdapter
         {
-            if (organizationsTableAdapter == null)
+            get
             {
-                organizationsTableAdapter = new OrganizationsTableAdapter();
-                organizationsTableAdapter.Connection = DBConnection;
+                if (organizationsTableAdapter == null)
+                {
+                    organizationsTableAdapter = new OrganizationsTableAdapter();
+                    organizationsTableAdapter.Connection = DBConnection;
+                }
+                return organizationsTableAdapter;
             }
-            return organizationsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate projectNumbersTableAdapter only when needed
         private Project_NumbersTableAdapter projectNumbersTableAdapter = null;
-        public Project_NumbersTableAdapter ProjectNumbersTableAdapter()
+        public Project_NumbersTableAdapter ProjectNumbersTableAdapter
         {
-            if (projectNumbersTableAdapter == null)
+            get
             {
-                projectNumbersTableAdapter = new Project_NumbersTableAdapter();
-                projectNumbersTableAdapter.Connection = DBConnection;
+                if (projectNumbersTableAdapter == null)
+                {
+                    projectNumbersTableAdapter = new Project_NumbersTableAdapter();
+                    projectNumbersTableAdapter.Connection = DBConnection;
+                }
+                return projectNumbersTableAdapter;
             }
-            return projectNumbersTableAdapter;
+            private set { }
         }
 
         // A method to instanciate recordsStatusTableAdapter only when needed
         private Records_StatusTableAdapter recordsStatusTableAdapter = null;
-        public Records_StatusTableAdapter RecordsStatusTableAdapter()
+        public Records_StatusTableAdapter RecordsStatusTableAdapter
         {
-            if (recordsStatusTableAdapter == null)
+            get
             {
-                recordsStatusTableAdapter = new Records_StatusTableAdapter();
-                recordsStatusTableAdapter.Connection = DBConnection;
+                if (recordsStatusTableAdapter == null)
+                {
+                    recordsStatusTableAdapter = new Records_StatusTableAdapter();
+                    recordsStatusTableAdapter.Connection = DBConnection;
+                }
+                return recordsStatusTableAdapter;
             }
-            return recordsStatusTableAdapter;
+            private set { }
         }
 
         // A method to instanciate remindersTableAdapter only when needed
         private RemindersTableAdapter remindersTableAdapter = null;
-        public RemindersTableAdapter RemindersTableAdapter()
+        public RemindersTableAdapter RemindersTableAdapter
         {
-            if (remindersTableAdapter == null)
+            get
             {
-                remindersTableAdapter = new RemindersTableAdapter();
-                remindersTableAdapter.Connection = DBConnection;
+                if (remindersTableAdapter == null)
+                {
+                    remindersTableAdapter = new RemindersTableAdapter();
+                    remindersTableAdapter.Connection = DBConnection;
+                }
+                return remindersTableAdapter;
             }
-            return remindersTableAdapter;
+            private set { }
         }
 
         // A method to instanciate startingFiscalYearTableAdapter only when needed
         private Starting_Fiscal_YearTableAdapter startingFiscalYearTableAdapter = null;
-        public Starting_Fiscal_YearTableAdapter StartingFiscalYearTableAdapter()
+        public Starting_Fiscal_YearTableAdapter StartingFiscalYearTableAdapter
         {
-            if (startingFiscalYearTableAdapter == null)
+            get
             {
-                startingFiscalYearTableAdapter = new Starting_Fiscal_YearTableAdapter();
-                startingFiscalYearTableAdapter.Connection = DBConnection;
+                if (startingFiscalYearTableAdapter == null)
+                {
+                    startingFiscalYearTableAdapter = new Starting_Fiscal_YearTableAdapter();
+                    startingFiscalYearTableAdapter.Connection = DBConnection;
+                }
+                return startingFiscalYearTableAdapter;
             }
-            return startingFiscalYearTableAdapter;
+            private set { }
         }
 
         // A method to instanciate statusTableAdapter only when needed
         private StatusTableAdapter statusTableAdapter = null;
-        public StatusTableAdapter StatusTableAdapter()
+        public StatusTableAdapter StatusTableAdapter
         {
-            if (statusTableAdapter == null)
+            get
             {
-                statusTableAdapter = new StatusTableAdapter();
-                statusTableAdapter.Connection = DBConnection;
+                if (statusTableAdapter == null)
+                {
+                    statusTableAdapter = new StatusTableAdapter();
+                    statusTableAdapter.Connection = DBConnection;
+                }
+                return statusTableAdapter;
             }
-            return statusTableAdapter;
+            private set { }
         }
 
         // A method to instanciate transactionsTableAdapter only when needed
         private TransactionsTableAdapter transactionsTableAdapter = null;
-        public TransactionsTableAdapter TransactionsTableAdapter()
+        public TransactionsTableAdapter TransactionsTableAdapter
         {
-            if (transactionsTableAdapter == null)
+            get
             {
-                transactionsTableAdapter = new TransactionsTableAdapter();
-                transactionsTableAdapter.Connection = DBConnection;
+                if (transactionsTableAdapter == null)
+                {
+                    transactionsTableAdapter = new TransactionsTableAdapter();
+                    transactionsTableAdapter.Connection = DBConnection;
+                }
+                return transactionsTableAdapter;
             }
-            return transactionsTableAdapter;
+            private set { }
         }
 
         // A method to instanciate tableAdapterManager only when needed
         private TableAdapterManager tableAdapterManager = null;
-        public TableAdapterManager TableAdapterManager()
+        public TableAdapterManager TableAdapterManager
         {
-            if (tableAdapterManager == null)
+            get
             {
-                tableAdapterManager = new TableAdapterManager();
-                tableAdapterManager.Connection = DBConnection;
+                if (tableAdapterManager == null)
+                {
+                    tableAdapterManager = new TableAdapterManager();
+                    tableAdapterManager.Connection = DBConnection;
+                }
+                return tableAdapterManager;
             }
-            return tableAdapterManager;
+            private set { }
         }
 
         // A method to instanciate loginDataAdapterManager only when needed
         private Login_DataTableAdapter loginDataAdapterManager = null;
-        public Login_DataTableAdapter LoginDataAdapterManager()
+        public Login_DataTableAdapter LoginDataAdapterManager
         {
-            if (loginDataAdapterManager == null)
+            get
             {
-                loginDataAdapterManager = new Login_DataTableAdapter();
-                loginDataAdapterManager.Connection = DBConnection;
+                if (loginDataAdapterManager == null)
+                {
+                    loginDataAdapterManager = new Login_DataTableAdapter();
+                    loginDataAdapterManager.Connection = DBConnection;
+                }
+                return loginDataAdapterManager;
             }
-            return loginDataAdapterManager;
+            private set { }
         }
 
         // disposes of the databse connection adn all assigned table adaptors

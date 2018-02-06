@@ -1,5 +1,5 @@
 ﻿using System;
-using InventorAccessPortal.DB._DB_DataSetTableAdapters;
+using InventorAccessPortal.DB._DB_DatasetTableAdapters;
 using System.Collections.Generic;
 using System.Configuration;
 using InventorAccessPortal.DB.Objects;
