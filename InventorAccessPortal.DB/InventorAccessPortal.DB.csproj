@@ -82,9 +82,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="_DB_DataSet.cs">
-      <DependentUpon>_DB_DataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="_DB_DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
