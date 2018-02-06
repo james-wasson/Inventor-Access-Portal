@@ -9,6 +9,10 @@ namespace InventorAccessPortal.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
 
+            /*
+             * DEV Bundles
+             */
+
             bundles.Add(new ScriptBundle("~/Content/css")
                 .IncludeDirectory("~/Content/", "*.css", false));
 
