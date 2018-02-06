@@ -16,7 +16,7 @@ namespace InventorAccessPortal.Web.Controllers
         {
             using (var DbContext = new Context())
             {
-                DB.Auth.Authorize.Credentials("username", "password", DbContext);
+                //DB.Auth.Authorize.Credentials("username", "password", DbContext);
             }
             return false;
         }

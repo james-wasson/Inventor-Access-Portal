@@ -14,7 +14,7 @@ namespace InventorAccessPortal.DB
 {
     public class Context : IDisposable
     {
-        List<Connection> Connections = new List<Connection>();
+        private List<Connection> Connections = new List<Connection>();
         public Context()
         {
             foreach (ConnectionStringSettings css in ConfigurationManager.ConnectionStrings)
@@ -36,4 +36,5 @@ namespace InventorAccessPortal.DB
             }
         }
     }
+
 }

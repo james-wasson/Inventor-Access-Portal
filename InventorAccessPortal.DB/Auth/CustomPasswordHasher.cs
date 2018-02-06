@@ -10,7 +10,7 @@ namespace InventorAccessPortal.DB
     {
         public string HashPassword(string password)
         {
-            return Encrypt.GetMD5Hash(password);
+            return Encrypt.GetSAH512Hash(password);
         }
         public PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
         {
