@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using InventorAccessPortal.Web.Models;
 using InventorAccessPortal.Web.Models.Account;
+using InventorAccessPortal.Web.Util;
+using System.Threading.Tasks;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -15,15 +17,6 @@ namespace InventorAccessPortal.Web.Controllers
         }
 
         public ActionResult Login()
-        {
-            var model = new LoginModel
-            {
-                WelcomeMessage = "Hello and welcome to our website"
-            };
-            return View(model);
-        }
-
-        public ActionResult Login(string username, string password)
         {
             var model = new LoginModel
             {

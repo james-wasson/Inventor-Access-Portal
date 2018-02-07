@@ -7,6 +7,7 @@ using System.Text;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.Objects.Collections;
 using System.Threading.Tasks;
+using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -27,18 +28,16 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
-                await conn.FillLoginDataAsync();
                 await conn.FillInvestigatorsAsync();
-                // get the users with those credntals
+                await conn.FillLoginDataAsync();
                 var InvestigatorLoginRow = conn.Investigators.Select(p => new InvestigatorLoginRow { InvestigatorsRow = p, LoginDataRow = p.Login_DataRow })
                     .FirstOrDefault(p =>
                         p.LoginDataRow.Password == hashedPassword && p.LoginDataRow.Username == username
                     );
-                // if there are any users return true
                 if (InvestigatorLoginRow != null)
                     return InvestigatorLoginRow;
             }
-            return new InvestigatorLoginRow();
+            return null;
         }
 
         /// <summary>
@@ -57,11 +56,12 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
-                await conn.FillLoginDataAsync();
                 await conn.FillInvestigatorsAsync();
+                await conn.FillLoginDataAsync();
                 // get the users with those credntals
                 var InvestigatorLoginRow = conn.Investigators.Where(p => p.Email.ToLower() == lowerEmail)
-                    .Select(p => new InvestigatorLoginRow {
+                    .Select(p =>
+                    new InvestigatorLoginRow {
                         InvestigatorsRow = p,
                         LoginDataRow = p.Login_DataRow
                     }).FirstOrDefault(p =>
@@ -71,7 +71,8 @@ namespace InventorAccessPortal.DB.Auth
                 if (InvestigatorLoginRow != null)
                     return InvestigatorLoginRow;
             }
-            return new InvestigatorLoginRow();
+
+            return null;
         }
 
     }

@@ -108,7 +108,9 @@ namespace InventorAccessPortal.DB.Objects
     public static class FillConnectionData
     {
 
-        public static Task FillCodesAsync(this Connection c)
+
+
+        public static Task<Connection> FillCodesAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -127,7 +129,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillAllInvestigatorsAsync(this Connection c)
+        public static Task<Connection> FillAllInvestigatorsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -146,7 +148,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillCollegesAsync(this Connection c)
+        public static Task<Connection> FillCollegesAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -165,7 +167,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillComboFamiliesAsync(this Connection c)
+        public static Task<Connection> FillComboFamiliesAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -184,7 +186,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillComboFamilyListingsAsync(this Connection c)
+        public static Task<Connection> FillComboFamilyListingsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -203,7 +205,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillDepartmentsAsync(this Connection c)
+        public static Task<Connection> FillDepartmentsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -222,7 +224,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillEndingFiscalYearAsync(this Connection c)
+        public static Task<Connection> FillEndingFiscalYearAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -241,7 +243,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillFamiliesAsync(this Connection c)
+        public static Task<Connection> FillFamiliesAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -260,7 +262,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillFamilyListingsAsync(this Connection c)
+        public static Task<Connection> FillFamilyListingsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -279,7 +281,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillFileNumbersAsync(this Connection c)
+        public static Task<Connection> FillFileNumbersAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -298,7 +300,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillGenderAsync(this Connection c)
+        public static Task<Connection> FillGenderAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -317,7 +319,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillInvestigatorsAsync(this Connection c)
+        public static Task<Connection> FillInvestigatorsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -336,7 +338,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillOrganizationsAsync(this Connection c)
+        public static Task<Connection> FillOrganizationsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -355,7 +357,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillProjectNumbersAsync(this Connection c)
+        public static Task<Connection> FillProjectNumbersAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -374,7 +376,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillRecordsStatusAsync(this Connection c)
+        public static Task<Connection> FillRecordsStatusAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -393,7 +395,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillRemindersAsync(this Connection c)
+        public static Task<Connection> FillRemindersAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -412,7 +414,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillStartingFiscalYearAsync(this Connection c)
+        public static Task<Connection> FillStartingFiscalYearAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -431,7 +433,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillStatusAsync(this Connection c)
+        public static Task<Connection> FillStatusAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -450,7 +452,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillTransactionsAsync(this Connection c)
+        public static Task<Connection> FillTransactionsAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -469,7 +471,7 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Task FillLoginDataAsync(this Connection c)
+        public static Task<Connection> FillLoginDataAsync(this Connection c)
         {
             return Task.Factory.StartNew(() =>
             {
@@ -487,6 +489,7 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.Login_DataTableAdapter.Fill(c.Login_Data);
             return c;
         }
+
 
     }
 }

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace InventorAccessPortal.Web.Util
 {
-    public static class Email
+    public static class EmailHelper
     {
         public static bool isValid(string email)
         {
