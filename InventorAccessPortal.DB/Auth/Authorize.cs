@@ -1,23 +1,26 @@
 ﻿using System;
 using System.Data;
+using System.Data.Objects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventorAccessPortal.DB.Objects;
-using InventorAccessPortal.DB._DB_DatasetTableAdapters;
+using InventorAccessPortal.DB.Objects.Collections;
+using System.Threading.Tasks;
+using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.DB.Auth
 {
     public static class Authorize
     {
         /// <summary>
-        /// Will check to see if your credentials match any in the databse
+        /// Will check to see if your credentials match any in the databses
         /// </summary>
-        /// <param name="username">The username provided to check</param>
-        /// <param name="password">The password to check</param>
+        /// <param name="username">The username provided to check, case sensitive</param>
+        /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
-        /// <returns></returns>
-        public static bool CredentialsByUsername(String username, String password, Context context = null)
+        /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
+        public static async Task<InvestigatorLoginRow> CredentialsByUsername(String username, String password, Context context = null)
         {
             if (context == null) context = new Context();
             // hash the password
@@ -25,26 +28,26 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
-
-                // get the users with those credntals
-                var accessGranted = conn.LoginDataAdapterManager.GetData().FirstOrDefault(p =>
-                    !p.Suspended && p.Username == username && p.Password == hashedPassword
-                );
-                // if there are any users return true
-                if (accessGranted != null)
-                    return true;
+                await conn.FillInvestigatorsAsync();
+                await conn.FillLoginDataAsync();
+                var InvestigatorLoginRow = conn.Investigators.Select(p => new InvestigatorLoginRow { InvestigatorsRow = p, LoginDataRow = p.Login_DataRow })
+                    .FirstOrDefault(p =>
+                        p.LoginDataRow.Password == hashedPassword && p.LoginDataRow.Username == username
+                    );
+                if (InvestigatorLoginRow != null)
+                    return InvestigatorLoginRow;
             }
-            return false;
+            return null;
         }
 
         /// <summary>
-        /// Will check to see if your credentials match any in the databse
+        /// Will check to see if your credentials match any in the databses
         /// </summary>
-        /// <param name="email">The email provided to check</param>
-        /// <param name="password">The password to check</param>
+        /// <param name="email">The email provided to check, not case sensitive</param>
+        /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
-        /// <returns></returns>
-        public static bool CredentialsByEmail(String email, String password, Context context = null)
+        /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
+        public static async Task<InvestigatorLoginRow> CredentialsByEmail(String email, String password, Context context = null)
         {
             if (context == null) context = new Context();
             // hash the password
@@ -53,19 +56,23 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
+                await conn.FillInvestigatorsAsync();
+                await conn.FillLoginDataAsync();
                 // get the users with those credntals
-                var loginAllowed = conn.LoginDataAdapterManager.GetData().FirstOrDefault(p =>
-                    !p.Suspended && p.Password == hashedPassword &&
-                    conn.InvestigatorsTableAdapter.GetData().Where(q =>
-                        q.Investigator_Number == p.Investigator_Number && q.Email.ToLower() == lowerEmail
-                    ).Any()
-                ) != null;
-
+                var InvestigatorLoginRow = conn.Investigators.Where(p => p.Email.ToLower() == lowerEmail)
+                    .Select(p =>
+                    new InvestigatorLoginRow {
+                        InvestigatorsRow = p,
+                        LoginDataRow = p.Login_DataRow
+                    }).FirstOrDefault(p =>
+                        p.LoginDataRow.Password == hashedPassword
+                    );
                 // if there are any users return true
-                if (loginAllowed)
-                  return true;
+                if (InvestigatorLoginRow != null)
+                    return InvestigatorLoginRow;
             }
-            return false;
+
+            return null;
         }
 
     }

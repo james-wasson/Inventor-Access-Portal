@@ -3,20 +3,22 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using InventorAccessPortal.DB._DB_DatasetTableAdapters;
-using JetEntityFrameworkProvider;
+using System.Linq;
+using System.Text;
+using InventorAccessPortal.DB.Objects;
+using System.Threading.Tasks;
 
 namespace InventorAccessPortal.DB.Objects
 {
-    public class Connection : IDisposable
+
+    public partial class Connection : _DB_Dataset
     {
-        // connection data
         public string ConnectionString { get; private set; } = "";
         public string ConnectionStringName { get; private set; } = "";
         public string ProviderName { get; private set; } = "";
         public OleDbConnection DBConnection { get; private set; } = null;
+        public TableAdapterManager TableAdapterManager { get; private set; }
 
-        // removes default constructor
-        private Connection() { }
         // public constructor
         public Connection(string connString, string name, string providerName = "")
         {
@@ -39,10 +41,16 @@ namespace InventorAccessPortal.DB.Objects
                 }
 
                 // sets the object variables
+                // new database object
                 DBConnection = new OleDbConnection(connString);
+                // sets database descriptors
                 ConnectionString = connString;
                 ConnectionStringName = name;
                 ProviderName = providerName;
+
+                // sets new table adaptor
+                TableAdapterManager = new TableAdapterManager();
+                TableAdapterManager.Connection = DBConnection;
             }
             catch (Exception ex)
             {
@@ -59,372 +67,429 @@ namespace InventorAccessPortal.DB.Objects
             }
         }
 
-        /*
-         *  Data Table Connectors/Instanciators
-         */
-
-        // A method to instanciate codesTableAdapter only when needed
-        private CodesTableAdapter codesTableAdapter = null;
-        public CodesTableAdapter CodesTableAdapter
+        // updates all table adapters registered with this connection
+        public void SaveChanges()
         {
-            get
+            try
             {
-                if (codesTableAdapter == null)
-                {
-                    codesTableAdapter = new CodesTableAdapter();
-                    codesTableAdapter.Connection = DBConnection;
-                }
-                return codesTableAdapter;
+                TableAdapterManager.UpdateAll(this);
+                this.AcceptChanges();
             }
-            private set { }
-        }
-
-        // A method to instanciate allInvestigatorsTableAdapters only when needed
-        private All_InvestigatorsTableAdapter allInvestigatorsTableAdapters = null;
-        public All_InvestigatorsTableAdapter AllInvestigatorsTableAdapters
-        {
-            get
+            catch(Exception ex)
             {
-                if (allInvestigatorsTableAdapters == null)
-                {
-                    allInvestigatorsTableAdapters = new All_InvestigatorsTableAdapter();
-                    allInvestigatorsTableAdapters.Connection = DBConnection;
-                }
-                return allInvestigatorsTableAdapters;
+                throw new Exception("Table Adaptor failed to update the Database correctly." + Environment.NewLine + ex.Message);
             }
-            private set { }
         }
 
-        // A method to instanciate collegesTableAdapter only when needed
-        private CollegesTableAdapter collegesTableAdapter = null;
-        public CollegesTableAdapter CollegesTableAdapter
+        // updates all table adapters registered with this connection
+        public void DeleteChanges()
         {
-            get
-            {
-                if (collegesTableAdapter == null)
-                {
-                    collegesTableAdapter = new CollegesTableAdapter();
-                    collegesTableAdapter.Connection = DBConnection;
-                }
-                return collegesTableAdapter;
-            }
-            private set { }
+            this.RejectChanges();
         }
 
-        // A method to instanciate comboFamiliesTableAdapter only when needed
-        private Combo_FamiliesTableAdapter comboFamiliesTableAdapter = null;
-        public Combo_FamiliesTableAdapter ComboFamiliesTableAdapter
+        public void ClearDataSet()
         {
-            get
-            {
-                if (comboFamiliesTableAdapter == null)
-                {
-                    comboFamiliesTableAdapter = new Combo_FamiliesTableAdapter();
-                    comboFamiliesTableAdapter.Connection = DBConnection;
-                }
-                return comboFamiliesTableAdapter;
-            }
-            private set { }
+            this.Reset();
         }
 
-        // A method to instanciate comboFamilyListingsTableAdapter only when needed
-        private Combo_Family_ListingsTableAdapter comboFamilyListingsTableAdapter = null;
-        public Combo_Family_ListingsTableAdapter ComboFamilyListingsTableAdapter
+        // clears all the table adapters registered with this connection
+        public void ClearAllAdaptors()
         {
-            get
-            {
-                if (comboFamilyListingsTableAdapter == null)
-                {
-                    comboFamilyListingsTableAdapter = new Combo_Family_ListingsTableAdapter();
-                    comboFamilyListingsTableAdapter.Connection = DBConnection;
-                }
-                return comboFamilyListingsTableAdapter;
-            }
-            private set { }
+            TableAdapterManager.Dispose();
+            TableAdapterManager = new TableAdapterManager();
+            TableAdapterManager.Connection = DBConnection;
         }
 
-        // A method to instanciate departmentsTableAdapter only when needed
-        private DepartmentsTableAdapter departmentsTableAdapter = null;
-        public DepartmentsTableAdapter DepartmentsTableAdapter
-        {
-            get
-            {
-                if (departmentsTableAdapter == null)
-                {
-                    departmentsTableAdapter = new DepartmentsTableAdapter();
-                    departmentsTableAdapter.Connection = DBConnection;
-                }
-                return departmentsTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate endingFiscalYearTableAdapter only when needed
-        private Ending_Fiscal_YearTableAdapter endingFiscalYearTableAdapter = null;
-        public Ending_Fiscal_YearTableAdapter EndingFiscalYearTableAdapter
-        {
-            get
-            {
-                if (endingFiscalYearTableAdapter == null)
-                {
-                    endingFiscalYearTableAdapter = new Ending_Fiscal_YearTableAdapter();
-                    endingFiscalYearTableAdapter.Connection = DBConnection;
-                }
-                return endingFiscalYearTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate familiesTableAdapter only when needed
-        private FamiliesTableAdapter familiesTableAdapter = null;
-        public FamiliesTableAdapter FamiliesTableAdapter
-        {
-            get
-            {
-                if (familiesTableAdapter == null)
-                {
-                    familiesTableAdapter = new FamiliesTableAdapter();
-                    familiesTableAdapter.Connection = DBConnection;
-                }
-                return familiesTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate familyListingsTableAdapter only when needed
-        private Family_ListingsTableAdapter familyListingsTableAdapter = null;
-        public Family_ListingsTableAdapter FamilyListingsTableAdapter
-        {
-            get
-            {
-                if (familyListingsTableAdapter == null)
-                {
-                    familyListingsTableAdapter = new Family_ListingsTableAdapter();
-                    familyListingsTableAdapter.Connection = DBConnection;
-                }
-                return familyListingsTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate fileNumbersTableAdapter only when needed
-        private File_NumbersTableAdapter fileNumbersTableAdapter = null;
-        public File_NumbersTableAdapter FileNumbersTableAdapter
-        {
-            get
-            {
-                if (fileNumbersTableAdapter == null)
-                {
-                    fileNumbersTableAdapter = new File_NumbersTableAdapter();
-                    fileNumbersTableAdapter.Connection = DBConnection;
-                }
-                return fileNumbersTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate genderTableAdapter only when needed
-        private GenderTableAdapter genderTableAdapter = null;
-        public GenderTableAdapter GenderTableAdapter
-        {
-            get
-            {
-                if (genderTableAdapter == null)
-                {
-                    genderTableAdapter = new GenderTableAdapter();
-                    genderTableAdapter.Connection = DBConnection;
-                }
-                return genderTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate investigatorsTableAdapter only when needed
-        private InvestigatorsTableAdapter investigatorsTableAdapter = null;
-        public InvestigatorsTableAdapter InvestigatorsTableAdapter
-        {
-            get
-            {
-                if (investigatorsTableAdapter == null)
-                {
-                    investigatorsTableAdapter = new InvestigatorsTableAdapter();
-                    investigatorsTableAdapter.Connection = DBConnection;
-                }
-                return investigatorsTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate organizationsTableAdapter only when needed
-        private OrganizationsTableAdapter organizationsTableAdapter = null;
-        public OrganizationsTableAdapter OrganizationsTableAdapter
-        {
-            get
-            {
-                if (organizationsTableAdapter == null)
-                {
-                    organizationsTableAdapter = new OrganizationsTableAdapter();
-                    organizationsTableAdapter.Connection = DBConnection;
-                }
-                return organizationsTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate projectNumbersTableAdapter only when needed
-        private Project_NumbersTableAdapter projectNumbersTableAdapter = null;
-        public Project_NumbersTableAdapter ProjectNumbersTableAdapter
-        {
-            get
-            {
-                if (projectNumbersTableAdapter == null)
-                {
-                    projectNumbersTableAdapter = new Project_NumbersTableAdapter();
-                    projectNumbersTableAdapter.Connection = DBConnection;
-                }
-                return projectNumbersTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate recordsStatusTableAdapter only when needed
-        private Records_StatusTableAdapter recordsStatusTableAdapter = null;
-        public Records_StatusTableAdapter RecordsStatusTableAdapter
-        {
-            get
-            {
-                if (recordsStatusTableAdapter == null)
-                {
-                    recordsStatusTableAdapter = new Records_StatusTableAdapter();
-                    recordsStatusTableAdapter.Connection = DBConnection;
-                }
-                return recordsStatusTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate remindersTableAdapter only when needed
-        private RemindersTableAdapter remindersTableAdapter = null;
-        public RemindersTableAdapter RemindersTableAdapter
-        {
-            get
-            {
-                if (remindersTableAdapter == null)
-                {
-                    remindersTableAdapter = new RemindersTableAdapter();
-                    remindersTableAdapter.Connection = DBConnection;
-                }
-                return remindersTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate startingFiscalYearTableAdapter only when needed
-        private Starting_Fiscal_YearTableAdapter startingFiscalYearTableAdapter = null;
-        public Starting_Fiscal_YearTableAdapter StartingFiscalYearTableAdapter
-        {
-            get
-            {
-                if (startingFiscalYearTableAdapter == null)
-                {
-                    startingFiscalYearTableAdapter = new Starting_Fiscal_YearTableAdapter();
-                    startingFiscalYearTableAdapter.Connection = DBConnection;
-                }
-                return startingFiscalYearTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate statusTableAdapter only when needed
-        private StatusTableAdapter statusTableAdapter = null;
-        public StatusTableAdapter StatusTableAdapter
-        {
-            get
-            {
-                if (statusTableAdapter == null)
-                {
-                    statusTableAdapter = new StatusTableAdapter();
-                    statusTableAdapter.Connection = DBConnection;
-                }
-                return statusTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate transactionsTableAdapter only when needed
-        private TransactionsTableAdapter transactionsTableAdapter = null;
-        public TransactionsTableAdapter TransactionsTableAdapter
-        {
-            get
-            {
-                if (transactionsTableAdapter == null)
-                {
-                    transactionsTableAdapter = new TransactionsTableAdapter();
-                    transactionsTableAdapter.Connection = DBConnection;
-                }
-                return transactionsTableAdapter;
-            }
-            private set { }
-        }
-
-        // A method to instanciate tableAdapterManager only when needed
-        private TableAdapterManager tableAdapterManager = null;
-        public TableAdapterManager TableAdapterManager
-        {
-            get
-            {
-                if (tableAdapterManager == null)
-                {
-                    tableAdapterManager = new TableAdapterManager();
-                    tableAdapterManager.Connection = DBConnection;
-                }
-                return tableAdapterManager;
-            }
-            private set { }
-        }
-
-        // A method to instanciate loginDataAdapterManager only when needed
-        private Login_DataTableAdapter loginDataAdapterManager = null;
-        public Login_DataTableAdapter LoginDataAdapterManager
-        {
-            get
-            {
-                if (loginDataAdapterManager == null)
-                {
-                    loginDataAdapterManager = new Login_DataTableAdapter();
-                    loginDataAdapterManager.Connection = DBConnection;
-                }
-                return loginDataAdapterManager;
-            }
-            private set { }
-        }
-
-        // disposes of the databse connection adn all assigned table adaptors
-        public void Dispose()
-        {
-            DBConnection.Dispose();
-            if (codesTableAdapter != null) codesTableAdapter.Dispose();
-            if (allInvestigatorsTableAdapters != null) allInvestigatorsTableAdapters.Dispose();
-            if (collegesTableAdapter != null) collegesTableAdapter.Dispose();
-            if (comboFamiliesTableAdapter != null) comboFamiliesTableAdapter.Dispose();
-            if (comboFamilyListingsTableAdapter != null) comboFamilyListingsTableAdapter.Dispose();
-            if (departmentsTableAdapter != null) departmentsTableAdapter.Dispose();
-            if (endingFiscalYearTableAdapter != null) endingFiscalYearTableAdapter.Dispose();
-            if (familiesTableAdapter != null) familiesTableAdapter.Dispose();
-            if (familyListingsTableAdapter != null) familyListingsTableAdapter.Dispose();
-            if (fileNumbersTableAdapter != null) fileNumbersTableAdapter.Dispose();
-            if (genderTableAdapter != null) genderTableAdapter.Dispose();
-            if (investigatorsTableAdapter != null) investigatorsTableAdapter.Dispose();
-            if (organizationsTableAdapter != null) organizationsTableAdapter.Dispose();
-            if (projectNumbersTableAdapter != null) projectNumbersTableAdapter.Dispose();
-            if (recordsStatusTableAdapter != null) recordsStatusTableAdapter.Dispose();
-            if (remindersTableAdapter != null) remindersTableAdapter.Dispose();
-            if (startingFiscalYearTableAdapter != null) startingFiscalYearTableAdapter.Dispose();
-            if (statusTableAdapter != null) statusTableAdapter.Dispose();
-            if (transactionsTableAdapter != null) transactionsTableAdapter.Dispose();
-            if (tableAdapterManager != null) tableAdapterManager.Dispose();
-            if (loginDataAdapterManager != null) loginDataAdapterManager.Dispose();
-        }
     }
-    
+
+    /*
+     * The static functions that are used to fill the datatables in each connection class
+     */
+    public static class FillConnectionData
+    {
+
+
+
+        public static Task<Connection> FillCodesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillCodes(c);
+            });
+        }
+
+        public static Connection FillCodes(this Connection c)
+        {
+            c.Codes.Clear();
+            if (c.TableAdapterManager.CodesTableAdapter != null)
+                c.TableAdapterManager.CodesTableAdapter.Dispose();
+            c.TableAdapterManager.CodesTableAdapter = new CodesTableAdapter();
+            c.TableAdapterManager.CodesTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.CodesTableAdapter.Fill(c.Codes);
+            return c;
+        }
+
+        public static Task<Connection> FillAllInvestigatorsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillAllInvestigators(c);
+            });
+        }
+
+        public static Connection FillAllInvestigators(this Connection c)
+        {
+            c.All_Investigators.Clear();
+            if (c.TableAdapterManager.All_InvestigatorsTableAdapter != null)
+                c.TableAdapterManager.All_InvestigatorsTableAdapter.Dispose();
+            c.TableAdapterManager.All_InvestigatorsTableAdapter = new All_InvestigatorsTableAdapter();
+            c.TableAdapterManager.All_InvestigatorsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.All_InvestigatorsTableAdapter.Fill(c.All_Investigators);
+            return c;
+        }
+
+        public static Task<Connection> FillCollegesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillColleges(c);
+            });
+        }
+
+        public static Connection FillColleges(this Connection c)
+        {
+            c.Colleges.Clear();
+            if (c.TableAdapterManager.CollegesTableAdapter != null)
+                c.TableAdapterManager.CollegesTableAdapter.Dispose();
+            c.TableAdapterManager.CollegesTableAdapter = new CollegesTableAdapter();
+            c.TableAdapterManager.CollegesTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.CollegesTableAdapter.Fill(c.Colleges);
+            return c;
+        }
+
+        public static Task<Connection> FillComboFamiliesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillComboFamilies(c);
+            });
+        }
+
+        public static Connection FillComboFamilies(this Connection c)
+        {
+            c.Combo_Families.Clear();
+            if (c.TableAdapterManager.Combo_FamiliesTableAdapter != null)
+                c.TableAdapterManager.Combo_FamiliesTableAdapter.Dispose();
+            c.TableAdapterManager.Combo_FamiliesTableAdapter = new Combo_FamiliesTableAdapter();
+            c.TableAdapterManager.Combo_FamiliesTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Combo_FamiliesTableAdapter.Fill(c.Combo_Families);
+            return c;
+        }
+
+        public static Task<Connection> FillComboFamilyListingsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillComboFamilyListings(c);
+            });
+        }
+
+        public static Connection FillComboFamilyListings(this Connection c)
+        {
+            c.Combo_Family_Listings.Clear();
+            if (c.TableAdapterManager.Combo_Family_ListingsTableAdapter != null)
+                c.TableAdapterManager.Combo_Family_ListingsTableAdapter.Dispose();
+            c.TableAdapterManager.Combo_Family_ListingsTableAdapter = new Combo_Family_ListingsTableAdapter();
+            c.TableAdapterManager.Combo_Family_ListingsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Combo_Family_ListingsTableAdapter.Fill(c.Combo_Family_Listings);
+            return c;
+        }
+
+        public static Task<Connection> FillDepartmentsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillDepartments(c);
+            });
+        }
+
+        public static Connection FillDepartments(this Connection c)
+        {
+            c.Departments.Clear();
+            if (c.TableAdapterManager.DepartmentsTableAdapter != null)
+                c.TableAdapterManager.DepartmentsTableAdapter.Dispose();
+            c.TableAdapterManager.DepartmentsTableAdapter = new DepartmentsTableAdapter();
+            c.TableAdapterManager.DepartmentsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.DepartmentsTableAdapter.Fill(c.Departments);
+            return c;
+        }
+
+        public static Task<Connection> FillEndingFiscalYearAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillEndingFiscalYear(c);
+            });
+        }
+
+        public static Connection FillEndingFiscalYear(this Connection c)
+        {
+            c.Ending_Fiscal_Year.Clear();
+            if (c.TableAdapterManager.Ending_Fiscal_YearTableAdapter != null)
+                c.TableAdapterManager.Ending_Fiscal_YearTableAdapter.Dispose();
+            c.TableAdapterManager.Ending_Fiscal_YearTableAdapter = new Ending_Fiscal_YearTableAdapter();
+            c.TableAdapterManager.Ending_Fiscal_YearTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Ending_Fiscal_YearTableAdapter.Fill(c.Ending_Fiscal_Year);
+            return c;
+        }
+
+        public static Task<Connection> FillFamiliesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFamilies(c);
+            });
+        }
+
+        public static Connection FillFamilies(this Connection c)
+        {
+            c.Families.Clear();
+            if (c.TableAdapterManager.FamiliesTableAdapter != null)
+                c.TableAdapterManager.FamiliesTableAdapter.Dispose();
+            c.TableAdapterManager.FamiliesTableAdapter = new FamiliesTableAdapter();
+            c.TableAdapterManager.FamiliesTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.FamiliesTableAdapter.Fill(c.Families);
+            return c;
+        }
+
+        public static Task<Connection> FillFamilyListingsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFamilyListings(c);
+            });
+        }
+
+        public static Connection FillFamilyListings(this Connection c)
+        {
+            c.Family_Listings.Clear();
+            if (c.TableAdapterManager.Family_ListingsTableAdapter != null)
+                c.TableAdapterManager.Family_ListingsTableAdapter.Dispose();
+            c.TableAdapterManager.Family_ListingsTableAdapter = new Family_ListingsTableAdapter();
+            c.TableAdapterManager.Family_ListingsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Family_ListingsTableAdapter.Fill(c.Family_Listings);
+            return c;
+        }
+
+        public static Task<Connection> FillFileNumbersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFileNumbers(c);
+            });
+        }
+
+        public static Connection FillFileNumbers(this Connection c)
+        {
+            c.File_Numbers.Clear();
+            if (c.TableAdapterManager.File_NumbersTableAdapter != null)
+                c.TableAdapterManager.File_NumbersTableAdapter.Dispose();
+            c.TableAdapterManager.File_NumbersTableAdapter = new File_NumbersTableAdapter();
+            c.TableAdapterManager.File_NumbersTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.File_NumbersTableAdapter.Fill(c.File_Numbers);
+            return c;
+        }
+
+        public static Task<Connection> FillGenderAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillGender(c);
+            });
+        }
+
+        public static Connection FillGender(this Connection c)
+        {
+            c.Gender.Clear();
+            if (c.TableAdapterManager.GenderTableAdapter != null)
+                c.TableAdapterManager.GenderTableAdapter.Dispose();
+            c.TableAdapterManager.GenderTableAdapter = new GenderTableAdapter();
+            c.TableAdapterManager.GenderTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.GenderTableAdapter.Fill(c.Gender);
+            return c;
+        }
+
+        public static Task<Connection> FillInvestigatorsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillInvestigators(c);
+            });
+        }
+
+        public static Connection FillInvestigators(this Connection c)
+        {
+            c.Investigators.Clear();
+            if (c.TableAdapterManager.InvestigatorsTableAdapter != null)
+                c.TableAdapterManager.InvestigatorsTableAdapter.Dispose();
+            c.TableAdapterManager.InvestigatorsTableAdapter = new InvestigatorsTableAdapter();
+            c.TableAdapterManager.InvestigatorsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.InvestigatorsTableAdapter.Fill(c.Investigators);
+            return c;
+        }
+
+        public static Task<Connection> FillOrganizationsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillOrganizations(c);
+            });
+        }
+
+        public static Connection FillOrganizations(this Connection c)
+        {
+            c.Organizations.Clear();
+            if (c.TableAdapterManager.OrganizationsTableAdapter != null)
+                c.TableAdapterManager.OrganizationsTableAdapter.Dispose();
+            c.TableAdapterManager.OrganizationsTableAdapter = new OrganizationsTableAdapter();
+            c.TableAdapterManager.OrganizationsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.OrganizationsTableAdapter.Fill(c.Organizations);
+            return c;
+        }
+
+        public static Task<Connection> FillProjectNumbersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillProjectNumbers(c);
+            });
+        }
+
+        public static Connection FillProjectNumbers(this Connection c)
+        {
+            c.Project_Numbers.Clear();
+            if (c.TableAdapterManager.Project_NumbersTableAdapter != null)
+                c.TableAdapterManager.Project_NumbersTableAdapter.Dispose();
+            c.TableAdapterManager.Project_NumbersTableAdapter = new Project_NumbersTableAdapter();
+            c.TableAdapterManager.Project_NumbersTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Project_NumbersTableAdapter.Fill(c.Project_Numbers);
+            return c;
+        }
+
+        public static Task<Connection> FillRecordsStatusAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillRecordsStatus(c);
+            });
+        }
+
+        public static Connection FillRecordsStatus(this Connection c)
+        {
+            c.Records_Status.Clear();
+            if (c.TableAdapterManager.Records_StatusTableAdapter != null)
+                c.TableAdapterManager.Records_StatusTableAdapter.Dispose();
+            c.TableAdapterManager.Records_StatusTableAdapter = new Records_StatusTableAdapter();
+            c.TableAdapterManager.Records_StatusTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Records_StatusTableAdapter.Fill(c.Records_Status);
+            return c;
+        }
+
+        public static Task<Connection> FillRemindersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillReminders(c);
+            });
+        }
+
+        public static Connection FillReminders(this Connection c)
+        {
+            c.Reminders.Clear();
+            if (c.TableAdapterManager.RemindersTableAdapter != null)
+                c.TableAdapterManager.RemindersTableAdapter.Dispose();
+            c.TableAdapterManager.RemindersTableAdapter = new RemindersTableAdapter();
+            c.TableAdapterManager.RemindersTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.RemindersTableAdapter.Fill(c.Reminders);
+            return c;
+        }
+
+        public static Task<Connection> FillStartingFiscalYearAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillStartingFiscalYear(c);
+            });
+        }
+
+        public static Connection FillStartingFiscalYear(this Connection c)
+        {
+            c.Starting_Fiscal_Year.Clear();
+            if (c.TableAdapterManager.Starting_Fiscal_YearTableAdapter != null)
+                c.TableAdapterManager.Starting_Fiscal_YearTableAdapter.Dispose();
+            c.TableAdapterManager.Starting_Fiscal_YearTableAdapter = new Starting_Fiscal_YearTableAdapter();
+            c.TableAdapterManager.Starting_Fiscal_YearTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Starting_Fiscal_YearTableAdapter.Fill(c.Starting_Fiscal_Year);
+            return c;
+        }
+
+        public static Task<Connection> FillStatusAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillStatus(c);
+            });
+        }
+
+        public static Connection FillStatus(this Connection c)
+        {
+            c.Status.Clear();
+            if (c.TableAdapterManager.StatusTableAdapter != null)
+                c.TableAdapterManager.StatusTableAdapter.Dispose();
+            c.TableAdapterManager.StatusTableAdapter = new StatusTableAdapter();
+            c.TableAdapterManager.StatusTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.StatusTableAdapter.Fill(c.Status);
+            return c;
+        }
+
+        public static Task<Connection> FillTransactionsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillTransactions(c);
+            });
+        }
+
+        public static Connection FillTransactions(this Connection c)
+        {
+            c.Transactions.Clear();
+            if (c.TableAdapterManager.TransactionsTableAdapter != null)
+                c.TableAdapterManager.TransactionsTableAdapter.Dispose();
+            c.TableAdapterManager.TransactionsTableAdapter = new TransactionsTableAdapter();
+            c.TableAdapterManager.TransactionsTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.TransactionsTableAdapter.Fill(c.Transactions);
+            return c;
+        }
+
+        public static Task<Connection> FillLoginDataAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillLoginData(c);
+            });
+        }
+
+        public static Connection FillLoginData(this Connection c)
+        {
+            c.Login_Data.Clear();
+            if (c.TableAdapterManager.Login_DataTableAdapter != null)
+                c.TableAdapterManager.Login_DataTableAdapter.Dispose();
+            c.TableAdapterManager.Login_DataTableAdapter = new Login_DataTableAdapter();
+            c.TableAdapterManager.Login_DataTableAdapter.Connection = c.DBConnection;
+            c.TableAdapterManager.Login_DataTableAdapter.Fill(c.Login_Data);
+            return c;
+        }
+
+
+    }
 }
