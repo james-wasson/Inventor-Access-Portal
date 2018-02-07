@@ -6,6 +6,7 @@ using InventorAccessPortal.DB._DB_DatasetTableAdapters;
 using System.Linq;
 using System.Text;
 using InventorAccessPortal.DB.Objects;
+using System.Threading.Tasks;
 
 namespace InventorAccessPortal.DB.Objects
 {
@@ -107,6 +108,14 @@ namespace InventorAccessPortal.DB.Objects
     public static class FillConnectionData
     {
 
+        public static Task FillCodesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillCodes(c);
+            });
+        }
+
         public static Connection FillCodes(this Connection c)
         {
             c.Codes.Clear();
@@ -118,7 +127,15 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
-        public static Connection FillAllInvestigatorss(this Connection c)
+        public static Task FillAllInvestigatorsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillAllInvestigators(c);
+            });
+        }
+
+        public static Connection FillAllInvestigators(this Connection c)
         {
             c.All_Investigators.Clear();
             if (c.TableAdapterManager.All_InvestigatorsTableAdapter != null)
@@ -127,6 +144,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.All_InvestigatorsTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.All_InvestigatorsTableAdapter.Fill(c.All_Investigators);
             return c;
+        }
+
+        public static Task FillCollegesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillColleges(c);
+            });
         }
 
         public static Connection FillColleges(this Connection c)
@@ -140,6 +165,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillComboFamiliesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillComboFamilies(c);
+            });
+        }
+
         public static Connection FillComboFamilies(this Connection c)
         {
             c.Combo_Families.Clear();
@@ -149,6 +182,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.Combo_FamiliesTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.Combo_FamiliesTableAdapter.Fill(c.Combo_Families);
             return c;
+        }
+
+        public static Task FillComboFamilyListingsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillComboFamilyListings(c);
+            });
         }
 
         public static Connection FillComboFamilyListings(this Connection c)
@@ -162,6 +203,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillDepartmentsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillDepartments(c);
+            });
+        }
+
         public static Connection FillDepartments(this Connection c)
         {
             c.Departments.Clear();
@@ -171,6 +220,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.DepartmentsTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.DepartmentsTableAdapter.Fill(c.Departments);
             return c;
+        }
+
+        public static Task FillEndingFiscalYearAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillEndingFiscalYear(c);
+            });
         }
 
         public static Connection FillEndingFiscalYear(this Connection c)
@@ -184,6 +241,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillFamiliesAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFamilies(c);
+            });
+        }
+
         public static Connection FillFamilies(this Connection c)
         {
             c.Families.Clear();
@@ -193,6 +258,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.FamiliesTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.FamiliesTableAdapter.Fill(c.Families);
             return c;
+        }
+
+        public static Task FillFamilyListingsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFamilyListings(c);
+            });
         }
 
         public static Connection FillFamilyListings(this Connection c)
@@ -206,6 +279,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillFileNumbersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillFileNumbers(c);
+            });
+        }
+
         public static Connection FillFileNumbers(this Connection c)
         {
             c.File_Numbers.Clear();
@@ -215,6 +296,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.File_NumbersTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.File_NumbersTableAdapter.Fill(c.File_Numbers);
             return c;
+        }
+
+        public static Task FillGenderAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillGender(c);
+            });
         }
 
         public static Connection FillGender(this Connection c)
@@ -228,6 +317,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillInvestigatorsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillInvestigators(c);
+            });
+        }
+
         public static Connection FillInvestigators(this Connection c)
         {
             c.Investigators.Clear();
@@ -237,6 +334,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.InvestigatorsTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.InvestigatorsTableAdapter.Fill(c.Investigators);
             return c;
+        }
+
+        public static Task FillOrganizationsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillOrganizations(c);
+            });
         }
 
         public static Connection FillOrganizations(this Connection c)
@@ -250,6 +355,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillProjectNumbersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillProjectNumbers(c);
+            });
+        }
+
         public static Connection FillProjectNumbers(this Connection c)
         {
             c.Project_Numbers.Clear();
@@ -259,6 +372,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.Project_NumbersTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.Project_NumbersTableAdapter.Fill(c.Project_Numbers);
             return c;
+        }
+
+        public static Task FillRecordsStatusAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillRecordsStatus(c);
+            });
         }
 
         public static Connection FillRecordsStatus(this Connection c)
@@ -272,6 +393,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillRemindersAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillReminders(c);
+            });
+        }
+
         public static Connection FillReminders(this Connection c)
         {
             c.Reminders.Clear();
@@ -281,6 +410,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.RemindersTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.RemindersTableAdapter.Fill(c.Reminders);
             return c;
+        }
+
+        public static Task FillStartingFiscalYearAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillStartingFiscalYear(c);
+            });
         }
 
         public static Connection FillStartingFiscalYear(this Connection c)
@@ -294,6 +431,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillStatusAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillStatus(c);
+            });
+        }
+
         public static Connection FillStatus(this Connection c)
         {
             c.Status.Clear();
@@ -303,6 +448,14 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.StatusTableAdapter.Connection = c.DBConnection;
             c.TableAdapterManager.StatusTableAdapter.Fill(c.Status);
             return c;
+        }
+
+        public static Task FillTransactionsAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillTransactions(c);
+            });
         }
 
         public static Connection FillTransactions(this Connection c)
@@ -316,6 +469,14 @@ namespace InventorAccessPortal.DB.Objects
             return c;
         }
 
+        public static Task FillLoginDataAsync(this Connection c)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                return FillLoginData(c);
+            });
+        }
+
         public static Connection FillLoginData(this Connection c)
         {
             c.Login_Data.Clear();
@@ -326,7 +487,6 @@ namespace InventorAccessPortal.DB.Objects
             c.TableAdapterManager.Login_DataTableAdapter.Fill(c.Login_Data);
             return c;
         }
-
 
     }
 }

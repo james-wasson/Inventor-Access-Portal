@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using InventorAccessPortal.DB.Objects;
-using InventorAccessPortal.DB.Objects.DataCollection;
+using InventorAccessPortal.DB.Objects.Collections;
+using System.Threading.Tasks;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -18,7 +19,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static InvestigatorLoginRow CredentialsByUsername(String username, String password, Context context = null)
+        public static async Task<InvestigatorLoginRow> CredentialsByUsername(String username, String password, Context context = null)
         {
             if (context == null) context = new Context();
             // hash the password
@@ -26,7 +27,8 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
-                conn.FillLoginData().FillInvestigators();
+                await conn.FillLoginDataAsync();
+                await conn.FillInvestigatorsAsync();
                 // get the users with those credntals
                 var InvestigatorLoginRow = conn.Investigators.Select(p => new InvestigatorLoginRow { InvestigatorsRow = p, LoginDataRow = p.Login_DataRow })
                     .FirstOrDefault(p =>
@@ -46,7 +48,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static InvestigatorLoginRow InvestigatorLoginRow(String email, String password, Context context = null)
+        public static async Task<InvestigatorLoginRow> CredentialsByEmail(String email, String password, Context context = null)
         {
             if (context == null) context = new Context();
             // hash the password
@@ -55,7 +57,8 @@ namespace InventorAccessPortal.DB.Auth
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
-                conn.FillLoginData().FillInvestigators();
+                await conn.FillLoginDataAsync();
+                await conn.FillInvestigatorsAsync();
                 // get the users with those credntals
                 var InvestigatorLoginRow = conn.Investigators.Where(p => p.Email.ToLower() == lowerEmail)
                     .Select(p => new InvestigatorLoginRow {

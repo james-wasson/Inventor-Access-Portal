@@ -1,14 +1,8 @@
 ﻿using System;
-using InventorAccessPortal.DB._DB_DatasetTableAdapters;
 using System.Collections.Generic;
 using System.Configuration;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.OleDb;
-using System.Data;
 
 namespace InventorAccessPortal.DB
 {

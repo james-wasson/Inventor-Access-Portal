@@ -197,6 +197,8 @@
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Util\Credentials.cs" />
+    <Compile Include="Util\Email.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Lib\bootstrap.css" />
@@ -243,7 +245,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

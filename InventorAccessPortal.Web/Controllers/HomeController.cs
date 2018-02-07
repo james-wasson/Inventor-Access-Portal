@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InventorAccessPortal.DB;
-using InventorAccessPortal.DB.Auth;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -12,11 +10,7 @@ namespace InventorAccessPortal.Web.Controllers
     {
         public ActionResult Index()
         {
-            using (var e = new Context()) {
-                var log1 = Authorize.CredentialsByUsername("KristyOwen", "Dog#123", e);
-                var log2 = Authorize.CredentialsByEmail("kristy.owen@siu.edu", "Dog#123", e);
-            }
-                return View();
+            return View();
         }
 
         public ActionResult About()

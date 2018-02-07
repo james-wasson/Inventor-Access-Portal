@@ -22,5 +22,14 @@ namespace InventorAccessPortal.Web.Controllers
             };
             return View(model);
         }
+
+        public ActionResult Login(string username, string password)
+        {
+            var model = new LoginModel
+            {
+                WelcomeMessage = "Hello and welcome to our website"
+            };
+            return View(model);
+        }
     }
 }
