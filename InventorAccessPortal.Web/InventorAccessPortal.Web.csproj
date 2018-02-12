@@ -202,6 +202,7 @@
   <ItemGroup>
     <Content Include="Content\Lib\bootstrap.css" />
     <Content Include="Content\Lib\bootstrap.min.css" />
+    <Content Include="Scripts\Lib\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
