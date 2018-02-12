@@ -8,6 +8,7 @@ using InventorAccessPortal.Web.Models.Account;
 using InventorAccessPortal.Web.Util;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB.Auth;
+using System.Web.Security;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -27,6 +28,12 @@ namespace InventorAccessPortal.Web.Controllers
             return View(model);
         }
 
+        public ActionResult LogOff()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+            return View();
+        }
+
         public string Confirmation()
         {
             //Receive data from front end
@@ -39,10 +46,8 @@ namespace InventorAccessPortal.Web.Controllers
                 Session["userID"] = username;
                 Session["realName"] = "Jhon";
                 Session["JID"] = "1";
-                if (WriteCookie(username,password))
-                    return "Success";
-                else
-                    return "error";
+                FormsAuthentication.SetAuthCookie(username, true);
+                return "Success";
             }
             //if username and password is not correct then return Failure
             else
