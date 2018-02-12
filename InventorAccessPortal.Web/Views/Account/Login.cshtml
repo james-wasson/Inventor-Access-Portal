@@ -1,7 +1,7 @@
 ﻿@model InventorAccessPortal.Web.Models.Account.LoginModel
 @{
     ViewBag.Title = "Login";
-    Layout = null;// "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     HttpCookie cookie = Request.Cookies["Logininfo"];
     if (cookie != null) { Response.Redirect("/Home/Contact"); }
 }
