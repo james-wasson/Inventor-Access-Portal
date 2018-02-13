@@ -85,7 +85,6 @@ namespace InventorAccessPortal.DB.Objects
             try
             {
                 TableAdapterManager.UpdateAll(this);
-                this.AcceptChanges();
             }
             catch(Exception ex)
             {

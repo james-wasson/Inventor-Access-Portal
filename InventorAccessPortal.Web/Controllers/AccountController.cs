@@ -34,13 +34,13 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
 
-        public string Confirmation()
+        public async Task<string> Confirmation()
         {
             //Receive data from front end
             string username = Request["username"];
             string password = Request["password"];
             //check username and password from database
-            if (Authorize.CredentialsByUsername(username, password) != null)
+            if (await Authorize.CredentialsByUsername(username, password) != null)
             {
                 //if username and password is correct, create session and return Success
                 Session["userID"] = username;
