@@ -41,8 +41,20 @@ namespace InventorAccessPortal.DB.Objects
                 }
 
                 // sets the object variables
-                // new database object
-                DBConnection = new OleDbConnection(connString);
+               
+                // creates and tests the connection
+                try
+                {
+                    // new database object
+                    DBConnection = new OleDbConnection(connString);
+                    DBConnection.Open();
+                    DBConnection.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Could not open Database connection. Exception: " + ex.Message);
+                }
+
                 // sets database descriptors
                 ConnectionString = connString;
                 ConnectionStringName = name;
@@ -106,8 +118,6 @@ namespace InventorAccessPortal.DB.Objects
      */
     public static class FillConnectionData
     {
-
-
 
         public static Task<Connection> FillCodesAsync(this Connection c)
         {
