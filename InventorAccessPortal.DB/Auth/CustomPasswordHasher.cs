@@ -3,18 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using InventorAccessPortal.DB.Objects.Collections;
 
 namespace InventorAccessPortal.DB
 {
-    public class CustomPasswordHasher : IPasswordHasher
+    public static class CustomPasswordHasher
     {
-        public string HashPassword(string password)
+        public static string HashPassword(string password, string salt = null)
         {
-            return Encrypt.GetSAH512Hash(password);
+            return Encrypt.GetSAH512Hash((salt != null ? password + salt : password));
         }
-        public PasswordVerificationResult VerifyHashedPassword(string hashedPassword, string providedPassword)
+        public static PasswordVerificationResult VerifyHashedPassword(InvestigatorLoginRow loginData, string providedPassword)
         {
-            if (hashedPassword == HashPassword(providedPassword))
+            if (loginData.LoginDataRow.Password == HashPassword(providedPassword, loginData.LoginDataRow.Salt))
                 return PasswordVerificationResult.Success;
             else
                 return PasswordVerificationResult.Failed;

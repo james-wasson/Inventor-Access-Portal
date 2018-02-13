@@ -8,6 +8,8 @@ using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.Objects.Collections;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB;
+using System.Security.Cryptography;
+using Microsoft.AspNet.Identity;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -23,19 +25,26 @@ namespace InventorAccessPortal.DB.Auth
         public static async Task<InvestigatorLoginRow> CredentialsByUsername(String username, String password, Context context = null)
         {
             if (context == null) context = new Context();
-            // hash the password
-            var hashedPassword = Encrypt.GetSAH512Hash(password);
             // lopp the connections
             foreach (var conn in context.GetConnections())
             {
                 await conn.FillInvestigatorsAsync();
                 await conn.FillLoginDataAsync();
-                var InvestigatorLoginRow = conn.Investigators.Select(p => new InvestigatorLoginRow { InvestigatorsRow = p, LoginDataRow = p.Login_DataRow })
-                    .FirstOrDefault(p =>
-                        p.LoginDataRow.Password == hashedPassword && p.LoginDataRow.Username == username
+                // get the users with those credntals
+                var InvestigatorLoginRow = conn.Login_Data.Select(p =>
+                    new InvestigatorLoginRow
+                    {
+                        InvestigatorsRow = p.InvestigatorsRow,
+                        LoginDataRow = p
+                    }).FirstOrDefault(p =>
+                        p.LoginDataRow.Username == username &&
+                        PasswordVerificationResult.Success == CustomPasswordHasher.VerifyHashedPassword(p, password)
                     );
+                // if there are any users return true
                 if (InvestigatorLoginRow != null)
+                {
                     return InvestigatorLoginRow;
+                }
             }
             return null;
         }
@@ -50,8 +59,6 @@ namespace InventorAccessPortal.DB.Auth
         public static async Task<InvestigatorLoginRow> CredentialsByEmail(String email, String password, Context context = null)
         {
             if (context == null) context = new Context();
-            // hash the password
-            var hashedPassword = Encrypt.GetSAH512Hash(password);
             var lowerEmail = email.ToLower();
             // lopp the connections
             foreach (var conn in context.GetConnections())
@@ -59,19 +66,21 @@ namespace InventorAccessPortal.DB.Auth
                 await conn.FillInvestigatorsAsync();
                 await conn.FillLoginDataAsync();
                 // get the users with those credntals
-                var InvestigatorLoginRow = conn.Investigators.Where(p => p.Email.ToLower() == lowerEmail)
-                    .Select(p =>
-                    new InvestigatorLoginRow {
-                        InvestigatorsRow = p,
-                        LoginDataRow = p.Login_DataRow
+                var InvestigatorLoginRow = conn.Login_Data.Select(p =>
+                    new InvestigatorLoginRow
+                    {
+                        InvestigatorsRow = p.InvestigatorsRow,
+                        LoginDataRow = p
                     }).FirstOrDefault(p =>
-                        p.LoginDataRow.Password == hashedPassword
+                        p.InvestigatorsRow.Email_Address.ToLower() == lowerEmail &&
+                        PasswordVerificationResult.Success == CustomPasswordHasher.VerifyHashedPassword(p, password)
                     );
                 // if there are any users return true
                 if (InvestigatorLoginRow != null)
+                {
                     return InvestigatorLoginRow;
+                }
             }
-
             return null;
         }
 

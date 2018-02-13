@@ -86,9 +86,9 @@ namespace InventorAccessPortal.DB {
         
         private global::System.Data.DataRelation relationGenderInvestigators;
         
-        private global::System.Data.DataRelation relationLogin_DataInvestigators;
-        
         private global::System.Data.DataRelation relationOrganizationInvestigators;
+        
+        private global::System.Data.DataRelation relationInvestigatorsLogin_Data;
         
         private global::System.Data.DataRelation relationEnding_Fiscal_YearProject_Numbers;
         
@@ -703,8 +703,8 @@ namespace InventorAccessPortal.DB {
             this.relationCollegesInvestigators = this.Relations["CollegesInvestigators"];
             this.relationDepartmentsInvestigators = this.Relations["DepartmentsInvestigators"];
             this.relationGenderInvestigators = this.Relations["GenderInvestigators"];
-            this.relationLogin_DataInvestigators = this.Relations["Login DataInvestigators"];
             this.relationOrganizationInvestigators = this.Relations["OrganizationInvestigators"];
+            this.relationInvestigatorsLogin_Data = this.Relations["InvestigatorsLogin Data"];
             this.relationEnding_Fiscal_YearProject_Numbers = this.Relations["Ending Fiscal YearProject Numbers"];
             this.relationInvestigatorsProject_Numbers = this.Relations["InvestigatorsProject Numbers"];
             this.relationRecords_StatusProject_Numbers = this.Relations["Records StatusProject Numbers"];
@@ -807,14 +807,14 @@ namespace InventorAccessPortal.DB {
                         this.tableGender.GenderColumn}, new global::System.Data.DataColumn[] {
                         this.tableInvestigators.GenderColumn}, false);
             this.Relations.Add(this.relationGenderInvestigators);
-            this.relationLogin_DataInvestigators = new global::System.Data.DataRelation("Login DataInvestigators", new global::System.Data.DataColumn[] {
-                        this.tableLogin_Data.Investigator_NumberColumn}, new global::System.Data.DataColumn[] {
-                        this.tableInvestigators.Investigator_NumberColumn}, false);
-            this.Relations.Add(this.relationLogin_DataInvestigators);
             this.relationOrganizationInvestigators = new global::System.Data.DataRelation("OrganizationInvestigators", new global::System.Data.DataColumn[] {
                         this.tableOrganizations.Organization_NameColumn}, new global::System.Data.DataColumn[] {
                         this.tableInvestigators.OrganizationColumn}, false);
             this.Relations.Add(this.relationOrganizationInvestigators);
+            this.relationInvestigatorsLogin_Data = new global::System.Data.DataRelation("InvestigatorsLogin Data", new global::System.Data.DataColumn[] {
+                        this.tableInvestigators.Investigator_NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableLogin_Data.Investigator_NameColumn}, false);
+            this.Relations.Add(this.relationInvestigatorsLogin_Data);
             this.relationEnding_Fiscal_YearProject_Numbers = new global::System.Data.DataRelation("Ending Fiscal YearProject Numbers", new global::System.Data.DataColumn[] {
                         this.tableEnding_Fiscal_Year.Ending_Fiscal_YearColumn}, new global::System.Data.DataColumn[] {
                         this.tableProject_Numbers.Ending_Fiscal_YearColumn}, false);
@@ -1477,7 +1477,7 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CodesRow AddCodesRow(int Code, string Code_Description) {
+            public CodesRow AddCodesRow(decimal Code, string Code_Description) {
                 CodesRow rowCodesRow = ((CodesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Code,
@@ -1518,7 +1518,7 @@ namespace InventorAccessPortal.DB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnCode = new global::System.Data.DataColumn("Code", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnCode = new global::System.Data.DataColumn("Code", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCode);
                 this.columnCode_Description = new global::System.Data.DataColumn("Code Description", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCode_Description);
@@ -4218,11 +4218,13 @@ namespace InventorAccessPortal.DB {
             
             private global::System.Data.DataColumn columnHome_Address;
             
+            private global::System.Data.DataColumn columnPhone_Number;
+            
+            private global::System.Data.DataColumn columnEmail_Address;
+            
             private global::System.Data.DataColumn columnCitizenship;
             
             private global::System.Data.DataColumn columnGender;
-            
-            private global::System.Data.DataColumn columnEmail;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -4307,6 +4309,22 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Phone_NumberColumn {
+                get {
+                    return this.columnPhone_Number;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Email_AddressColumn {
+                get {
+                    return this.columnEmail_Address;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn CitizenshipColumn {
                 get {
                     return this.columnCitizenship;
@@ -4318,14 +4336,6 @@ namespace InventorAccessPortal.DB {
             public global::System.Data.DataColumn GenderColumn {
                 get {
                     return this.columnGender;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn EmailColumn {
-                get {
-                    return this.columnEmail;
                 }
             }
             
@@ -4366,23 +4376,21 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InvestigatorsRow AddInvestigatorsRow(string Investigator_Name, OrganizationsRow parentOrganizationsRowByOrganizationInvestigators, Login_DataRow parentLogin_DataRowByLogin_DataInvestigators, CollegesRow parentCollegesRowByCollegesInvestigators, DepartmentsRow parentDepartmentsRowByDepartmentsInvestigators, string Home_Address, string Citizenship, GenderRow parentGenderRowByGenderInvestigators, string Email) {
+            public InvestigatorsRow AddInvestigatorsRow(string Investigator_Name, OrganizationsRow parentOrganizationsRowByOrganizationInvestigators, int Investigator_Number, CollegesRow parentCollegesRowByCollegesInvestigators, DepartmentsRow parentDepartmentsRowByDepartmentsInvestigators, string Home_Address, string Phone_Number, string Email_Address, string Citizenship, GenderRow parentGenderRowByGenderInvestigators) {
                 InvestigatorsRow rowInvestigatorsRow = ((InvestigatorsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Investigator_Name,
                         null,
-                        null,
+                        Investigator_Number,
                         null,
                         null,
                         Home_Address,
+                        Phone_Number,
+                        Email_Address,
                         Citizenship,
-                        null,
-                        Email};
+                        null};
                 if ((parentOrganizationsRowByOrganizationInvestigators != null)) {
                     columnValuesArray[1] = parentOrganizationsRowByOrganizationInvestigators[0];
-                }
-                if ((parentLogin_DataRowByLogin_DataInvestigators != null)) {
-                    columnValuesArray[2] = parentLogin_DataRowByLogin_DataInvestigators[0];
                 }
                 if ((parentCollegesRowByCollegesInvestigators != null)) {
                     columnValuesArray[3] = parentCollegesRowByCollegesInvestigators[0];
@@ -4391,7 +4399,7 @@ namespace InventorAccessPortal.DB {
                     columnValuesArray[4] = parentDepartmentsRowByDepartmentsInvestigators[0];
                 }
                 if ((parentGenderRowByGenderInvestigators != null)) {
-                    columnValuesArray[7] = parentGenderRowByGenderInvestigators[0];
+                    columnValuesArray[9] = parentGenderRowByGenderInvestigators[0];
                 }
                 rowInvestigatorsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInvestigatorsRow);
@@ -4428,9 +4436,10 @@ namespace InventorAccessPortal.DB {
                 this.columnSchool_or_College = base.Columns["School or College"];
                 this.columnDepartment_or_Unit = base.Columns["Department or Unit"];
                 this.columnHome_Address = base.Columns["Home Address"];
+                this.columnPhone_Number = base.Columns["Phone Number"];
+                this.columnEmail_Address = base.Columns["Email Address"];
                 this.columnCitizenship = base.Columns["Citizenship"];
                 this.columnGender = base.Columns["Gender"];
-                this.columnEmail = base.Columns["Email"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4448,12 +4457,14 @@ namespace InventorAccessPortal.DB {
                 base.Columns.Add(this.columnDepartment_or_Unit);
                 this.columnHome_Address = new global::System.Data.DataColumn("Home Address", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnHome_Address);
+                this.columnPhone_Number = new global::System.Data.DataColumn("Phone Number", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhone_Number);
+                this.columnEmail_Address = new global::System.Data.DataColumn("Email Address", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail_Address);
                 this.columnCitizenship = new global::System.Data.DataColumn("Citizenship", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCitizenship);
                 this.columnGender = new global::System.Data.DataColumn("Gender", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGender);
-                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmail);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnInvestigator_Name}, true));
                 this.columnInvestigator_Name.AllowDBNull = false;
@@ -4463,9 +4474,10 @@ namespace InventorAccessPortal.DB {
                 this.columnSchool_or_College.MaxLength = 255;
                 this.columnDepartment_or_Unit.MaxLength = 255;
                 this.columnHome_Address.MaxLength = 255;
+                this.columnPhone_Number.MaxLength = 255;
+                this.columnEmail_Address.MaxLength = 255;
                 this.columnCitizenship.MaxLength = 255;
                 this.columnGender.MaxLength = 255;
-                this.columnEmail.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4599,9 +4611,11 @@ namespace InventorAccessPortal.DB {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class Login_DataDataTable : global::System.Data.TypedTableBase<Login_DataRow> {
             
-            private global::System.Data.DataColumn columnInvestigator_Number;
+            private global::System.Data.DataColumn columnInvestigator_Name;
             
             private global::System.Data.DataColumn columnUsername;
+            
+            private global::System.Data.DataColumn columnSalt;
             
             private global::System.Data.DataColumn columnPassword;
             
@@ -4644,9 +4658,9 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn Investigator_NumberColumn {
+            public global::System.Data.DataColumn Investigator_NameColumn {
                 get {
-                    return this.columnInvestigator_Number;
+                    return this.columnInvestigator_Name;
                 }
             }
             
@@ -4655,6 +4669,14 @@ namespace InventorAccessPortal.DB {
             public global::System.Data.DataColumn UsernameColumn {
                 get {
                     return this.columnUsername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SaltColumn {
+                get {
+                    return this.columnSalt;
                 }
             }
             
@@ -4719,14 +4741,18 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Login_DataRow AddLogin_DataRow(int Investigator_Number, string Username, string Password, bool Suspended, bool Temp_Password) {
+            public Login_DataRow AddLogin_DataRow(InvestigatorsRow parentInvestigatorsRowByInvestigatorsLogin_Data, string Username, string Salt, string Password, bool Suspended, bool Temp_Password) {
                 Login_DataRow rowLogin_DataRow = ((Login_DataRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Investigator_Number,
+                        null,
                         Username,
+                        Salt,
                         Password,
                         Suspended,
                         Temp_Password};
+                if ((parentInvestigatorsRowByInvestigatorsLogin_Data != null)) {
+                    columnValuesArray[0] = parentInvestigatorsRowByInvestigatorsLogin_Data[0];
+                }
                 rowLogin_DataRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowLogin_DataRow);
                 return rowLogin_DataRow;
@@ -4734,9 +4760,9 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Login_DataRow FindByInvestigator_Number(int Investigator_Number) {
+            public Login_DataRow FindByInvestigator_Name(string Investigator_Name) {
                 return ((Login_DataRow)(this.Rows.Find(new object[] {
-                            Investigator_Number})));
+                            Investigator_Name})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4756,8 +4782,9 @@ namespace InventorAccessPortal.DB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnInvestigator_Number = base.Columns["Investigator Number"];
+                this.columnInvestigator_Name = base.Columns["Investigator Name"];
                 this.columnUsername = base.Columns["Username"];
+                this.columnSalt = base.Columns["Salt"];
                 this.columnPassword = base.Columns["Password"];
                 this.columnSuspended = base.Columns["Suspended"];
                 this.columnTemp_Password = base.Columns["Temp Password"];
@@ -4766,10 +4793,12 @@ namespace InventorAccessPortal.DB {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnInvestigator_Number = new global::System.Data.DataColumn("Investigator Number", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnInvestigator_Number);
+                this.columnInvestigator_Name = new global::System.Data.DataColumn("Investigator Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnInvestigator_Name);
                 this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsername);
+                this.columnSalt = new global::System.Data.DataColumn("Salt", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalt);
                 this.columnPassword = new global::System.Data.DataColumn("Password", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPassword);
                 this.columnSuspended = new global::System.Data.DataColumn("Suspended", typeof(bool), null, global::System.Data.MappingType.Element);
@@ -4777,11 +4806,13 @@ namespace InventorAccessPortal.DB {
                 this.columnTemp_Password = new global::System.Data.DataColumn("Temp Password", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTemp_Password);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnInvestigator_Number}, true));
-                this.columnInvestigator_Number.AllowDBNull = false;
-                this.columnInvestigator_Number.Unique = true;
+                                this.columnInvestigator_Name}, true));
+                this.columnInvestigator_Name.AllowDBNull = false;
+                this.columnInvestigator_Name.Unique = true;
+                this.columnInvestigator_Name.MaxLength = 255;
                 this.columnUsername.MaxLength = 255;
-                this.columnPassword.MaxLength = 255;
+                this.columnSalt.MaxLength = 536870910;
+                this.columnPassword.MaxLength = 536870910;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7116,10 +7147,10 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Code {
+            public decimal Code {
                 get {
                     try {
-                        return ((int)(this[this.tableCodes.CodeColumn]));
+                        return ((decimal)(this[this.tableCodes.CodeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Code\' in table \'Codes\' is DBNull.", e);
@@ -8046,6 +8077,38 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Phone_Number {
+                get {
+                    try {
+                        return ((string)(this[this.tableInvestigators.Phone_NumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Phone Number\' in table \'Investigators\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInvestigators.Phone_NumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Email_Address {
+                get {
+                    try {
+                        return ((string)(this[this.tableInvestigators.Email_AddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email Address\' in table \'Investigators\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInvestigators.Email_AddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string Citizenship {
                 get {
                     try {
@@ -8073,22 +8136,6 @@ namespace InventorAccessPortal.DB {
                 }
                 set {
                     this[this.tableInvestigators.GenderColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string Email {
-                get {
-                    try {
-                        return ((string)(this[this.tableInvestigators.EmailColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'Investigators\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableInvestigators.EmailColumn] = value;
                 }
             }
             
@@ -8122,17 +8169,6 @@ namespace InventorAccessPortal.DB {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["GenderInvestigators"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public Login_DataRow Login_DataRow {
-                get {
-                    return ((Login_DataRow)(this.GetParentRow(this.Table.ParentRelations["Login DataInvestigators"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Login DataInvestigators"]);
                 }
             }
             
@@ -8209,6 +8245,30 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPhone_NumberNull() {
+                return this.IsNull(this.tableInvestigators.Phone_NumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPhone_NumberNull() {
+                this[this.tableInvestigators.Phone_NumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEmail_AddressNull() {
+                return this.IsNull(this.tableInvestigators.Email_AddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEmail_AddressNull() {
+                this[this.tableInvestigators.Email_AddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCitizenshipNull() {
                 return this.IsNull(this.tableInvestigators.CitizenshipColumn);
             }
@@ -8233,24 +8293,23 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsEmailNull() {
-                return this.IsNull(this.tableInvestigators.EmailColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetEmailNull() {
-                this[this.tableInvestigators.EmailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public All_InvestigatorsRow[] GetAll_InvestigatorsRows() {
                 if ((this.Table.ChildRelations["InvestigatorsAdditional Investigators"] == null)) {
                     return new All_InvestigatorsRow[0];
                 }
                 else {
                     return ((All_InvestigatorsRow[])(base.GetChildRows(this.Table.ChildRelations["InvestigatorsAdditional Investigators"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public Login_DataRow[] GetLogin_DataRows() {
+                if ((this.Table.ChildRelations["InvestigatorsLogin Data"] == null)) {
+                    return new Login_DataRow[0];
+                }
+                else {
+                    return ((Login_DataRow[])(base.GetChildRows(this.Table.ChildRelations["InvestigatorsLogin Data"])));
                 }
             }
             
@@ -8282,12 +8341,12 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int Investigator_Number {
+            public string Investigator_Name {
                 get {
-                    return ((int)(this[this.tableLogin_Data.Investigator_NumberColumn]));
+                    return ((string)(this[this.tableLogin_Data.Investigator_NameColumn]));
                 }
                 set {
-                    this[this.tableLogin_Data.Investigator_NumberColumn] = value;
+                    this[this.tableLogin_Data.Investigator_NameColumn] = value;
                 }
             }
             
@@ -8304,6 +8363,22 @@ namespace InventorAccessPortal.DB {
                 }
                 set {
                     this[this.tableLogin_Data.UsernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Salt {
+                get {
+                    try {
+                        return ((string)(this[this.tableLogin_Data.SaltColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Salt\' in table \'Login Data\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableLogin_Data.SaltColumn] = value;
                 }
             }
             
@@ -8357,6 +8432,17 @@ namespace InventorAccessPortal.DB {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public InvestigatorsRow InvestigatorsRow {
+                get {
+                    return ((InvestigatorsRow)(this.GetParentRow(this.Table.ParentRelations["InvestigatorsLogin Data"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["InvestigatorsLogin Data"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsUsernameNull() {
                 return this.IsNull(this.tableLogin_Data.UsernameColumn);
             }
@@ -8365,6 +8451,18 @@ namespace InventorAccessPortal.DB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetUsernameNull() {
                 this[this.tableLogin_Data.UsernameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSaltNull() {
+                return this.IsNull(this.tableLogin_Data.SaltColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSaltNull() {
+                this[this.tableLogin_Data.SaltColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8401,17 +8499,6 @@ namespace InventorAccessPortal.DB {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetTemp_PasswordNull() {
                 this[this.tableLogin_Data.Temp_PasswordColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InvestigatorsRow[] GetInvestigatorsRows() {
-                if ((this.Table.ChildRelations["Login DataInvestigators"] == null)) {
-                    return new InvestigatorsRow[0];
-                }
-                else {
-                    return ((InvestigatorsRow[])(base.GetChildRows(this.Table.ChildRelations["Login DataInvestigators"])));
-                }
             }
         }
         
@@ -10084,7 +10171,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10402,23 +10489,23 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 "e Description` = ?))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(18)), ((byte)(1)), "Code", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code Description", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `Codes` (`Code`, `Code Description`) VALUES (?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(18)), ((byte)(1)), "Code", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code Description", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE `Codes` SET `Code` = ?, `Code Description` = ? WHERE (((? = 1 AND `Code` I" +
                 "S NULL) OR (`Code` = ?)) AND (`Code Description` = ?))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(18)), ((byte)(1)), "Code", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Code_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code Description", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(18)), ((byte)(1)), "Code", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Code_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Code Description", global::System.Data.DataRowVersion.Original, false, null));
         }
         
@@ -10426,7 +10513,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10496,10 +10583,10 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(global::System.Nullable<int> Original_Code, string Original_Code_Description) {
+        public virtual int Delete(global::System.Nullable<decimal> Original_Code, string Original_Code_Description) {
             if ((Original_Code.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_Code.Value));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((decimal)(Original_Code.Value));
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(1));
@@ -10531,9 +10618,9 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> Code, string Code_Description) {
+        public virtual int Insert(global::System.Nullable<decimal> Code, string Code_Description) {
             if ((Code.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Code.Value));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((decimal)(Code.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -10564,9 +10651,9 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> Code, string Code_Description, global::System.Nullable<int> Original_Code, string Original_Code_Description) {
+        public virtual int Update(global::System.Nullable<decimal> Code, string Code_Description, global::System.Nullable<decimal> Original_Code, string Original_Code_Description) {
             if ((Code.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Code.Value));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((decimal)(Code.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -10579,7 +10666,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             }
             if ((Original_Code.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Code.Value));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(Original_Code.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(1));
@@ -10611,7 +10698,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> Code, global::System.Nullable<int> Original_Code, string Original_Code_Description) {
+        public virtual int Update(global::System.Nullable<decimal> Code, global::System.Nullable<decimal> Original_Code, string Original_Code_Description) {
             return this.Update(Code, Original_Code_Description, Original_Code, Original_Code_Description);
         }
     }
@@ -10761,7 +10848,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11078,7 +11165,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11429,7 +11516,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11762,7 +11849,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12070,7 +12157,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12386,7 +12473,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12737,7 +12824,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13117,7 +13204,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13605,7 +13692,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13894,13 +13981,14 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             tableMapping.ColumnMappings.Add("School or College", "School or College");
             tableMapping.ColumnMappings.Add("Department or Unit", "Department or Unit");
             tableMapping.ColumnMappings.Add("Home Address", "Home Address");
+            tableMapping.ColumnMappings.Add("Phone Number", "Phone Number");
+            tableMapping.ColumnMappings.Add("Email Address", "Email Address");
             tableMapping.ColumnMappings.Add("Citizenship", "Citizenship");
             tableMapping.ColumnMappings.Add("Gender", "Gender");
-            tableMapping.ColumnMappings.Add("Email", "Email");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Investigators` WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Organization` IS NULL) OR (`Organization` = ?)) AND ((? = 1 AND `Investigator Number` IS NULL) OR (`Investigator Number` = ?)) AND ((? = 1 AND `School or College` IS NULL) OR (`School or College` = ?)) AND ((? = 1 AND `Department or Unit` IS NULL) OR (`Department or Unit` = ?)) AND ((? = 1 AND `Home Address` IS NULL) OR (`Home Address` = ?)) AND ((? = 1 AND `Citizenship` IS NULL) OR (`Citizenship` = ?)) AND ((? = 1 AND `Gender` IS NULL) OR (`Gender` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Investigators` WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Organization` IS NULL) OR (`Organization` = ?)) AND ((? = 1 AND `Investigator Number` IS NULL) OR (`Investigator Number` = ?)) AND ((? = 1 AND `School or College` IS NULL) OR (`School or College` = ?)) AND ((? = 1 AND `Department or Unit` IS NULL) OR (`Department or Unit` = ?)) AND ((? = 1 AND `Home Address` IS NULL) OR (`Home Address` = ?)) AND ((? = 1 AND `Phone Number` IS NULL) OR (`Phone Number` = ?)) AND ((? = 1 AND `Email Address` IS NULL) OR (`Email Address` = ?)) AND ((? = 1 AND `Citizenship` IS NULL) OR (`Citizenship` = ?)) AND ((? = 1 AND `Gender` IS NULL) OR (`Gender` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Organization", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Organization", global::System.Data.DataRowVersion.Original, true, null));
@@ -13913,17 +14001,20 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Department_or_Unit", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Department or Unit", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Home_Address", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Home_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Phone_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Phone_Number", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email_Address", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Citizenship", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Citizenship", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Gender", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Gender", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `Investigators` (`Investigator Name`, `Organization`, `Investigator N" +
-                "umber`, `School or College`, `Department or Unit`, `Home Address`, `Citizenship`" +
-                ", `Gender`, `Email`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "umber`, `School or College`, `Department or Unit`, `Home Address`, `Phone Number" +
+                "`, `Email Address`, `Citizenship`, `Gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, " +
+                "?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Organization", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Organization", global::System.Data.DataRowVersion.Current, false, null));
@@ -13931,12 +14022,13 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("School_or_College", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "School or College", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Department_or_Unit", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Department or Unit", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Home_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Phone_Number", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Citizenship", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Gender", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Investigators` SET `Investigator Name` = ?, `Organization` = ?, `Investigator Number` = ?, `School or College` = ?, `Department or Unit` = ?, `Home Address` = ?, `Citizenship` = ?, `Gender` = ?, `Email` = ? WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Organization` IS NULL) OR (`Organization` = ?)) AND ((? = 1 AND `Investigator Number` IS NULL) OR (`Investigator Number` = ?)) AND ((? = 1 AND `School or College` IS NULL) OR (`School or College` = ?)) AND ((? = 1 AND `Department or Unit` IS NULL) OR (`Department or Unit` = ?)) AND ((? = 1 AND `Home Address` IS NULL) OR (`Home Address` = ?)) AND ((? = 1 AND `Citizenship` IS NULL) OR (`Citizenship` = ?)) AND ((? = 1 AND `Gender` IS NULL) OR (`Gender` = ?)) AND ((? = 1 AND `Email` IS NULL) OR (`Email` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Investigators` SET `Investigator Name` = ?, `Organization` = ?, `Investigator Number` = ?, `School or College` = ?, `Department or Unit` = ?, `Home Address` = ?, `Phone Number` = ?, `Email Address` = ?, `Citizenship` = ?, `Gender` = ? WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Organization` IS NULL) OR (`Organization` = ?)) AND ((? = 1 AND `Investigator Number` IS NULL) OR (`Investigator Number` = ?)) AND ((? = 1 AND `School or College` IS NULL) OR (`School or College` = ?)) AND ((? = 1 AND `Department or Unit` IS NULL) OR (`Department or Unit` = ?)) AND ((? = 1 AND `Home Address` IS NULL) OR (`Home Address` = ?)) AND ((? = 1 AND `Phone Number` IS NULL) OR (`Phone Number` = ?)) AND ((? = 1 AND `Email Address` IS NULL) OR (`Email Address` = ?)) AND ((? = 1 AND `Citizenship` IS NULL) OR (`Citizenship` = ?)) AND ((? = 1 AND `Gender` IS NULL) OR (`Gender` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Organization", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Organization", global::System.Data.DataRowVersion.Current, false, null));
@@ -13944,9 +14036,10 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("School_or_College", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "School or College", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Department_or_Unit", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Department or Unit", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Home_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Phone_Number", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Citizenship", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Gender", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Organization", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Organization", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Organization", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Organization", global::System.Data.DataRowVersion.Original, false, null));
@@ -13958,19 +14051,21 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Department_or_Unit", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Department or Unit", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Home_Address", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Home_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Home Address", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Phone_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Phone_Number", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Phone Number", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email_Address", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email_Address", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email Address", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Citizenship", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Citizenship", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Citizenship", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Gender", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Gender", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Gender", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13980,8 +14075,8 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [Investigator Name], Organization, [Investigator Number], [School or Colle" +
-                "ge], [Department or Unit], [Home Address], Citizenship, Gender, Email FROM Inves" +
-                "tigators";
+                "ge], [Department or Unit], [Home Address], [Phone Number], [Email Address], Citi" +
+                "zenship, Gender FROM Investigators";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14042,7 +14137,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(string Original_Investigator_Name, string Original_Organization, int Original_Investigator_Number, string Original_School_or_College, string Original_Department_or_Unit, string Original_Home_Address, string Original_Citizenship, string Original_Gender, string Original_Email) {
+        public virtual int Delete(string Original_Investigator_Name, string Original_Organization, global::System.Nullable<int> Original_Investigator_Number, string Original_School_or_College, string Original_Department_or_Unit, string Original_Home_Address, string Original_Phone_Number, string Original_Email_Address, string Original_Citizenship, string Original_Gender) {
             if ((Original_Investigator_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Investigator_Name");
             }
@@ -14057,8 +14152,14 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Organization));
             }
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Investigator_Number));
+            if ((Original_Investigator_Number.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_Investigator_Number.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
             if ((Original_School_or_College == null)) {
                 this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
@@ -14083,29 +14184,37 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_Home_Address));
             }
-            if ((Original_Citizenship == null)) {
+            if ((Original_Phone_Number == null)) {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Citizenship));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Phone_Number));
             }
-            if ((Original_Gender == null)) {
+            if ((Original_Email_Address == null)) {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_Gender));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_Email_Address));
             }
-            if ((Original_Email == null)) {
+            if ((Original_Citizenship == null)) {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_Email));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_Citizenship));
+            }
+            if ((Original_Gender == null)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_Gender));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14127,7 +14236,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Investigator_Name, string Organization, int Investigator_Number, string School_or_College, string Department_or_Unit, string Home_Address, string Citizenship, string Gender, string Email) {
+        public virtual int Insert(string Investigator_Name, string Organization, global::System.Nullable<int> Investigator_Number, string School_or_College, string Department_or_Unit, string Home_Address, string Phone_Number, string Email_Address, string Citizenship, string Gender) {
             if ((Investigator_Name == null)) {
                 throw new global::System.ArgumentNullException("Investigator_Name");
             }
@@ -14140,7 +14249,12 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Organization));
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Investigator_Number));
+            if ((Investigator_Number.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Investigator_Number.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             if ((School_or_College == null)) {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
@@ -14159,23 +14273,29 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(Home_Address));
             }
-            if ((Citizenship == null)) {
+            if ((Phone_Number == null)) {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Citizenship));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Phone_Number));
             }
-            if ((Gender == null)) {
+            if ((Email_Address == null)) {
                 this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Gender));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Email_Address));
             }
-            if ((Email == null)) {
+            if ((Citizenship == null)) {
                 this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Email));
+                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(Citizenship));
+            }
+            if ((Gender == null)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(Gender));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14200,22 +14320,24 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         public virtual int Update(
                     string Investigator_Name, 
                     string Organization, 
-                    int Investigator_Number, 
+                    global::System.Nullable<int> Investigator_Number, 
                     string School_or_College, 
                     string Department_or_Unit, 
                     string Home_Address, 
+                    string Phone_Number, 
+                    string Email_Address, 
                     string Citizenship, 
                     string Gender, 
-                    string Email, 
                     string Original_Investigator_Name, 
                     string Original_Organization, 
-                    int Original_Investigator_Number, 
+                    global::System.Nullable<int> Original_Investigator_Number, 
                     string Original_School_or_College, 
                     string Original_Department_or_Unit, 
                     string Original_Home_Address, 
+                    string Original_Phone_Number, 
+                    string Original_Email_Address, 
                     string Original_Citizenship, 
-                    string Original_Gender, 
-                    string Original_Email) {
+                    string Original_Gender) {
             if ((Investigator_Name == null)) {
                 throw new global::System.ArgumentNullException("Investigator_Name");
             }
@@ -14228,7 +14350,12 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Organization));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Investigator_Number));
+            if ((Investigator_Number.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Investigator_Number.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             if ((School_or_College == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
@@ -14247,87 +14374,107 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(Home_Address));
             }
-            if ((Citizenship == null)) {
+            if ((Phone_Number == null)) {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Citizenship));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Phone_Number));
             }
-            if ((Gender == null)) {
+            if ((Email_Address == null)) {
                 this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Gender));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Email_Address));
             }
-            if ((Email == null)) {
+            if ((Citizenship == null)) {
                 this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Email));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Citizenship));
+            }
+            if ((Gender == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Gender));
             }
             if ((Original_Investigator_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Investigator_Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Investigator_Name));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Investigator_Name));
             }
             if ((Original_Organization == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Organization));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_Organization));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Investigator_Number));
+            if ((Original_Investigator_Number.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_Investigator_Number.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
             if ((Original_School_or_College == null)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_School_or_College));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_School_or_College));
             }
             if ((Original_Department_or_Unit == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Department_or_Unit));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Department_or_Unit));
             }
             if ((Original_Home_Address == null)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_Home_Address));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Home_Address));
+            }
+            if ((Original_Phone_Number == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Phone_Number));
+            }
+            if ((Original_Email_Address == null)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_Email_Address));
             }
             if ((Original_Citizenship == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_Citizenship));
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_Citizenship));
             }
             if ((Original_Gender == null)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((string)(Original_Gender));
-            }
-            if ((Original_Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_Email));
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Gender));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -14351,23 +14498,25 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
                     string Organization, 
-                    int Investigator_Number, 
+                    global::System.Nullable<int> Investigator_Number, 
                     string School_or_College, 
                     string Department_or_Unit, 
                     string Home_Address, 
+                    string Phone_Number, 
+                    string Email_Address, 
                     string Citizenship, 
                     string Gender, 
-                    string Email, 
                     string Original_Investigator_Name, 
                     string Original_Organization, 
-                    int Original_Investigator_Number, 
+                    global::System.Nullable<int> Original_Investigator_Number, 
                     string Original_School_or_College, 
                     string Original_Department_or_Unit, 
                     string Original_Home_Address, 
+                    string Original_Phone_Number, 
+                    string Original_Email_Address, 
                     string Original_Citizenship, 
-                    string Original_Gender, 
-                    string Original_Email) {
-            return this.Update(Original_Investigator_Name, Organization, Investigator_Number, School_or_College, Department_or_Unit, Home_Address, Citizenship, Gender, Email, Original_Investigator_Name, Original_Organization, Original_Investigator_Number, Original_School_or_College, Original_Department_or_Unit, Original_Home_Address, Original_Citizenship, Original_Gender, Original_Email);
+                    string Original_Gender) {
+            return this.Update(Original_Investigator_Name, Organization, Investigator_Number, School_or_College, Department_or_Unit, Home_Address, Phone_Number, Email_Address, Citizenship, Gender, Original_Investigator_Name, Original_Organization, Original_Investigator_Number, Original_School_or_College, Original_Department_or_Unit, Original_Home_Address, Original_Phone_Number, Original_Email_Address, Original_Citizenship, Original_Gender);
         }
     }
     
@@ -14492,49 +14641,51 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "Login Data";
-            tableMapping.ColumnMappings.Add("Investigator Number", "Investigator Number");
+            tableMapping.ColumnMappings.Add("Investigator Name", "Investigator Name");
             tableMapping.ColumnMappings.Add("Username", "Username");
+            tableMapping.ColumnMappings.Add("Salt", "Salt");
             tableMapping.ColumnMappings.Add("Password", "Password");
             tableMapping.ColumnMappings.Add("Suspended", "Suspended");
             tableMapping.ColumnMappings.Add("Temp Password", "Temp Password");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Login Data` WHERE ((`Investigator Number` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Password` IS NULL) OR (`Password` = ?)) AND ((? = 1 AND `Suspended` IS NULL) OR (`Suspended` = ?)) AND ((? = 1 AND `Temp Password` IS NULL) OR (`Temp Password` = ?)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM `Login Data` WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Userna" +
+                "me` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Suspended` IS NULL) OR (`Susp" +
+                "ended` = ?)) AND ((? = 1 AND `Temp Password` IS NULL) OR (`Temp Password` = ?)))" +
+                "";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Number", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Username", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Username", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Password", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Password", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Suspended", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Suspended", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Temp_Password", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Temp Password", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Temp_Password", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Temp Password", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `Login Data` (`Investigator Number`, `Username`, `Password`, `Suspend" +
-                "ed`, `Temp Password`) VALUES (?, ?, ?, ?, ?)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `Login Data` (`Investigator Name`, `Username`, `Salt`, `Password`, `S" +
+                "uspended`, `Temp Password`) VALUES (?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Number", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Username", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Password", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Salt", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Salt", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Password", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Suspended", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Temp_Password", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Temp Password", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Login Data` SET `Investigator Number` = ?, `Username` = ?, `Password` = ?, `Suspended` = ?, `Temp Password` = ? WHERE ((`Investigator Number` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Password` IS NULL) OR (`Password` = ?)) AND ((? = 1 AND `Suspended` IS NULL) OR (`Suspended` = ?)) AND ((? = 1 AND `Temp Password` IS NULL) OR (`Temp Password` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Login Data` SET `Investigator Name` = ?, `Username` = ?, `Salt` = ?, `Password` = ?, `Suspended` = ?, `Temp Password` = ? WHERE ((`Investigator Name` = ?) AND ((? = 1 AND `Username` IS NULL) OR (`Username` = ?)) AND ((? = 1 AND `Suspended` IS NULL) OR (`Suspended` = ?)) AND ((? = 1 AND `Temp Password` IS NULL) OR (`Temp Password` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Number", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Username", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Password", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Salt", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Salt", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Password", global::System.Data.OleDb.OleDbType.LongVarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Suspended", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Temp_Password", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Temp Password", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Number", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Number", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Investigator_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Investigator Name", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Username", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Username", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Username", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Password", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Password", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Password", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Suspended", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Suspended", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Suspended", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Temp_Password", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Temp Password", global::System.Data.DataRowVersion.Original, true, null));
@@ -14545,7 +14696,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14554,8 +14705,8 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT [Investigator Number], Username, [Password], Suspended, [Temp Password] FR" +
-                "OM [Login Data]";
+            this._commandCollection[0].CommandText = "SELECT [Investigator Name], Username, Salt, [Password], Suspended, [Temp Password" +
+                "] FROM [Login Data]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14616,8 +14767,13 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Investigator_Number, string Original_Username, string Original_Password, bool Original_Suspended, bool Original_Temp_Password) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Investigator_Number));
+        public virtual int Delete(string Original_Investigator_Name, string Original_Username, bool Original_Suspended, bool Original_Temp_Password) {
+            if ((Original_Investigator_Name == null)) {
+                throw new global::System.ArgumentNullException("Original_Investigator_Name");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((string)(Original_Investigator_Name));
+            }
             if ((Original_Username == null)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -14626,18 +14782,10 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Username));
             }
-            if ((Original_Password == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Password));
-            }
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(Original_Suspended));
             this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Suspended));
-            this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-            this.Adapter.DeleteCommand.Parameters[8].Value = ((bool)(Original_Temp_Password));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(Original_Temp_Password));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14658,22 +14806,33 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Investigator_Number, string Username, string Password, bool Suspended, bool Temp_Password) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Investigator_Number));
+        public virtual int Insert(string Investigator_Name, string Username, string Salt, string Password, bool Suspended, bool Temp_Password) {
+            if ((Investigator_Name == null)) {
+                throw new global::System.ArgumentNullException("Investigator_Name");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Investigator_Name));
+            }
             if ((Username == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Username));
             }
-            if ((Password == null)) {
+            if ((Salt == null)) {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Password));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(Salt));
             }
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Suspended));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Temp_Password));
+            if ((Password == null)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(Password));
+            }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Suspended));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Temp_Password));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14694,43 +14853,51 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Investigator_Number, string Username, string Password, bool Suspended, bool Temp_Password, int Original_Investigator_Number, string Original_Username, string Original_Password, bool Original_Suspended, bool Original_Temp_Password) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Investigator_Number));
+        public virtual int Update(string Investigator_Name, string Username, string Salt, string Password, bool Suspended, bool Temp_Password, string Original_Investigator_Name, string Original_Username, bool Original_Suspended, bool Original_Temp_Password) {
+            if ((Investigator_Name == null)) {
+                throw new global::System.ArgumentNullException("Investigator_Name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Investigator_Name));
+            }
             if ((Username == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Username));
             }
-            if ((Password == null)) {
+            if ((Salt == null)) {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Password));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Salt));
             }
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Suspended));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Temp_Password));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_Investigator_Number));
+            if ((Password == null)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Password));
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Suspended));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Temp_Password));
+            if ((Original_Investigator_Name == null)) {
+                throw new global::System.ArgumentNullException("Original_Investigator_Name");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_Investigator_Name));
+            }
             if ((Original_Username == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Username));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_Username));
             }
-            if ((Original_Password == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_Password));
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Original_Suspended));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(Original_Temp_Password));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Original_Suspended));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Original_Temp_Password));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -14751,8 +14918,8 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Username, string Password, bool Suspended, bool Temp_Password, int Original_Investigator_Number, string Original_Username, string Original_Password, bool Original_Suspended, bool Original_Temp_Password) {
-            return this.Update(Original_Investigator_Number, Username, Password, Suspended, Temp_Password, Original_Investigator_Number, Original_Username, Original_Password, Original_Suspended, Original_Temp_Password);
+        public virtual int Update(string Username, string Salt, string Password, bool Suspended, bool Temp_Password, string Original_Investigator_Name, string Original_Username, bool Original_Suspended, bool Original_Temp_Password) {
+            return this.Update(Original_Investigator_Name, Username, Salt, Password, Suspended, Temp_Password, Original_Investigator_Name, Original_Username, Original_Suspended, Original_Temp_Password);
         }
     }
     
@@ -14902,7 +15069,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15263,7 +15430,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15813,7 +15980,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16140,7 +16307,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16487,7 +16654,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16794,7 +16961,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17134,7 +17301,7 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.OleDb.OleDbConnection();
-            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB1;
+            this._connection.ConnectionString = global::InventorAccessPortal.DB.Properties.Settings.Default.DB3;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17960,15 +18127,6 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._organizationsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Organizations.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -18086,6 +18244,15 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._family_ListingsTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._combo_Family_ListingsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -18095,12 +18262,12 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._family_ListingsTableAdapter.Update(updatedRows));
+                    result = (result + this._login_DataTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -18144,14 +18311,6 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._genderTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18259,6 +18418,14 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._family_ListingsTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._combo_Family_ListingsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Combo_Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -18267,11 +18434,11 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._family_ListingsTableAdapter.Update(addedRows));
+                    result = (result + this._login_DataTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -18301,11 +18468,11 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._family_ListingsTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._login_DataTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._family_ListingsTableAdapter.Update(deletedRows));
+                    result = (result + this._login_DataTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18314,6 +18481,14 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._combo_Family_ListingsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._family_ListingsTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Family_Listings.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._family_ListingsTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -18418,14 +18593,6 @@ namespace InventorAccessPortal.DB._DB_DatasetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._organizationsTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._login_DataTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Login_Data.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._login_DataTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
