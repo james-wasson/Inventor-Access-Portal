@@ -7,12 +7,10 @@ using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.DB
 {
-    public class Context : IAP_Entities
-    {
-    } // results in a cleaner, more readable namespace
+    public class Context : IAP_Entities { } // results in a cleaner, more readable namespace
     public static class ContextCheck
     {
-        public static void Check(this Context c)
+        public static void CheckInit(this Context c)
         {
             if (c == null) c = new Context();
         }

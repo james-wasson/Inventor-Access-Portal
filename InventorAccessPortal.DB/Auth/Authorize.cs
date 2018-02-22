@@ -20,7 +20,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
         public static CachedUser CredentialsByUsername(String username, String password, Context context = null)
         {
-            context.Check();
+            context.CheckInit();
             var LoginData = context.Login_Data.FirstOrDefault(p => p.Username == username);
 
             if (LoginData == null || PasswordVerify.VerifyHashedPassword(LoginData.Password, LoginData.Salt, password) == PasswordVerify.Failed)
@@ -49,7 +49,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
         public static CachedUser CredentialsByEmail(String email, String password, Context context = null)
         {
-            context.Check();
+            context.CheckInit();
             var lowerEmail = email.ToLower();
             var LoginData = context.Login_Data.FirstOrDefault(p => p.Investigator.Email_Address.ToLower() == lowerEmail);
 
