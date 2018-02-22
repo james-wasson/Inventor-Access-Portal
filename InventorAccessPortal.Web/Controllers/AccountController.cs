@@ -9,6 +9,7 @@ using InventorAccessPortal.Web.Util;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB.Auth;
 using System.Web.Security;
+using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -34,37 +35,30 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
 
-        public async Task<string> Confirmation()
+        public string Confirmation()
         {
-            //Receive data from front end
-            string username = Request["username"];
-            string password = Request["password"];
-            //check username and password from database
-            if (await Authorize.CredentialsByUsername(username, password) != null)
+            using (var e = new Context())
             {
-                //if username and password is correct, create session and return Success
-                Session["userID"] = username;
-                Session["realName"] = "Jhon";
-                Session["JID"] = "1";
-                FormsAuthentication.SetAuthCookie(username, true);
-                return "Success";
+                //Receive data from front end
+                string username = Request["username"];
+                string password = Request["password"];
+                //check username and password from database
+                var cachedUser = Authorize.CredentialsByUsername(username, password, e);
+                if (cachedUser != null)
+                {
+                    //if username and password is correct, create session and return Success
+                    Session["userID"] = username;
+                    Session["realName"] = "Jhon";
+                    Session["JID"] = "1";
+                    FormsAuthentication.SetAuthCookie(username, true);
+                    return "Success";
+                }
+                //if username and password is not correct then return Failure
+                else
+                {
+                    return "Failure";
+                }
             }
-            //if username and password is not correct then return Failure
-            else
-            {
-                return "Failure";
-            }
-        }
-
-        private bool WriteCookie(string username, string password)
-        {
-            HttpCookie cookie = new HttpCookie("Logininfo");
-            DateTime dtNow = DateTime.Now;
-            TimeSpan tsMinute = new TimeSpan(0, 0, 3, 0);
-            cookie.Expires = dtNow + tsMinute;
-            cookie["username"] = username;
-            Response.Cookies.Add(cookie);
-            return true;
         }
     }
 }
