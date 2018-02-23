@@ -3,14 +3,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Inventor Access Portal</title>
     <link rel="stylesheet" href="~/Content/navbar.css" />
+    <link rel="stylesheet" href="~/Content/pagecontent.css" />
     @Styles.Render("~/Content/Lib/css")
     @Scripts.Render("~/bundles/Lib/modernizr")
 
 </head>
-<body style="padding-top: 0px; min-height: 200vh"> 
-    <nav class="navbar navbar-inverse navbar-fixed-left">
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-left" id="bluebg">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar">
@@ -25,23 +26,26 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Recent Activities","RecentActivities", "Home")</li>
-                    <li>@Html.ActionLink("Inventions","InventionsForm","Home")</li>
+                    <li>@Html.ActionLink("Recent Activities", "RecentActivities", "Home")</li>
+                    <li>@Html.ActionLink("Inventions", "InventionsForm", "Home")</li>
                     <li>@Html.ActionLink("Files", "FilesForm", "Home")</li>
                     <li>@Html.ActionLink("Families", "FamiliesForm", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
+
         </div>
     </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    <div class="container" id="content">
+         @RenderBody()
+         <hr />
     </div>
 
+    <footer>
+        <p id="confidentiality">
+            CONFIDENTIAL: This portal contains information which is confidential or privileged and exempt from disclosure under applicable law. The information contained herein is intended only for the use of the individual associated with this account. If you are not an authorized user, any disclosure, copying, distribution or use of this information is strictly prohibited.
+        </p>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

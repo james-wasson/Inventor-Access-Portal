@@ -3,7 +3,7 @@
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
     HttpCookie cookie = Request.Cookies["Logininfo"];
-    if (cookie != null) { Response.Redirect("/Home/Contact"); }
+    if (cookie != null) { Response.Redirect("/Home/RecentActivities"); }
 }
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Login</title>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/Lib/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" href="~/Content/pagecontent.css" />
     <script type="text/javascript">
          function login() {
              //Define username and password
@@ -53,7 +53,7 @@
     </script>
 </head>
 <body>
-    <div class="container" style="margin-top:30px;">
+    <div class="container">
         <section id="content">
             <form action="">
                 <h1>Login</h1>

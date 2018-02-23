@@ -1,10 +1,30 @@
 ﻿.navbar-inverse {
     background-color: #2196f3;
+    color: #ffffff;
+    border-color: #2196f3;
+}
+
+#bluebg {
+    background-color: #2196f3;
+    color: #ffffff;
+    border-color: #2196f3;
 }
 
 a {
     cursor: pointer;
 }
+
+a:hover {
+    background-color: #000080;
+}
+
+.container {
+    margin-right: 0px;
+    margin-left: 232px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 
 
 @media (min-width: 768px) {
@@ -31,17 +51,8 @@ a {
     }
 }
 
-.container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-
-
 body {
-    padding-top: 70px;
+    padding-top: 0px;
 }
 
 @media (min-width: 768px) {
@@ -54,15 +65,15 @@ body {
 .navbar-fixed-left {
     position: fixed;
     top: 0px;
-    width: 25%;
+    height: 100%;
     z-index: 1030;
+    float: left;
 }
 
 @media (min-width: 768px) {
     .navbar-fixed-right,
     .navbar-fixed-left {
         width: 232px;
-        height: 100vh;
         border-radius: 0px;
     }
 
@@ -84,7 +95,7 @@ body {
         .navbar-fixed-left .navbar-collapse {
             padding-right: 0px;
             padding-left: 0px;
-            max-height: none;
+            max-height: 100%;
         }
 
             .navbar-fixed-right .navbar-collapse .navbar-nav,

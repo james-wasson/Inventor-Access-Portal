@@ -40,7 +40,7 @@ namespace InventorAccessPortal.Web
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
                       "~/Content/Lib/bootstrap.css",
-                      "~/Content/Lib/site.css"));
+                      "~/Content/Lib/Site.css"));
         }
     }
 }

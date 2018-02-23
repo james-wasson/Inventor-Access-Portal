@@ -206,6 +206,7 @@
   <ItemGroup>
     <Content Include="Content\Lib\bootstrap.css" />
     <Content Include="Content\Lib\bootstrap.min.css" />
+    <Content Include="Content\pagecontent.css" />
     <Content Include="Content\navbar.css" />
     <Content Include="Scripts\Lib\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
