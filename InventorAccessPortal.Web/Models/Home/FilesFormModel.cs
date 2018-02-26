@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace InventorAccessPortal.Web.Models.Account
+namespace InventorAccessPortal.Web.Models.Home
 {
-    public class LoginModel
+    public class FilesFormModel
     {
         
     }

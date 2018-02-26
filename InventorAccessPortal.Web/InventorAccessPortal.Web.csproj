@@ -189,11 +189,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ProjectFormsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\Home\FamiliesFormModel.cs" />
+    <Compile Include="Models\Home\FilesFormModel.cs" />
+    <Compile Include="Models\Home\InventionsFormModel.cs" />
+    <Compile Include="Models\Home\RecentActivitiesModel.cs" />
+    <Compile Include="Models\ProjectForms\ProjectReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Util\CredentialsHelper.cs" />
@@ -202,11 +208,13 @@
   <ItemGroup>
     <Content Include="Content\Lib\bootstrap.css" />
     <Content Include="Content\Lib\bootstrap.min.css" />
+    <Content Include="Content\pagecontent.css" />
+    <Content Include="Content\navbar.css" />
     <Content Include="Scripts\Lib\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Lib\Site.css" />
+    <Content Include="Content\Site.css" />
     <Content Include="Scripts\Lib\bootstrap.js" />
     <Content Include="Scripts\Lib\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -241,8 +249,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
+    <Content Include="Views\Home\RecentActivities.cshtml" />
+    <Content Include="Views\Home\InventionsForm.cshtml" />
+    <Content Include="Views\Home\FilesForm.cshtml" />
+    <Content Include="Views\Home\FamiliesForm.cshtml" />
+    <Content Include="Views\Shared\_FooterPartial.cshtml" />
+    <Content Include="Views\ReportsForms\ProjectReport.cshtml" />
+    <Content Include="Views\ReportsForms\FileReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
