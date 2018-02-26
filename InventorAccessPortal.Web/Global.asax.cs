@@ -1,19 +1,23 @@
 ﻿using System;
-using Abp.Castle.Logging.Log4Net;
-using Abp.Web;
-using Castle.Facilities.Logging;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Optimization;
+using System.Web.Routing;
+using System.Web.Security;
+using System.Web.SessionState;
 
 namespace InventorAccessPortal.Web
 {
-    public class MvcApplication : AbpWebApplication<InventorAccessPortalWebModule>
+    public class MvcApplication : System.Web.HttpApplication
     {
-        protected override void Application_Start(object sender, EventArgs e)
+        protected void Application_Start()
         {
-            AbpBootstrapper.IocManager.IocContainer.AddFacility<LoggingFacility>(
-                f => f.UseAbpLog4Net().WithConfig(Server.MapPath("log4net.config"))
-            );
-
-            base.Application_Start(sender, e);
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

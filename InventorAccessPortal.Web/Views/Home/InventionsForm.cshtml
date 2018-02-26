@@ -1,0 +1,28 @@
+﻿@model InventorAccessPortal.Web.Models.Home.Inventions.Form
+@{
+    ViewBag.Title = "Inventions Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>All Inventions</h1>
+<div>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Project Number</th>
+            <th>Project Title</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var invention in @Model.Inventions)
+            {
+        <tr>
+            <td>@invention.Status</td>
+            <td>@invention.ProjectNumber</td>
+            <td>@invention.ProjectTitle</td>
+        </tr>
+            }
+        }
+    </table>
+    @Html.ActionLink("Project Form Template", "ProjectReport", "ProjectForms")
+</div>

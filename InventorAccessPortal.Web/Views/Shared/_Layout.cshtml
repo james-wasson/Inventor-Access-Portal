@@ -1,62 +1,44 @@
-﻿@using System.Threading
-@using System.Web.Optimization
-@using Abp.Timing
-@{
-    SetAntiForgeryCookie();
-}
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="shortcut icon" href="~/favicon.ico">
-
-    <title>InventorAccessPortal</title>
-
-    @Styles.Render("~/Bundles/vendor/css")
-    @Styles.Render("~/Bundles/css")
-
-    <!-- View specific styles -->
-    @RenderSection("styles", required: false)
-
-    <script type="text/javascript">
-        //This is used to get the application's root path from javascript. It's useful if you're running application in a virtual directory under IIS.
-        var abp = abp || {}; abp.appPath = '@ApplicationPath';
-    </script>
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="@Url.Content("~/Scripts/others/html5shiv.js")"></script>
-        <script src="@Url.Content("~/Scripts/others/respond.min.js")"></script>
-    <![endif]-->
-
-    @Scripts.Render("~/Bundles/vendor/js/top")
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title - Inventor Access Portal</title>
+    @Styles.Render("~/Content/Lib/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/Lib/modernizr")
 </head>
 <body>
-    @Html.Partial("_TopBar")
-
-    <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-left" id="bluebg">
+        <div class="navcontainer">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Inventor Access Portal", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Recent Activities", "RecentActivities", "Home")</li>
+                    <li>@Html.ActionLink("Inventions", "InventionsForm", "Home")</li>
+                    <li>@Html.ActionLink("Files", "FilesForm", "Home")</li>
+                    <li>@Html.ActionLink("Families", "FamiliesForm", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container" id="content">
         @RenderBody()
+        @Html.Partial("_FooterPartial")
     </div>
-
-    @Scripts.Render("~/Bundles/vendor/js/bottom")
-    @Scripts.Render("~/Bundles/js")
-
-    <script>
-        abp.localization.defaultSourceName = '@LocalizationSourceName';
-        moment.locale('@Thread.CurrentThread.CurrentUICulture.Name.ToLower()'); //Localizing momentjs
-    </script>
-
-    <!-- Dynamic scripts of ABP system (They are created on runtime and can not be bundled) -->
-    <script src="~/api/AbpServiceProxies/GetAll?v=@(Clock.Now.Ticks)"></script>
-    <script src="~/AbpScripts/GetScripts?v=@(Clock.Now.Ticks)" type="text/javascript"></script>
-
-    <!-- View specific scripts -->
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/Lib/jquery")
+    @Scripts.Render("~/bundles/Lib/bootstrap")
+    @Scripts.Render("~/bundles/scripts")
 </body>
 </html>
