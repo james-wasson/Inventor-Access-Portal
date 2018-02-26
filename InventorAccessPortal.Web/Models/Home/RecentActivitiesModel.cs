@@ -7,6 +7,6 @@ namespace InventorAccessPortal.Web.Models.Home
 {
     public class RecentActivitiesModel
     {
-        public String WelcomeMessage { get; set; }
+        
     }
 }

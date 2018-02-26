@@ -4,19 +4,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-                <h1>All Files</h1>
-                <div>
-                    <table>
-                        <tr>
-                            <th>Status</th>
-                            <th>File Number</th>
-                            <th>File Name</th>
-                            <th>Serial Number</th>
-                            <th>Continuity</th>
-                            <th>Law Firm</th>
-                            <th>Project Number</th>
-                        </tr>
-                    </table>
-                </div>
+<h1>All Files</h1>
+<div>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>File Number</th>
+            <th>File Name</th>
+            <th>Serial Number</th>
+            <th>Continuity</th>
+            <th>Law Firm</th>
+            <th>Project Number</th>
+        </tr>
+    </table>
+    @Html.ActionLink("File Report Template", "FileReport", "ProjectForms")
+</div>
 
 

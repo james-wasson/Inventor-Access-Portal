@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace InventorAccessPortal.Web.Models.Account
+namespace InventorAccessPortal.Web.Models.ProjectForms
 {
-    public class LoginModel
+    public class ProjectReportModel
     {
-        
+
     }
 }

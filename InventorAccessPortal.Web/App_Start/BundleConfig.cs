@@ -32,15 +32,15 @@ namespace InventorAccessPortal.Web
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/Lib/modernizr").Include(
-                        "~/Scripts/Lib/modernizr-*"));
+                        "~/Scripts/Lib/modernizr-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/bootstrap").Include(
                       "~/Scripts/Lib/bootstrap.js",
                       "~/Scripts/Lib/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
-                      "~/Content/Lib/bootstrap.css",
-                      "~/Content/Lib/Site.css"));
+                      "~/Content/Lib/bootstrap.css"
+                      ));
         }
     }
 }

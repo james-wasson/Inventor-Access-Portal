@@ -6,14 +6,6 @@
     if (cookie != null) { Response.Redirect("/Home/RecentActivities"); }
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Login</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <link rel="stylesheet" href="~/Content/pagecontent.css" />
     <script type="text/javascript">
          function login() {
              //Define username and password
@@ -51,24 +43,19 @@
                  }
          }
     </script>
-</head>
-<body>
-    <div class="container">
-        <section id="content">
-            <form action="">
-                <h1>Login</h1>
-                <div>
-                    <input type="text" placeholder="username"  id="username" />
-                </div>
-                <div>
-                    <input type="password" placeholder="password"  id="password" />
-                </div>
-                <div>
-                    <span class="help-block u-errormessage" id="js-server-helpinfo"> </span>
-                </div>
-                <input name="submit" type="button" class="btn btn-primary" id="js-btn-login" value="login" style="margin-left:120px" onclick="login()" />
-            </form>
-        </section>
-    </div>
-</body>
-</html> 
+
+<section id="content">
+    <form action="">
+        <h1>Login</h1>
+        <div>
+            <input type="text" placeholder="username"  id="username" />
+        </div>
+        <div>
+            <input type="password" placeholder="password"  id="password" />
+        </div>
+        <div>
+            <span class="help-block u-errormessage" id="js-server-helpinfo"> </span>
+        </div>
+        <input name="submit" type="button" class="btn btn-primary" id="js-btn-login" value="login" style="margin-left:120px" onclick="login()" />
+    </form>
+</section>

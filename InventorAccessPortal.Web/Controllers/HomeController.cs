@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using InventorAccessPortal.Web.Models.Home;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -38,8 +39,28 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult InventionsForm()
         {
             ViewBag.Message = "All Inventions";
-
-            return View();
+            var a = new Inventions.Item {
+                Status = "1",
+                ProjectNumber = "2",
+                ProjectTitle = "3"
+            };
+            var b = new Inventions.Item
+            {
+                Status = "a",
+                ProjectNumber = "b",
+                ProjectTitle = "c"
+            };
+            var c = new Inventions.Item
+            {
+                Status = "x",
+                ProjectNumber = "y",
+                ProjectTitle = "z"
+            };
+            var d = new List<Inventions.Item> { a, b, c };
+            return View(new Inventions.Form
+            {
+                Inventions = d
+            });
         }
 
         public ActionResult FilesForm()

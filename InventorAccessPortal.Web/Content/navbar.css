@@ -4,28 +4,28 @@
     border-color: #2196f3;
 }
 
-#bluebg {
-    background-color: #2196f3;
+.navbar-inverse .navbar-brand {
     color: #ffffff;
-    border-color: #2196f3;
+    padding: 10px 0px;
 }
 
-a {
+.navbar-inverse .navbar-nav > li > a {
+    color: #ffffff;
     cursor: pointer;
+}
+
+.nav > li > a {
+    margin-right: 40px;
 }
 
 a:hover {
     background-color: #000080;
 }
 
-.container {
+.navcontainer {
     margin-right: 0px;
-    margin-left: 232px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-left: 0px;
 }
-
-
 
 @media (min-width: 768px) {
     .container {
@@ -74,7 +74,7 @@ body {
     .navbar-fixed-right,
     .navbar-fixed-left {
         width: 232px;
-        border-radius: 0px;
+        border-radius: 4px;
     }
 
         .navbar-fixed-right .container,
@@ -93,8 +93,8 @@ body {
 
         .navbar-fixed-right .navbar-collapse,
         .navbar-fixed-left .navbar-collapse {
-            padding-right: 0px;
-            padding-left: 0px;
+            padding-right: 15px;
+            padding-left: 15px;
             max-height: 100%;
         }
 
@@ -105,7 +105,7 @@ body {
 
                 .navbar-fixed-right .navbar-collapse .navbar-nav > li,
                 .navbar-fixed-left .navbar-collapse .navbar-nav > li {
-                    width: 100%;
+                    width: auto;
                 }
 
                     .navbar-fixed-right .navbar-collapse .navbar-nav > li.dropdown .dropdown-menu,
@@ -117,31 +117,4 @@ body {
                 .navbar-fixed-left .navbar-collapse .navbar-nav.navbar-right {
                     margin-right: 0px;
                 }
-}
-
-@media (min-width: 768px) {
-    body {
-        margin-right: 232px;
-    }
-}
-
-@media (min-width: 768px) {
-    .navbar-fixed-right {
-        right: 0 !important;
-        left: auto !important;
-        border-width: 0 0 0 1px !important;
-    }
-
-        .navbar-fixed-right .dropdown .dropdown-menu {
-            left: auto;
-            right: 100%;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .navbar-fixed-right .dropdown .dropdown-toggle .caret {
-            border-top: 4px solid transparent;
-            border-left: none;
-            border-bottom: 4px solid transparent;
-            border-right: 4px solid;
-        }
 }
