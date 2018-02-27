@@ -30,9 +30,9 @@ namespace InventorAccessPortal.Web.Controllers
         }
 
         /// <summary>
-        /// Data needed: Date, Activity, Details, Notes, File Number, File Name, Status, Serial Number, Law Firm
+        /// Uses the model for the Recent Activities form and fills the appropriate data fields
         /// </summary>
-        /// <returns> Page with table containing relevant data </returns>
+        /// <returns> Page with table containing data according to the model </returns>
         public ActionResult RecentActivities()
         {
             ViewBag.Message = "Recent activities relevant to you.";
@@ -41,9 +41,9 @@ namespace InventorAccessPortal.Web.Controllers
         }
 
         /// <summary>
-        /// Data needed: Status, Project Number, Project Title
+        /// Uses the model for the Inventions form and fills the appropriate data fields 
         /// </summary>
-        /// <returns> Page with table containing relevant data </returns>
+        /// <returns> Page with table containing data according to the model </returns>
         public ActionResult InventionsForm()
         {
             ViewBag.Message = "All Inventions";
@@ -52,9 +52,9 @@ namespace InventorAccessPortal.Web.Controllers
         }
 
         /// <summary>
-        /// Data needed for this: STatus, File Number, File Name, Serial Number, Continuity, Law Firm, Project Number
+        /// Uses the model for the Files form and fills the appropriate data fields
         /// </summary>
-        /// <returns> Page with table containing relevant data </returns>
+        /// <returns> Page with table containing data according to the model </returns>
         public ActionResult FilesForm()
         {
             ViewBag.Message = "All Files";
@@ -63,9 +63,9 @@ namespace InventorAccessPortal.Web.Controllers
         }
            
         /// <summary>
-        /// Data needed for this form: Status, Family Name, and Family Number
+        /// Uses the model for the Families form and fills the appropriate data fields
         /// </summary>
-        /// <returns> Page with table containing relevant data </returns>
+        /// <returns> Page with table containing the data according to the model </returns>
         public ActionResult FamiliesForm()
         {
             ViewBag.Message = "All Families";
