@@ -1,6 +1,6 @@
-﻿
+﻿@model InventorAccessPortal.Web.Models.Home.Files.Form
 @{
-    ViewBag.Title = "FilesForm";
+    ViewBag.Title = "Files Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,6 +16,21 @@
             <th>Law Firm</th>
             <th>Project Number</th>
         </tr>
+        @if (Model != null)
+        {
+            foreach (var file in @Model.Files)
+            {
+                <tr>
+                    <td>@file.Status</td>
+                    <td>@file.FileNum</td>
+                    <td>@file.FileName</td>
+                    <td>@file.SerialNum</td>
+                    <td>@file.Continuity</td>
+                    <td>@file.LawFirm</td>
+                    <td>@file.ProjectNum</td>
+                </tr>
+            }
+        }
     </table>
     @Html.ActionLink("File Report Template", "FileReport", "ProjectForms")
 </div>
