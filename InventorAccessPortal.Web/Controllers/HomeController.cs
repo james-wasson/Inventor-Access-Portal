@@ -29,21 +29,10 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
 
-        /* Needed for Recent Activities
-         * Date
-         * Activity
-         * Details
-         * Notes
-         * File Number
-         * File Name
-         * Status
-         * Serial Number
-         * Law Firm
-         */
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <returns></returns>
+        /// <summary>
+        /// Data needed: Date, Activity, Details, Notes, File Number, File Name, Status, Serial Number, Law Firm
+        /// </summary>
+        /// <returns> Page with table containing relevant data </returns>
         public ActionResult RecentActivities()
         {
             ViewBag.Message = "Recent activities relevant to you.";
@@ -51,15 +40,10 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
 
-        /* Needed info for Inventions Form
-         * Status
-         * Project Number
-         * Project Title
-         */
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <returns></returns>
+        /// <summary>
+        /// Data needed: Status, Project Number, Project Title
+        /// </summary>
+        /// <returns> Page with table containing relevant data </returns>
         public ActionResult InventionsForm()
         {
             ViewBag.Message = "All Inventions";
@@ -67,20 +51,10 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
 
-
-        /* Needed info for Files Form:
-         * Status
-         * File Number
-         * File Name
-         * Serial Number
-         * Continuity
-         * Law Firm
-         * Project Number
-         */
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <returns></returns>
+        /// <summary>
+        /// Data needed for this: STatus, File Number, File Name, Serial Number, Continuity, Law Firm, Project Number
+        /// </summary>
+        /// <returns> Page with table containing relevant data </returns>
         public ActionResult FilesForm()
         {
             ViewBag.Message = "All Files";
@@ -88,15 +62,10 @@ namespace InventorAccessPortal.Web.Controllers
             return View();
         }
            
-        /* Needed info for Families Form
-         * Status
-         * Family Name
-         * Family Number
-         */
-         /// <summary>
-         /// 
-         /// </summary>
-         /// <returns></returns>
+        /// <summary>
+        /// Data needed for this form: Status, Family Name, and Family Number
+        /// </summary>
+        /// <returns> Page with table containing relevant data </returns>
         public ActionResult FamiliesForm()
         {
             ViewBag.Message = "All Families";
