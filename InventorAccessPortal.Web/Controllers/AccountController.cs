@@ -24,7 +24,7 @@ namespace InventorAccessPortal.Web.Controllers
         {
             var model = new LoginModel
             {
-                WelcomeMessage = "Hello and welcome to our website"
+
             };
             return View(model);
         }

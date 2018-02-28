@@ -1,0 +1,28 @@
+﻿@model InventorAccessPortal.Web.Models.Home.Families.Form
+@{
+    ViewBag.Title = "Families Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>All Families</h1>
+<div>
+    <table>
+        <tr>
+            <th>Status</th>
+            <th>Family Number</th>
+            <th>Family Name</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var family in @Model.Families)
+            {
+                <tr>
+                    <td>@family.Status</td>
+                    <td>@family.FamilyNum</td>
+                    <td>@family.FamilyName</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
