@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Models.Home;
 
 namespace InventorAccessPortal.Web.Controllers

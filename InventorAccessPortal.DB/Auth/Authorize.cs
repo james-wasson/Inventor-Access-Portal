@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Data;
-using System.Data.Objects;
-using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
-using System.Text;
-using InventorAccessPortal.DB.Objects;
-using InventorAccessPortal.DB.Objects.Collections;
 using System.Threading.Tasks;
-using InventorAccessPortal.DB;
-using System.Security.Cryptography;
-using Microsoft.AspNet.Identity;
+using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.DB.Utils;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -22,31 +18,26 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static async Task<InvestigatorLoginRow> CredentialsByUsername(String username, String password, Context context = null)
+        public static CachedUser CredentialsByUsername(String username, String password, Context context = null)
         {
-            if (context == null) context = new Context();
-            // lopp the connections
-            foreach (var conn in context.GetConnections())
+            context.CheckInit();
+            var LoginData = context.Login_Data.FirstOrDefault(p => p.Username == username);
+
+            if (LoginData == null || PasswordVerify.VerifyHashedPassword(LoginData.Password, LoginData.Salt, password) == PasswordVerify.Failed)
+                return null;
+
+            var firstLast = GetName.FirstAndLast(LoginData.Investigator_Name);
+
+            return new CachedUser
             {
-                await conn.FillInvestigatorsAsync();
-                await conn.FillLoginDataAsync();
-                // get the users with those credntals
-                var InvestigatorLoginRow = conn.Login_Data.Select(p =>
-                    new InvestigatorLoginRow
-                    {
-                        InvestigatorsRow = p.InvestigatorsRow,
-                        LoginDataRow = p
-                    }).FirstOrDefault(p =>
-                        p.LoginDataRow.Username == username &&
-                        PasswordVerificationResult.Success == CustomPasswordHasher.VerifyHashedPassword(p, password)
-                    );
-                // if there are any users return true
-                if (InvestigatorLoginRow != null)
-                {
-                    return InvestigatorLoginRow;
-                }
-            }
-            return null;
+                Username = LoginData.Username,
+                InvestigatorName = LoginData.Investigator_Name,
+                InvestigatorNumber = LoginData.Investigator.Investigator_Number,
+                Email = LoginData.Investigator.Email_Address,
+                LastName = firstLast.LastName,
+                FirstName = firstLast.FirstName,
+                PhoneNumber = LoginData.Investigator.Phone_Number
+            };
         }
 
         /// <summary>
@@ -56,32 +47,27 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static async Task<InvestigatorLoginRow> CredentialsByEmail(String email, String password, Context context = null)
+        public static CachedUser CredentialsByEmail(String email, String password, Context context = null)
         {
-            if (context == null) context = new Context();
+            context.CheckInit();
             var lowerEmail = email.ToLower();
-            // lopp the connections
-            foreach (var conn in context.GetConnections())
+            var LoginData = context.Login_Data.FirstOrDefault(p => p.Investigator.Email_Address.ToLower() == lowerEmail);
+
+            if (LoginData == null || PasswordVerify.VerifyHashedPassword(LoginData.Password, LoginData.Salt, password) == PasswordVerify.Failed)
+                return null;
+
+            var firstLast = GetName.FirstAndLast(LoginData.Investigator_Name);
+
+            return new CachedUser
             {
-                await conn.FillInvestigatorsAsync();
-                await conn.FillLoginDataAsync();
-                // get the users with those credntals
-                var InvestigatorLoginRow = conn.Login_Data.Select(p =>
-                    new InvestigatorLoginRow
-                    {
-                        InvestigatorsRow = p.InvestigatorsRow,
-                        LoginDataRow = p
-                    }).FirstOrDefault(p =>
-                        p.InvestigatorsRow.Email_Address.ToLower() == lowerEmail &&
-                        PasswordVerificationResult.Success == CustomPasswordHasher.VerifyHashedPassword(p, password)
-                    );
-                // if there are any users return true
-                if (InvestigatorLoginRow != null)
-                {
-                    return InvestigatorLoginRow;
-                }
-            }
-            return null;
+                Username = LoginData.Username,
+                InvestigatorName = LoginData.Investigator_Name,
+                InvestigatorNumber = LoginData.Investigator.Investigator_Number,
+                Email = LoginData.Investigator.Email_Address,
+                LastName = firstLast.LastName,
+                FirstName = firstLast.FirstName,
+                PhoneNumber = LoginData.Investigator.Phone_Number
+            };
         }
 
     }
