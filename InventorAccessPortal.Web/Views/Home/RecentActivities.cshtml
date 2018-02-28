@@ -1,0 +1,39 @@
+﻿@model InventorAccessPortal.Web.Models.Home.RecentActivities.Form
+@{
+    ViewBag.Title = "Recent Activities";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Recent Activities</h1>
+<div>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Activity</th>
+            <th>Details</th>
+            <th>Notes</th>
+            <th>File Number</th>
+            <th>File Name</th>
+            <th>Status</th>
+            <th>Serial Number</th>
+            <th>Law Firm</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var recentAct in @Model.RecentActivities)
+            {
+                <tr>
+                    <td>@recentAct.Date</td>
+                    <td>@recentAct.Activity</td>
+                    <td>@recentAct.Details</td>
+                    <td>@recentAct.Notes</td>
+                    <td>@recentAct.FileNum</td>
+                    <td>@recentAct.FileName</td>
+                    <td>@recentAct.Status</td>
+                    <td>@recentAct.SerialNum</td>
+                    <td>@recentAct.LawFirm</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
