@@ -18,7 +18,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static CachedUser CredentialsByUsername(String username, String password, Context context = null)
+        public static CachedUser CredentialsByUsername(String username, String password, DbContext context = null)
         {
             context.CheckInit();
             var LoginData = context.Login_Data.FirstOrDefault(p => p.Username == username);
@@ -47,7 +47,7 @@ namespace InventorAccessPortal.DB.Auth
         /// <param name="password">The password will be hashed and compared to the one in the database</param>
         /// <param name="context">the Database context object</param>
         /// <returns>Investigator Object if valid Credentials, otherwise null</returns>
-        public static CachedUser CredentialsByEmail(String email, String password, Context context = null)
+        public static CachedUser CredentialsByEmail(String email, String password, DbContext context = null)
         {
             context.CheckInit();
             var lowerEmail = email.ToLower();

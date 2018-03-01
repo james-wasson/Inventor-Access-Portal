@@ -208,7 +208,7 @@
     <Compile Include="Models\Home\RecentActivitiesModel.cs" />
     <Compile Include="Models\ProjectForms\ProjectReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\CredentialsHelper.cs" />
+    <Compile Include="Util\AccountHelper.cs" />
     <Compile Include="Util\EmailHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -249,7 +249,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
