@@ -36,7 +36,8 @@ namespace InventorAccessPortal.Web
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/bootstrap").Include(
                       "~/Scripts/Lib/bootstrap.js",
-                      "~/Scripts/Lib/respond.js"));
+                      "~/Scripts/Lib/respond.js",
+                      "~/Scripts/Lib/less-{version}.js"));
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
                       "~/Content/Lib/bootstrap.css"

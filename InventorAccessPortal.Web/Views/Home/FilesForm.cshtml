@@ -1,4 +1,4 @@
-﻿@model InventorAccessPortal.Web.Models.Home.Files.Form
+﻿@model InventorAccessPortal.Web.Models.Home.FilesModel.Form
 @{
     ViewBag.Title = "Files Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -18,7 +18,7 @@
         </tr>
         @if (Model != null)
         {
-            foreach (var file in @Model.Files)
+            foreach (var file in Model.Files)
             {
                 <tr>
                     <td>@file.Status</td>

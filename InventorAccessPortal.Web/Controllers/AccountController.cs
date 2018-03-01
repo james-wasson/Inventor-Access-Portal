@@ -12,12 +12,13 @@ using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.Web.Controllers
 {
+    /// <summary>
+    /// This Controller allows anonmous requests.
+    /// Don't put anything non-public here
+    /// </summary>
+    [AllowAnonymous]
     public class AccountController : Controller
     {
-        public ActionResult Register()
-        {
-            return View();
-        }
 
         public ActionResult Login()
         {
@@ -62,7 +63,12 @@ namespace InventorAccessPortal.Web.Controllers
 
         public ActionResult LogOff()
         {
-            AccountHelper.Logout();
+            AccountHelper.Logout(HttpContext);
+            return View();
+        }
+
+        public ActionResult Register()
+        {
             return View();
         }
     }
