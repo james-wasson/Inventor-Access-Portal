@@ -210,6 +210,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AccountHelper.cs" />
     <Compile Include="Util\EmailHelper.cs" />
+    <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Lib\bootstrap.css" />
@@ -244,7 +245,6 @@
     <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
     <Content Include="Scripts\Lib\respond.js" />
     <Content Include="Scripts\Lib\respond.min.js" />
-    <Content Include="Scripts\NotLoggedInRedirect.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -272,6 +272,7 @@
     <Content Include="Views\ReportsForms\ProjectReport.cshtml" />
     <Content Include="Views\ReportsForms\FileReport.cshtml" />
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
+    <Content Include="Views\Shared\Headers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

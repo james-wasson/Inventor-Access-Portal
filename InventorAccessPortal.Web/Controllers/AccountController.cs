@@ -40,10 +40,7 @@ namespace InventorAccessPortal.Web.Controllers
                     if (cachedUser != null)
                     {
                         //if username and password is correct, create session and return Success
-                        
-                        Session["userID"] = cachedUser.Username;
-                        Session["realName"] = cachedUser.FirstName + " " + cachedUser.LastName;
-                        Session["User"] = cachedUser;
+                        SessionHelper.SetSessionUser(cachedUser);
                         FormsAuthentication.SetAuthCookie(cachedUser.Username, true);
                         
                         // goes to home screen or previous screen
