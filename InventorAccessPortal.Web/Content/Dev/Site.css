@@ -1,12 +1,23 @@
 ﻿body {
     padding-top: 0;
-    padding-bottom: 20px;
+}
+
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
 }
 
 /* Override bootstraps row margin */
 #content > .row {
-    margin-right: 0;
+    height: 100%;
 }
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;

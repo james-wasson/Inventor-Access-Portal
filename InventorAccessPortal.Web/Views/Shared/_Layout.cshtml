@@ -12,18 +12,16 @@
 </head>
 <body>
     @Scripts.Render("~/bundles/Lib/jquery")
-    <div class="container-fluid" id="content">
-        <div class="row">
-            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-3">
-                @Html.Partial("_SidebarPartial")
-            </div>
-            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-9">
-                @RenderBody()
-                @Html.Partial("_FooterPartial")
-            </div>
-        </div>
-    </div>
     @Scripts.Render("~/bundles/Lib/bootstrap")
     @Scripts.Render("~/bundles/scripts")
+    <div class="wrapper">
+        @Html.Partial("_SidebarPartial")
+        <div id="content">
+            @RenderBody()
+            @Html.Partial("_FooterPartial")
+        </div>
+    </div>
+
+
 </body>
 </html>

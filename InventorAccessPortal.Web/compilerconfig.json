@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "Content/navbar.css",
-    "inputFile": "Content/navbar.less"
+    "outputFile": "Content/Dev/nav.css",
+    "inputFile": "Content/Dev/nav.less"
   }
 ]

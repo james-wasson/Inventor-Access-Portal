@@ -14,33 +14,32 @@ namespace InventorAccessPortal.Web
              */
 
             bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/", "*.css", false));
+                .IncludeDirectory("~/Content/Dev/", "*.css", false));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/", "*.js", false));
+                .IncludeDirectory("~/Scripts/Dev/", "*.js", false));
 
             /*
             * Libaray Bundles 
             */
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jquery").Include(
-                        "~/Scripts/Lib/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jqueryval").Include(
-                        "~/Scripts/Lib/jquery.validate*"));
+                        "~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/Lib/modernizr").Include(
-                        "~/Scripts/Lib/modernizr-{version}.js"));
+                        "~/Scripts/modernizr-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/bootstrap").Include(
-                      "~/Scripts/Lib/bootstrap.js",
-                      "~/Scripts/Lib/respond.js",
-                      "~/Scripts/Lib/less-{version}.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
-                      "~/Content/Lib/bootstrap.css"
+                      "~/Content/bootstrap.css"
                       ));
         }
     }

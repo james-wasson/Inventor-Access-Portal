@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using InventorAccessPortal.Web.Util;
 
 namespace InventorAccessPortal.Web.Models.Account
 {
     public enum LoginErrorCodes
     {
+        [Description("Here is another")]
         InvalidUsernameOrPassword = 0,
         EmptyUsernameOrPassword = 1
     }
