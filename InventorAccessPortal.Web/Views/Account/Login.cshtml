@@ -1,61 +1,28 @@
 ﻿@model InventorAccessPortal.Web.Models.Account.LoginModel
+@using InventorAccessPortal.Web.Models.Account
 @{
     ViewBag.Title = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    HttpCookie cookie = Request.Cookies["Logininfo"];
-    if (cookie != null) { Response.Redirect("/Home/RecentActivities"); }
+}
+<h1>Login</h1>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.TextBoxFor(p => p.UsernameOrEmail)
+    @Html.PasswordFor(p => p.Password)
+    <input type="submit" value="Sign In">
+}
+@if (Model.Errors.Any())
+{
+    <div class="alert alert-danger" role="alert">
+        @if (Model.Errors.Contains(LoginErrorCodes.InvalidUsernameOrPassword))
+        {
+            <p>Invalid Username And / Or Password</p>
+        }
+        @if (Model.Errors.Contains(LoginErrorCodes.EmptyUsernameOrPassword))
+        {
+            <p>Empty Username or Password</p>
+        }
+    </div>
 }
 
-    <script type="text/javascript">
-         function login() {
-             //Define username and password
-             var username = $("#username").val();
-             var password = $("#password").val();
-             //check if username is null
-             if (username == "" || null ) {
-                 $.messager.alert("Alert", "Please input username!", "info");
-                 return;
-             }
-             //if nusername is not null and password is null
-             else if (password == "" || null) {
-                 $.messager.alert("Alert", "Please input pasword!", "info");
-                 return;
-             } else {
-                 //use ajax to send information to confirmation to check the login in info
-                 $.ajax({
-                         url: "/Account/Confirmation",
-                         data: { username: username, password: password },
-                         type: "POST",
-                         dataType: "text",
-                         success: function (data) {
-                             if (data == "Success") {
-                                 //location.reload(true);
-                                 window.location.href = "/Home/Contact";//if success, the URL will be loaded
-                             } else if (data == "Failure") {
-                                 $.messager.alert("Alert", "Invaild user name or password", "info");
-                             }else{
-                                 alert("Input error, please try again!");}
-                         },
-                         error: function () { alert("Connection error, please try again!") },
-
-                     });
-
-                 }
-         }
-    </script>
-
-<section id="content">
-    <form action="">
-        <h1>Login</h1>
-        <div>
-            <input type="text" placeholder="username"  id="username" />
-        </div>
-        <div>
-            <input type="password" placeholder="password"  id="password" />
-        </div>
-        <div>
-            <span class="help-block u-errormessage" id="js-server-helpinfo"> </span>
-        </div>
-        <input name="submit" type="button" class="btn btn-primary" id="js-btn-login" value="login" style="margin-left:120px" onclick="login()" />
-    </form>
-</section>

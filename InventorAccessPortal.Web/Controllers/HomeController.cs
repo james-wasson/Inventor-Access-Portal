@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Threading.Tasks;
-using System.Data.Entity;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Models.Home;
 
@@ -12,22 +10,22 @@ namespace InventorAccessPortal.Web.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// redirects to RecentActivites
+        /// </summary>
+        /// <returns>Returns RecentActivites View</returns>
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("RecentActivities", "Home");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -38,8 +36,8 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult RecentActivities()
         {
             ViewBag.Message = "Recent activities relevant to you.";
-
-            return View();
+            var model = new RecentActivitiesModel.Form();
+            return View(model);
         }
 
         /// <summary>
@@ -49,8 +47,8 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult InventionsForm()
         {
             ViewBag.Message = "All Inventions";
-
-            return View();
+            var model = new InventionsModel.Form();
+            return View(model);
         }
 
         /// <summary>
@@ -60,8 +58,8 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult FilesForm()
         {
             ViewBag.Message = "All Files";
-
-            return View();
+            var model = new FilesModel.Form();
+            return View(model);
         }
            
         /// <summary>
@@ -71,8 +69,8 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult FamiliesForm()
         {
             ViewBag.Message = "All Families";
-
-            return View();
+            var model = new Families.Form();
+            return View(model);
         }
     }
 }

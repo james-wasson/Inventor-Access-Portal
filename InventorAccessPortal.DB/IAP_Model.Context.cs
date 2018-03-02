@@ -13,7 +13,7 @@ namespace InventorAccessPortal.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IAP_Entities : DbContext
+    public partial class IAP_Entities : System.Data.Entity.DbContext
     {
         public IAP_Entities()
             : base("name=IAP_Entities")
