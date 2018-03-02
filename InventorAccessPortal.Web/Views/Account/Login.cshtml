@@ -12,17 +12,5 @@
     @Html.PasswordFor(p => p.Password)
     <input type="submit" value="Sign In">
 }
-@if (Model.Errors.Any())
-{
-    <div class="alert alert-danger" role="alert">
-        @if (Model.Errors.Contains(LoginErrorCodes.InvalidUsernameOrPassword))
-        {
-            <p>Invalid Username And / Or Password</p>
-        }
-        @if (Model.Errors.Contains(LoginErrorCodes.EmptyUsernameOrPassword))
-        {
-            <p>Empty Username or Password</p>
-        }
-    </div>
-}
+
 

@@ -1,23 +1,6 @@
 ﻿@using InventorAccessPortal.Web.Util
 <!-- Initial layout taken from here https://bootstrapious.com/p/bootstrap-sidebar -->
 
-<script>
-    // Wrap everything in an IIFE
-    (function ($, viewport) {
-        function smallScreen()
-        {
-            if ($(window).width() < 768) {
-                $("#sidebar").addClass("active");
-            }
-            else
-            {
-                $("#sidebar").removeClass("active");
-            }
-        } smallScreen();
-        $(window).resize(smallScreen);
-    })(jQuery);
-</script>
-
 <nav id="sidebar">
     <div class="sidebar-header">
         <h3 class="sidebar-expanded">Inventor Access Portal</h3>
@@ -46,7 +29,7 @@
                 </a>
             </li>
             <li>
-                <a href="@Url.Action("FilesForm", "Home")" class="btn btn-warning">
+                <a href="@Url.Action("FamiliesForm", "Home")" class="btn btn-warning">
                     Families
                     <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
                 </a>

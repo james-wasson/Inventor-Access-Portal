@@ -17,6 +17,7 @@
     <div class="wrapper">
         @Html.Partial("_SidebarPartial")
         <div id="content">
+            @Html.Partial("_ErrorPartial")
             @RenderBody()
             @Html.Partial("_FooterPartial")
         </div>

@@ -1,0 +1,23 @@
+﻿@using InventorAccessPortal.Web.Util;
+@using InventorAccessPortal.Web.Models;
+
+@try
+{
+    if (Model != null) {
+
+        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(ErrorModel));
+        if (IsRightType == true && ErrorHelper.ModelHasValidErrors((ErrorModel)Model))
+        {
+        <div class="alert alert-danger" role="alert">
+        @foreach (var error in ErrorHelper.GetAllErrors(Model.Errors))
+        {
+            <p>@error</p>
+        }
+        </div>
+        }
+    }
+}
+finally
+{
+}
+

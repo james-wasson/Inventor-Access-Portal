@@ -202,6 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\Home\FamiliesFormModel.cs" />
     <Compile Include="Models\Home\FilesFormModel.cs" />
     <Compile Include="Models\Home\InventionsFormModel.cs" />
@@ -210,6 +211,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AccountHelper.cs" />
     <Compile Include="Util\EmailHelper.cs" />
+    <Compile Include="Util\ErrorHelper.cs" />
     <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +230,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Dev\nav.js" />
     <Content Include="Scripts\less-1.5.1.js" />
     <Content Include="Scripts\less-1.5.1.min.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
@@ -286,10 +289,10 @@
     <Content Include="Views\ReportsForms\FileReport.cshtml" />
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Views\Shared\Headers.cshtml" />
+    <Content Include="Views\Shared\_ErrorPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Dev\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
