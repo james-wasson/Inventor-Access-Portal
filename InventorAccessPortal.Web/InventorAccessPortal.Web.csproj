@@ -196,44 +196,72 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ProjectFormsController.cs" />
+    <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\Home\FamiliesFormModel.cs" />
     <Compile Include="Models\Home\FilesFormModel.cs" />
     <Compile Include="Models\Home\InventionsFormModel.cs" />
     <Compile Include="Models\Home\RecentActivitiesModel.cs" />
-    <Compile Include="Models\ProjectForms\ProjectReportModel.cs" />
+    <Compile Include="Models\Reports\FileModel.cs" />
+    <Compile Include="Models\Reports\ProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AccountHelper.cs" />
     <Compile Include="Util\EmailHelper.cs" />
+    <Compile Include="Util\ErrorHelper.cs" />
+    <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Lib\bootstrap.css" />
-    <Content Include="Content\Lib\bootstrap.min.css" />
-    <Content Include="Content\pagecontent.css" />
-    <Content Include="Content\navbar.css" />
-    <Content Include="Scripts\Lib\jquery.easyui.min.js" />
-    <Content Include="favicon.ico" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dev\nav.min.css">
+      <DependentUpon>nav.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Dev\navbar.min.css">
+      <DependentUpon>nav.css</DependentUpon>
+    </Content>
+    <Content Include="Content\Dev\pagecontent.css" />
+    <Content Include="Content\Dev\nav.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Dev\nav.js" />
+    <Content Include="Scripts\less-1.5.1.js" />
+    <Content Include="Scripts\less-1.5.1.min.js" />
+    <Content Include="Scripts\jquery.easyui.min.js" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\Lib\bootstrap.js" />
-    <Content Include="Scripts\Lib\bootstrap.min.js" />
-    <None Include="Scripts\Lib\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\Lib\jquery-1.10.2.js" />
-    <Content Include="Scripts\Lib\jquery-1.10.2.min.js" />
-    <None Include="Scripts\Lib\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\Lib\jquery.validate.js" />
-    <Content Include="Scripts\Lib\jquery.validate.min.js" />
-    <Content Include="Scripts\Lib\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\Lib\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Lib\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Lib\respond.js" />
-    <Content Include="Scripts\Lib\respond.min.js" />
+    <Content Include="Content\Dev\Site.css" />
+    <Content Include="Content\Dev\nav.less" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -250,7 +278,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
@@ -259,24 +286,18 @@
     <Content Include="Views\Home\FilesForm.cshtml" />
     <Content Include="Views\Home\FamiliesForm.cshtml" />
     <Content Include="Views\Shared\_FooterPartial.cshtml" />
-    <Content Include="Views\ReportsForms\ProjectReport.cshtml" />
-    <Content Include="Views\ReportsForms\FileReport.cshtml" />
+    <Content Include="Views\Reports\Project.cshtml" />
+    <Content Include="Views\Reports\File.cshtml" />
+    <Content Include="Views\Shared\_SidebarPartial.cshtml" />
+    <Content Include="Views\Shared\_HeadersPartial.cshtml" />
+    <Content Include="Views\Shared\_ErrorPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\Lib\jquery-1.10.2.min.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\InventorAccessPortal.DB\InventorAccessPortal.DB.csproj">
@@ -318,7 +339,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.1.0\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\BuildWebCompiler.1.11.375\build\BuildWebCompiler.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BuildWebCompiler.1.11.375\build\BuildWebCompiler.targets'))" />
   </Target>
+  <Import Project="..\packages\BuildWebCompiler.1.11.375\build\BuildWebCompiler.targets" Condition="Exists('..\packages\BuildWebCompiler.1.11.375\build\BuildWebCompiler.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

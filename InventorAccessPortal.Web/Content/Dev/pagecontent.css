@@ -2,16 +2,11 @@
     padding-top: 0px;
 }
 
-#content {
-    margin-left: auto;
-}
-
 #confidentialityfooter {
     position: fixed;
     bottom: 0;
     font: "Helvetica Bold";
     font-size: 8px;
-    margin-left: auto;
 }
 
 table {

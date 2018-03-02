@@ -12,12 +12,13 @@ using InventorAccessPortal.DB;
 
 namespace InventorAccessPortal.Web.Controllers
 {
+    /// <summary>
+    /// This Controller allows anonmous requests.
+    /// Don't put anything non-public here
+    /// </summary>
+    [AllowAnonymous]
     public class AccountController : Controller
     {
-        public ActionResult Register()
-        {
-            return View();
-        }
 
         public ActionResult Login()
         {
@@ -28,7 +29,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult Login(LoginModel model)
         {
             // clears the errors from the model
-            model.Errors.Clear();
+            model._Errors.Clear();
             // checks if the user passed in their login data
             if (!String.IsNullOrEmpty(model.UsernameOrEmail) && !String.IsNullOrEmpty(model.Password))
             {
@@ -39,30 +40,32 @@ namespace InventorAccessPortal.Web.Controllers
                     if (cachedUser != null)
                     {
                         //if username and password is correct, create session and return Success
-                        
-                        Session["userID"] = cachedUser.Username;
-                        Session["realName"] = cachedUser.FirstName + " " + cachedUser.LastName;
-                        Session["User"] = cachedUser;
+                        SessionHelper.SetSessionUser(cachedUser);
                         FormsAuthentication.SetAuthCookie(cachedUser.Username, true);
                         
                         // goes to home screen or previous screen
                         FormsAuthentication.RedirectFromLoginPage(cachedUser.Username, true);
                     }
                     // throws an InvalidUsernameOrPassword error
-                    model.Errors.Add(LoginErrorCodes.InvalidUsernameOrPassword);
+                    model._Errors.Add(LoginErrorCodes.InvalidUsernameOrPassword);
                 }
             }
             else
             {
                 // throws a EmptyUsernameOrPassword error
-                model.Errors.Add(LoginErrorCodes.EmptyUsernameOrPassword);
+                model._Errors.Add(LoginErrorCodes.EmptyUsernameOrPassword);
             }
             return View(model);
         }
 
         public ActionResult LogOff()
         {
-            AccountHelper.Logout();
+            AccountHelper.Logout(HttpContext);
+            return View();
+        }
+
+        public ActionResult Register()
+        {
             return View();
         }
     }

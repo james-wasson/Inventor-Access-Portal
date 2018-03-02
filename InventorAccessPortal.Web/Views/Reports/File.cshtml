@@ -1,16 +1,18 @@
-﻿
+﻿@model InventorAccessPortal.Web.Models.Reports.FileModel
 @{
-    ViewBag.Title = "Project Report";
+    ViewBag.Title = "File Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div>
     <div>
-        <h1>ProjectNum - ProjectTitle</h1>
+        <h1>FileNum - FileName</h1>
     </div>
     <div class="project-info1">
         <ul>
-            <li>Project Name: ...</li>
+            <li>Project Title: ...</li>
             <li>Lead Investigator: ...</li>
+            <li>Law Firm: ...</li>
         </ul>
     </div>
     <div class="project-info2">
@@ -22,20 +24,8 @@
     </div>
     <div>
         <table>
-            <caption>Covered Files</caption>
-            <tr>
-                <th>File Number</th>
-                <th>File Name</th>
-                <th>Status</th>
-            </tr>
-        </table>
-    </div>
-    <div>
-        <table>
-            <caption>Transactions</caption>
             <tr>
                 <th>Date</th>
-                <th>File Number</th>
                 <th>Details</th>
                 <th>Notes</th>
                 <th>Activity</th>
@@ -43,3 +33,12 @@
         </table>
     </div>
 </div>
+
+
+
+
+
+
+
+
+

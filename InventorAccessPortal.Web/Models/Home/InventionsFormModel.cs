@@ -13,7 +13,7 @@ namespace InventorAccessPortal.Web.Models.Home
             public string ProjectNumber;
             public string ProjectTitle;
         }
-        public class Form
+        public class Form : ErrorModel
         {
             public List<Item> Inventions = new List<Item>();
         }

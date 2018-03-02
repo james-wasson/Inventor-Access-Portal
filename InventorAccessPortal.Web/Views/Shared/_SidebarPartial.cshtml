@@ -1,0 +1,72 @@
+﻿@using InventorAccessPortal.Web.Util
+<!-- Initial layout taken from here https://bootstrapious.com/p/bootstrap-sidebar -->
+
+<nav id="sidebar">
+    <div class="sidebar-header">
+        <h3 class="sidebar-expanded">Inventor Access Portal</h3>
+        <h3 class="sidebar-collapsed">IAP</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        @if (AccountHelper.IsLoggedIn())
+        {
+            <li>
+                <a href="@Url.Action("RecentActivities", "Home")" class="btn btn-warning">
+                    Recent Activities
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("InventionsForm", "Home")" class="btn btn-warning">
+                    Inventions
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("FilesForm", "Home")" class="btn btn-warning">
+                    Files
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("FamiliesForm", "Home")" class="btn btn-warning">
+                    Families
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("About", "Home")" class="btn btn-warning">
+                    About
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Contact", "Home")" class="btn btn-warning">
+                    Contact
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("LogOff", "Account")" class="btn btn-warning">
+                    LogOff
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action("Login", "Account")" class="btn btn-warning">
+                    Login
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+            <li>
+                <a href="@Url.Action("Register", "Account")" class="btn btn-warning">
+                    Register
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

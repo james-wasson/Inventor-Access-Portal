@@ -69,7 +69,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult FamiliesForm()
         {
             ViewBag.Message = "All Families";
-            var model = new Families.Form();
+            var model = new FamiliesModel.Form();
             return View(model);
         }
     }
