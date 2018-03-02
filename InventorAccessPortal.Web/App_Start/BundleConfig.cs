@@ -14,7 +14,8 @@ namespace InventorAccessPortal.Web
              */
 
             bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/Dev/", "*.css", true));
+                .IncludeDirectory("~/Content/css/", "*.css", true)
+                .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
                 .IncludeDirectory("~/Scripts/Dev/", "*.js", true));
