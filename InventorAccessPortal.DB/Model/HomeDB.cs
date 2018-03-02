@@ -7,7 +7,7 @@ using InventorAccessPortal.DB.Objects;
 
 namespace InventorAccessPortal.DB.Model
 {
-    public class Home
+    public class HomeDB
     {
         public static RecentActivites GetRecentActivites(CachedUser user, DbContext context) {
             var AllInvetigators = context.All_Investigators.Where(p => p.Investigator == user.InvestigatorName).ToList();

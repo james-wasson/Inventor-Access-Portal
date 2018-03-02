@@ -133,7 +133,9 @@
     <Compile Include="Login_datum.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\HomeDB.cs" />
     <Compile Include="Objects\CachedUser.cs" />
+    <Compile Include="Objects\RecentActivites.cs" />
     <Compile Include="Organization.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
