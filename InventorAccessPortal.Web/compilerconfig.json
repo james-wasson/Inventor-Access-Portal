@@ -1,10 +1,6 @@
 ﻿[
   {
-    "outputFile": "Content/less/Generated/nav.css",
-    "inputFile": "Content/less/nav.less",
-    "minify": {
-      "enabled": true
-    },
-    "includeInProject": true
+    "outputFile": "Content/less/nav.css",
+    "inputFile": "Content/less/nav.less"
   }
 ]
