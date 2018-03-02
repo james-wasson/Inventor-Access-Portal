@@ -1,8 +1,7 @@
 ﻿// will collapse the nav is screen is too small
 $().ready(function () {
     var $sidebar = $("#sidebar");
-    console.log($sidebar);
-    var override = false;
+    var override = true;
     var isActive = $sidebar.hasClass("active");
     // sets the active class on sidebar is b is true, remove if b i false
     // if override is set will always be active

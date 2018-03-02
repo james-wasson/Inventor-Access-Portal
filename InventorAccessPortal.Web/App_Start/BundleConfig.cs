@@ -14,10 +14,10 @@ namespace InventorAccessPortal.Web
              */
 
             bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/Dev/", "*.css", false));
+                .IncludeDirectory("~/Content/Dev/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/Dev/", "*.js", false));
+                .IncludeDirectory("~/Scripts/Dev/", "*.js", true));
 
             /*
             * Libaray Bundles 
