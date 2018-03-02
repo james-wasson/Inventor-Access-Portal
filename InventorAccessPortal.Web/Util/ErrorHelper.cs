@@ -10,7 +10,7 @@ namespace InventorAccessPortal.Web.Util
 {
     public static class ErrorHelper
     {
-        public static string GetErrorDescription(Enum error)
+        private static string GetErrorDescription(Enum error)
         {
             FieldInfo fi = error.GetType().GetField(error.ToString());
 
@@ -26,10 +26,10 @@ namespace InventorAccessPortal.Web.Util
                 return "An unknown error occured.";
         }
 
-        public static List<string> GetAllErrors(List<Enum> errors)
+        public static List<string> GetAllErrors(ErrorModel Model)
         {
             var rv = new List<string>();
-            foreach (var err in errors)
+            foreach (var err in Model._Errors)
             {
                 rv.Add(GetErrorDescription(err));
             }
@@ -38,7 +38,7 @@ namespace InventorAccessPortal.Web.Util
 
         public static bool ModelHasValidErrors(ErrorModel Model)
         {
-            if (Model == null || Model.Errors == null || Model.Errors.Count <= 0)
+            if (Model == null || Model._Errors == null || Model._Errors.Count <= 0)
             {
                 return false;
             } 

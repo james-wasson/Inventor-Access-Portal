@@ -29,7 +29,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult Login(LoginModel model)
         {
             // clears the errors from the model
-            model.Errors.Clear();
+            model._Errors.Clear();
             // checks if the user passed in their login data
             if (!String.IsNullOrEmpty(model.UsernameOrEmail) && !String.IsNullOrEmpty(model.Password))
             {
@@ -47,13 +47,13 @@ namespace InventorAccessPortal.Web.Controllers
                         FormsAuthentication.RedirectFromLoginPage(cachedUser.Username, true);
                     }
                     // throws an InvalidUsernameOrPassword error
-                    model.Errors.Add(LoginErrorCodes.InvalidUsernameOrPassword);
+                    model._Errors.Add(LoginErrorCodes.InvalidUsernameOrPassword);
                 }
             }
             else
             {
                 // throws a EmptyUsernameOrPassword error
-                model.Errors.Add(LoginErrorCodes.EmptyUsernameOrPassword);
+                model._Errors.Add(LoginErrorCodes.EmptyUsernameOrPassword);
             }
             return View(model);
         }

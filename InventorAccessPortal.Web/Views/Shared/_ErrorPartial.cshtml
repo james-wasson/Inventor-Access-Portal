@@ -9,7 +9,7 @@
         if (IsRightType == true && ErrorHelper.ModelHasValidErrors((ErrorModel)Model))
         {
         <div class="alert alert-danger" role="alert">
-        @foreach (var error in ErrorHelper.GetAllErrors(Model.Errors))
+        @foreach (var error in ErrorHelper.GetAllErrors(((ErrorModel)Model)))
         {
             <p>@error</p>
         }
