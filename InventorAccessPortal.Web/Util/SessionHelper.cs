@@ -33,5 +33,13 @@ namespace InventorAccessPortal.Web.Util
             }
             return HttpContext.Current.User.Identity.Name;
         }
+        /// <summary>
+        /// Gets the current sessions cached user
+        /// </summary>
+        /// <returns>returns cached user</returns>
+        public static CachedUser GetSessionUser()
+        {
+            return (CachedUser)HttpContext.Current.Session["CachedUser"];
+        }
     }
 }

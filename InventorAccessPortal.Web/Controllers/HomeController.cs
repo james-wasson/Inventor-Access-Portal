@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Models.Home;
+using InventorAccessPortal.DB.Model;
+using InventorAccessPortal.Web.Util;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -35,9 +37,17 @@ namespace InventorAccessPortal.Web.Controllers
         /// <returns> Page with table containing data according to the model </returns>
         public ActionResult RecentActivities()
         {
-            ViewBag.Message = "Recent activities relevant to you.";
-            var model = new RecentActivitiesModel.Form();
-            return View(model);
+            using (var e = new DbContext())
+            {
+                ViewBag.Message = "Recent activities relevant to you.";
+                var recentActivitesObject = HomeDB.GetRecentActivites(SessionHelper.GetSessionUser(), e);
+                var model = new RecentActivitiesModel.Form()
+                {
+
+                };
+                return View(model);
+            }
+                
         }
 
         /// <summary>
