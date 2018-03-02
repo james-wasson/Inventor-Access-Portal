@@ -1,12 +1,39 @@
 ﻿// will collapse the nav is screen is too small
-(function ($, viewport) {
+$().ready(function () {
+    var $sidebar = $("#sidebar");
+    console.log($sidebar);
+    var override = false;
+    var isActive = $sidebar.hasClass("active");
+    // sets the active class on sidebar is b is true, remove if b i false
+    // if override is set will always be active
+    function setActive(set) {
+        if ((set === true || override) && !isActive) {
+            if (!$sidebar.hasClass("active")) $sidebar.addClass("active");
+            isActive = true;
+        } else if(set === false && !override && isActive){
+            $sidebar.removeClass("active");
+            isActive = false;
+        }
+        // if set by window width hide toggle
+        if (set === true) $(".sidebar-toggle").fadeOut(500);
+        else $(".sidebar-toggle").fadeIn(500); // show toggle
+    }
     function smallScreen() {
         if ($(window).width() < 768) {
-            $("#sidebar").addClass("active");
+            setActive(true);
         }
         else {
-            $("#sidebar").removeClass("active");
+            setActive(false);
         }
-    } smallScreen(); // run at start
+    }
+    // run at start
+    $(window).ready(smallScreen);
+    // run on window resize
     $(window).resize(smallScreen);
-})(jQuery);
+    // on collapse click
+    $sidebar.find(".sidebar-toggle").on("click", function () {
+        override = !override;
+        smallScreen();
+    });
+});
+

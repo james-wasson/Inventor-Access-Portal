@@ -9,14 +9,17 @@
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
+    position: relative;
 
     &.active {
-        .sidebar-header .sidebar-expanded, #sidebar.active .CTAs {
-            display: none;
-        }
+        .sidebar-header {
+            .sidebar-expanded, #sidebar.active .CTAs {
+                display: none;
+            }
 
-        .sidebar-header .sidebar-collapsed {
-            display: block;
+            .sidebar-collapsed {
+                display: block !important;
+            }
         }
 
         ul li a {
@@ -25,7 +28,7 @@
             font-size: 0.85em;
         }
 
-        ul li a span {
+        ul li a .icon {
             margin-right: 0;
             display: block;
             font-size: 1.8em;
@@ -49,37 +52,49 @@
     .sidebar-header {
         padding: 20px;
         background: #6d7fcc;
-    }
 
-    .sidebar-header .sidebar-collapsed {
-        display: none;
-        font-size: 1.8em;
-    }
-
-    ul.components {
-        padding: 20px 0;
-        border-bottom: 1px solid #47748b;
-    }
-
-    ul li a {
-        padding: 10px;
-        font-size: 1.1em;
-        display: block;
-        text-align: left;
-
-        &:hover {
-            color: #7386D5;
-            background: #fff;
+        .sidebar-collapsed {
+            display: none;
+            font-size: 1.8em;
         }
 
-        span {
-            margin-right: 10px;
+        .sidebar-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
         }
     }
 
-    ul li.active > a, a[aria-expanded="true"] {
-        color: #fff;
-        background: #6d7fcc;
+    ul {
+        &.components {
+            padding: 20px 0;
+            border-bottom: 1px solid #47748b;
+        }
+
+        li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+            text-align: left;
+
+            &:hover {
+                color: #7386D5;
+                background: #fff;
+            }
+
+            .icon {
+                margin-right: 10px;
+            }
+        }
+
+        li.active > a, a[aria-expanded="true"] {
+            color: #fff;
+            background: #6d7fcc;
+        }
+    }
+
+    .btn {
+        background-color: dodgerblue;
     }
 }
 

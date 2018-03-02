@@ -8,20 +8,21 @@
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
+  position: relative;
 }
 #sidebar.active .sidebar-header .sidebar-expanded,
-#sidebar.active #sidebar.active .CTAs {
+#sidebar.active .sidebar-header #sidebar.active .CTAs {
   display: none;
 }
 #sidebar.active .sidebar-header .sidebar-collapsed {
-  display: block;
+  display: block !important;
 }
 #sidebar.active ul li a {
   padding: 20px 10px;
   text-align: center;
   font-size: 0.85em;
 }
-#sidebar.active ul li a span {
+#sidebar.active ul li a .icon {
   margin-right: 0;
   display: block;
   font-size: 1.8em;
@@ -47,6 +48,11 @@
   display: none;
   font-size: 1.8em;
 }
+#sidebar .sidebar-header .sidebar-toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
 #sidebar ul.components {
   padding: 20px 0;
   border-bottom: 1px solid #47748b;
@@ -61,13 +67,16 @@
   color: #7386D5;
   background: #fff;
 }
-#sidebar ul li a span {
+#sidebar ul li a .icon {
   margin-right: 10px;
 }
 #sidebar ul li.active > a,
-#sidebar a[aria-expanded="true"] {
+#sidebar ul a[aria-expanded="true"] {
   color: #fff;
   background: #6d7fcc;
+}
+#sidebar .btn {
+  background-color: dodgerblue;
 }
 /* ---------------------------------------------------
     MEDIAQUERIES
