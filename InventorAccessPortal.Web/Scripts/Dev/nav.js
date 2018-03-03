@@ -1,38 +1,55 @@
 ﻿// will collapse the nav is screen is too small
 $().ready(function () {
     var $sidebar = $("#sidebar");
-    var override = true;
+    var $toggle = $sidebar.find(".sidebar-toggle");
+    var $toggleIcon = $toggle.find(".icon");
     var isActive = $sidebar.hasClass("active");
+    
+    function windowIsSmall() {
+        return $(window).width() < 768;
+    }
     // sets the active class on sidebar is b is true, remove if b i false
     // if override is set will always be active
-    function setActive(set) {
-        if ((set === true || override) && !isActive) {
-            if (!$sidebar.hasClass("active")) $sidebar.addClass("active");
+    function setActive(override) {
+        if (!$sidebar.hasClass("active") || override) {
+            $sidebar.addClass("active");
             isActive = true;
-        } else if(set === false && !override && isActive){
+        } else {
             $sidebar.removeClass("active");
             isActive = false;
         }
-        // if set by window width hide toggle
-        if (set === true) $(".sidebar-toggle").fadeOut(500);
-        else $(".sidebar-toggle").fadeIn(500); // show toggle
     }
-    function smallScreen() {
-        if ($(window).width() < 768) {
-            setActive(true);
+    function toggleIcon() {
+        function toggleI(left) {
+            if (left) $toggleIcon.removeClass("fa-angle-double-right").addClass("fa-angle-double-left");
+            else $toggleIcon.removeClass("fa-angle-double-left").addClass("fa-angle-double-right");
         }
-        else {
-            setActive(false);
+        if (windowIsSmall()) {
+            toggleI(isActive)
+        } else {
+            toggleI(!isActive)
         }
     }
-    // run at start
-    $(window).ready(smallScreen);
+
+    function toggle() {
+        setActive();
+        toggleIcon();
+        cookie.set("SidebarIsActive", isActive, 1);
+    }
+
+    // init
+    (function () {
+        var c = cookie.get("SidebarIsActive");
+        if (c != null) isActive = (c == "true");
+        $sidebar.css("transition", "none");// removes bouncing issue
+        setActive(isActive);
+        toggleIcon();
+        $sidebar.prop('style').removeProperty("transition"); // adds transition back
+    }());
+
     // run on window resize
-    $(window).resize(smallScreen);
+    $(window).resize(toggleIcon);
     // on collapse click
-    $sidebar.find(".sidebar-toggle").on("click", function () {
-        override = !override;
-        smallScreen();
-    });
+    $toggle.on("click", toggle);
 });
 

@@ -16,7 +16,7 @@
         max-width: 80px;
 
         .sidebar-header {
-            .sidebar-expanded, #sidebar.active .CTAs {
+            .sidebar-expanded, & .CTAs {
                 display: none;
             }
 
@@ -105,62 +105,67 @@
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
-@media (max-width: 768px) {
-    /* hides sidebar rather than collapses */
-    /*#sidebar {
+@media screen and (max-width: 768px) {
+    /* 80px and its content aligned to centre. Pushing it off the screen with the
+       negative left margin
+    */
+    #sidebar {
         min-width: 80px;
         max-width: 80px;
         text-align: center;
         margin-left: -80px !important;
-    }
 
-    a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-        top: auto;
-        bottom: 5px;
-        right: 50%;
-        -webkit-transform: translateX(50%);
-        -ms-transform: translateX(50%);
-        transform: translateX(50%);
-    }
+        .sidebar-header .sidebar-toggle {
+            position: absolute;
+            top: 0;
+            right: -30px;
+        }
 
-    #sidebar.active {
-        margin-left: 0 !important;
-    }
+        &.active {
+            margin-left: 0 !important;
 
-    #sidebar .sidebar-header h3, #sidebar .CTAs {
-        display: none;
-    }
+            .sidebar-header {
+                .sidebar-collapsed {
+                    display: none;
+                }
 
-    #sidebar .sidebar-header strong {
-        display: block;
-    }
+                .sidebar-expanded {
+                    display: none;
+                }
 
-    #sidebar ul li a {
-        padding: 20px 10px;
-    }
+                .sidebar-collapsed {
+                    display: block;
+                }
 
-    #sidebar ul li a span {
-        font-size: 0.85em;
-    }
+                .sidebar-toggle {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+        }
 
-    #sidebar ul li a i {
-        margin-right: 0;
-        display: block;
-    }
+        ul li a {
+            padding: 20px 10px;
+            font-size: 0.85em;
+        }
 
-    #sidebar ul ul a {
-        padding: 10px !important;
-    }
+        ul li a icon {
+            margin-right: 0;
+            display: block;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
 
-    #sidebar ul li a i {
-        font-size: 1.3em;
-    }
+        ul ul a {
+            padding: 10px !important;
+        }
 
-    #sidebar {
-        margin-left: 0;
+        & a[aria-expanded="false"]::before, &.active a[aria-expanded="true"]::before {
+            top: auto;
+            bottom: 5px;
+            right: 50%;
+            transform: translateX(50%);
+        }
     }
-
-    #sidebarCollapse span {
-        display: none;
-    }*/
 }
