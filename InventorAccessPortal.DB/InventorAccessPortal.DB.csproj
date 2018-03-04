@@ -135,6 +135,9 @@
     </Compile>
     <Compile Include="Model\HomeDB.cs" />
     <Compile Include="Objects\CachedUser.cs" />
+    <Compile Include="Objects\FamiliesForm.cs" />
+    <Compile Include="Objects\FilesForm.cs" />
+    <Compile Include="Objects\InventionsForm.cs" />
     <Compile Include="Objects\RecentActivites.cs" />
     <Compile Include="Organization.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
