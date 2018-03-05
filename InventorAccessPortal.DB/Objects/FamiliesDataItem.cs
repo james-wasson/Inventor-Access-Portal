@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace InventorAccessPortal.DB.Objects
 {
-    public class FilesForm
+    public class FamiliesDataItem
     {
-        public List<All_Investigator> AllInvestigators;
-        public List<File_Number> FileNumbers;
+        public List<Family> Families = new List<Family>();
+        public File_Number FileNumber;
     }
 }

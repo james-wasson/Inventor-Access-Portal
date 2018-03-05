@@ -133,12 +133,12 @@
     <Compile Include="Login_datum.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\HomeDB.cs" />
+    <Compile Include="DataAccess\DataForms.cs" />
     <Compile Include="Objects\CachedUser.cs" />
-    <Compile Include="Objects\FamiliesForm.cs" />
-    <Compile Include="Objects\FilesForm.cs" />
-    <Compile Include="Objects\InventionsForm.cs" />
-    <Compile Include="Objects\RecentActivites.cs" />
+    <Compile Include="Objects\FamiliesDataItem.cs" />
+    <Compile Include="Objects\FilesData.cs" />
+    <Compile Include="Objects\InventionsData.cs" />
+    <Compile Include="Objects\RecentActivitesDataItem.cs" />
     <Compile Include="Organization.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>

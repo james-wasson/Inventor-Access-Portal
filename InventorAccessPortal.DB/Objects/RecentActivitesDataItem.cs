@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace InventorAccessPortal.DB.Objects
 {
-    public class InventionsForm
+    public class RecentActivitesDataItem
     {
-        public List<All_Investigator> AllInvestigators;
-        public List<Project_Number> ProjectNumber;
+        public File_Number FileNumber;
+        public List<Transaction> Transactions = new List<Transaction>();
     }
 }
