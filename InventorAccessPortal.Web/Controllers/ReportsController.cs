@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
 
+
 namespace InventorAccessPortal.Web.Controllers.Reports
 {
     public class ReportsController : Controller

@@ -10,7 +10,7 @@ namespace InventorAccessPortal.Web.Models.Home
         public class Item
         {
             public string Status;
-            public string ProjectNumber;
+            public int ProjectNumber;
             public string ProjectTitle;
         }
         public class Form : ErrorModel

@@ -14,10 +14,11 @@ namespace InventorAccessPortal.Web
              */
 
             bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/Dev/", "*.css", false));
+                .IncludeDirectory("~/Content/css/", "*.css", true)
+                .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/Dev/", "*.js", false));
+                .IncludeDirectory("~/Scripts/Dev/", "*.js", true));
 
             /*
             * Libaray Bundles 
@@ -39,7 +40,8 @@ namespace InventorAccessPortal.Web
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
-                      "~/Content/bootstrap.css"
+                      "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.css"
                       ));
         }
     }
