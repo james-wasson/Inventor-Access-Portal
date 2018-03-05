@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB.Objects;
 
-namespace InventorAccessPortal.DB.Model
+namespace InventorAccessPortal.DB.DataAccess
 {
     public class DataForms
     {
