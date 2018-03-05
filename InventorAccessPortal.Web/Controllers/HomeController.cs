@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Models.Home;
-using InventorAccessPortal.DB.Model;
+using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.Web.Util;
 

@@ -94,6 +94,7 @@
     <Compile Include="Auth\Authorize.cs" />
     <Compile Include="Auth\PasswordVerify.cs" />
     <Compile Include="Auth\Encrypt.cs" />
+    <Compile Include="DataAccess\GetCachedUser.cs" />
     <Compile Include="Department.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
