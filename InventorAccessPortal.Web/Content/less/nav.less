@@ -3,6 +3,8 @@
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+@leftToggle: "\f100";
+@rightToggle: "\f101";
 #sidebar {
     min-width: 250px;
     max-width: 250px;
@@ -10,47 +12,6 @@
     color: #fff;
     transition: all 0.3s;
     position: relative;
-
-    &.active {
-        min-width: 80px;
-        max-width: 80px;
-
-        .sidebar-header {
-            .sidebar-expanded, & .CTAs {
-                display: none;
-            }
-
-            .sidebar-collapsed {
-                display: block !important;
-            }
-        }
-
-        ul li a {
-            padding: 20px 10px;
-            text-align: center;
-            font-size: 0.85em;
-        }
-
-        ul li a .icon {
-            margin-right: 0;
-            display: block;
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        ul ul a {
-            padding: 10px !important;
-        }
-
-        a[aria-expanded="false"]::before, & a[aria-expanded="true"]::before {
-            top: auto;
-            bottom: 5px;
-            right: 50%;
-            -webkit-transform: translateX(50%);
-            -ms-transform: translateX(50%);
-            transform: translateX(50%);
-        }
-    }
 
     .sidebar-header {
         padding: 20px;
@@ -65,6 +26,10 @@
             position: absolute;
             top: 0;
             right: 0;
+            .icon:after {
+                font-family: "FontAwesome";
+                content: @leftToggle;
+            }
         }
     }
 
@@ -99,6 +64,51 @@
     .btn {
         background-color: dodgerblue;
     }
+
+    &.active {
+        min-width: 80px;
+        max-width: 80px;
+
+        .sidebar-header {
+            .sidebar-expanded, & .CTAs {
+                display: none;
+            }
+
+            .sidebar-collapsed {
+                display: block !important;
+            }
+
+            .sidebar-toggle .icon:after {
+                content: @rightToggle !important;
+            }
+        }
+
+        ul li a {
+            padding: 20px 10px;
+            text-align: center;
+            font-size: 0.85em;
+        }
+
+        ul li a .icon {
+            margin-right: 0;
+            display: block;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+
+        ul ul a {
+            padding: 10px !important;
+        }
+
+        a[aria-expanded="false"]::before, & a[aria-expanded="true"]::before {
+            top: auto;
+            bottom: 5px;
+            right: 50%;
+            -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+            transform: translateX(50%);
+        }
+    }
 }
 
 
@@ -116,11 +126,16 @@
         margin-left: -80px !important;
 
         .sidebar-header .sidebar-toggle {
+            font-family: "FontAwesome";
             position: absolute;
             top: 0;
             right: -30px;
             -webkit-transition: right 0.2s; /* Safari */
             transition: right 0.2s;
+
+            .icon:after {
+                content: @rightToggle;
+            }
         }
 
         &.active {
@@ -145,6 +160,10 @@
                     right: 0;
                     -webkit-transition: right 0.2s; /* Safari */
                     transition: right 0.2s;
+
+                    .icon:after {
+                        content: @leftToggle !important;
+                    }
                 }
             }
         }
