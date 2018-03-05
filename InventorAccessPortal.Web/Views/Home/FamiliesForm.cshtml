@@ -6,23 +6,25 @@
 
 
 <h1>All Families</h1>
-<div>
-    <table>
+<table class="table table-bordered table-responsive">
+    <thead>
         <tr>
             <th>Status</th>
             <th>Family Number</th>
             <th>Family Name</th>
         </tr>
+    </thead>
+    <tbody>
         @if (Model != null)
-        {
+         {
             foreach (var family in Model.Families)
             {
-                <tr>
-                    <td>@family.Status</td>
-                    <td>@family.FamilyNum</td>
-                    <td>@family.FamilyName</td>
-                </tr>
+            <tr>
+                <td>@family.Status</td>
+                <td>@family.FamilyNum</td>
+                <td>@family.FamilyName</td>
+            </tr>
             }
-        }
-    </table>
-</div>
+         }
+    </tbody>
+</table>

@@ -5,13 +5,15 @@
 }
 
 <h1>All Inventions</h1>
-<div>
-    <table>
+<table class="table table-bordered table-responsive">
+    <thead>
         <tr>
             <th>Status</th>
             <th>Project Number</th>
             <th>Project Title</th>
         </tr>
+    </thead>
+    <tbody>
         @if (Model != null)
         {
             foreach (var invention in Model.Inventions)
@@ -23,6 +25,6 @@
                 </tr>
             }
         }
-    </table>
-    @Html.ActionLink("Project Form Template", "Project", "Reports")
-</div>
+    </tbody>
+</table>
+@Html.ActionLink("Project Form Template", "Project", "Reports")
