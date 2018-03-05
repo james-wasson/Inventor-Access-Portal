@@ -94,6 +94,7 @@
     <Compile Include="Auth\Authorize.cs" />
     <Compile Include="Auth\PasswordVerify.cs" />
     <Compile Include="Auth\Encrypt.cs" />
+    <Compile Include="DataAccess\GetCachedUser.cs" />
     <Compile Include="Department.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
@@ -133,7 +134,12 @@
     <Compile Include="Login_datum.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataForms.cs" />
     <Compile Include="Objects\CachedUser.cs" />
+    <Compile Include="Objects\FamiliesDataItem.cs" />
+    <Compile Include="Objects\FilesData.cs" />
+    <Compile Include="Objects\InventionsData.cs" />
+    <Compile Include="Objects\RecentActivitesDataItem.cs" />
     <Compile Include="Organization.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>

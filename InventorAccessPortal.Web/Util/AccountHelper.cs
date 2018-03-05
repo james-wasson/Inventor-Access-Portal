@@ -19,6 +19,7 @@ namespace InventorAccessPortal.Web.Util
             hc.Session.Clear();
             hc.Session.Abandon();//Abandon session
             FormsAuthentication.SignOut();
+            // set new http context user
             HttpContext.Current.User = new GenericPrincipal(new GenericIdentity(string.Empty), null);
         }
         /// <summary>

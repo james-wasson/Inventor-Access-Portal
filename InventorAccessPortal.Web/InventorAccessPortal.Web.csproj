@@ -204,9 +204,9 @@
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\ErrorModel.cs" />
-    <Compile Include="Models\Home\FamiliesFormModel.cs" />
-    <Compile Include="Models\Home\FilesFormModel.cs" />
-    <Compile Include="Models\Home\InventionsFormModel.cs" />
+    <Compile Include="Models\Home\FamiliesModel.cs" />
+    <Compile Include="Models\Home\FilesModel.cs" />
+    <Compile Include="Models\Home\InventionsModel.cs" />
     <Compile Include="Models\Home\RecentActivitiesModel.cs" />
     <Compile Include="Models\Reports\FileModel.cs" />
     <Compile Include="Models\Reports\ProjectModel.cs" />

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.Utils;
+using InventorAccessPortal.DB.DataAccess;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -26,18 +27,7 @@ namespace InventorAccessPortal.DB.Auth
             if (LoginData == null || PasswordVerify.VerifyHashedPassword(LoginData.Password, LoginData.Salt, password) == PasswordVerify.Failed)
                 return null;
 
-            var firstLast = GetName.FirstAndLast(LoginData.Investigator_Name);
-
-            return new CachedUser
-            {
-                Username = LoginData.Username,
-                InvestigatorName = LoginData.Investigator_Name,
-                InvestigatorNumber = LoginData.Investigator.Investigator_Number,
-                Email = LoginData.Investigator.Email_Address,
-                LastName = firstLast.LastName,
-                FirstName = firstLast.FirstName,
-                PhoneNumber = LoginData.Investigator.Phone_Number
-            };
+            return GetCachedUser.GetNew(LoginData);
         }
 
         /// <summary>
@@ -56,19 +46,7 @@ namespace InventorAccessPortal.DB.Auth
             if (LoginData == null || PasswordVerify.VerifyHashedPassword(LoginData.Password, LoginData.Salt, password) == PasswordVerify.Failed)
                 return null;
 
-            var firstLast = GetName.FirstAndLast(LoginData.Investigator_Name);
-
-            return new CachedUser
-            {
-                Username = LoginData.Username,
-                InvestigatorName = LoginData.Investigator_Name,
-                InvestigatorNumber = LoginData.Investigator.Investigator_Number,
-                Email = LoginData.Investigator.Email_Address,
-                LastName = firstLast.LastName,
-                FirstName = firstLast.FirstName,
-                PhoneNumber = LoginData.Investigator.Phone_Number
-            };
+            return GetCachedUser.GetNew(LoginData);
         }
-
     }
 }
