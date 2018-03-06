@@ -10,6 +10,7 @@ namespace InventorAccessPortal.Web.Models.Home
         public class Item
         {
             public string Status;
+            public string FileName;
             public string FamilyNum;
             public string FamilyName;
         }

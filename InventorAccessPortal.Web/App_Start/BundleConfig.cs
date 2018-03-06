@@ -8,7 +8,6 @@ namespace InventorAccessPortal.Web
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-
             /*
              * DEV Bundles
              */
@@ -18,7 +17,8 @@ namespace InventorAccessPortal.Web
                 .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/Dev/", "*.js", true));
+                .IncludeDirectory("~/Scripts/Dev/", "*.js", true)
+                );
 
             /*
             * Libaray Bundles 
@@ -46,3 +46,4 @@ namespace InventorAccessPortal.Web
         }
     }
 }
+

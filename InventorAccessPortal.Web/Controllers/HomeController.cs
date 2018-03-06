@@ -136,6 +136,7 @@ namespace InventorAccessPortal.Web.Controllers
                     {
                         model.Families.Add(new FamiliesModel.Item()
                         {
+                            FileName = fileNum.File_Name,
                             FamilyName = fam.Family_Name,
                             FamilyNum = fam.Family_Number,
                             Status = fileNum.Status

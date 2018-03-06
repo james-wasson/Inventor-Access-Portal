@@ -9,9 +9,11 @@ namespace InventorAccessPortal.Web.Models.Home
     {
         public class Item
         {
+            // Transactions table
             public string Status;
             public string FileNum;
             public string FileName;
+            // FileNumbers Table
             public string SerialNum;
             public string Continuity;
             public string LawFirm;
