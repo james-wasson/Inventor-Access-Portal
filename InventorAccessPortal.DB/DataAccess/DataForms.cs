@@ -18,15 +18,10 @@ namespace InventorAccessPortal.DB.DataAccess
         public static List<RecentActivitesDataItem> GetRecentActivites(CachedUser user, DbContext context)
         {
             if (user == null) return new List<RecentActivitesDataItem>();
-            var InvestigatorNames = context.All_Investigators.Where(p => p.Investigator == user.InvestigatorName).Select(p => p.Investigator).ToList();
             // finds it project number has a investigator that is the same as the CachedUser
-            var projectNumbers = context.File_Numbers.Where(p =>
-                    p.Project_Numbers.All_Investigators
-                        .Select(q => q.Investigator)
-                        .Any(q => InvestigatorNames.Contains(q))
-                );
+            var fileNumbers = ByUser.GetFileNumber(user, context);
 
-            return projectNumbers.Select(p =>
+            return fileNumbers.Select(p =>
                 new RecentActivitesDataItem()
                 {
                     FileNumber = p,
@@ -46,7 +41,9 @@ namespace InventorAccessPortal.DB.DataAccess
             if (user == null) return new InventionsData();
             return new InventionsData()
             {
-                ProjectNumber = context.Project_Numbers.Where(p => p.Investigator.Investigator_Name == user.InvestigatorName).ToList()
+                ProjectNumber = context.Project_Numbers.Where(p =>
+                    p.All_Investigators.Select(q => q.Investigator).Contains(user.InvestigatorName)
+                ).ToList()
             };
         }
 
@@ -61,8 +58,8 @@ namespace InventorAccessPortal.DB.DataAccess
             if (user == null) return new FilesData();
             return new FilesData()
             {
-                FileNumbers = context.File_Numbers.Where(p => p.Project_Numbers.Investigator.Investigator_Name == user.InvestigatorName).ToList()
-            };
+                FileNumbers = ByUser.GetFileNumber(user, context).ToList()
+        };
         }
 
         /// <summary>
@@ -70,15 +67,16 @@ namespace InventorAccessPortal.DB.DataAccess
         /// </summary>
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
-        /// <returns>Two list of related information</returns>
+        /// <returns>family with FileNumbers related to that family</returns>
         public static List<FamiliesDataItem> GetFamiliesForm(CachedUser user, DbContext context)
         {
             if (user == null) return new List<FamiliesDataItem>();
-            var fileNums = context.File_Numbers.Where(p => p.Project_Numbers.Investigator.Investigator_Name == user.InvestigatorName);
-            return fileNums.Select(p => new FamiliesDataItem
+            var families = ByUser.GetFamilies(user, context);
+
+            return families.Select(p => new FamiliesDataItem
             {
-                Families = p.Family_Listings.Select(q => q.Family).ToList(),
-                FileNumber = p
+                Family = p,
+                FileNumbers = p.Family_Listings.Select(q => q.File_Numbers).ToList()
             }).ToList();
         }
     }

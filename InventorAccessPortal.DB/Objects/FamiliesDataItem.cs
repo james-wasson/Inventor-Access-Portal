@@ -9,7 +9,7 @@ namespace InventorAccessPortal.DB.Objects
 {
     public class FamiliesDataItem
     {
-        public List<Family> Families = new List<Family>();
-        public File_Number FileNumber;
+        public Family Family;
+        public List<File_Number> FileNumbers = new List<File_Number>();
     }
 }

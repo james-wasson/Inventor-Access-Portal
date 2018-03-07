@@ -13,7 +13,7 @@ namespace InventorAccessPortal.Web.Models.Home
             public string FamilyNum;
             public string FamilyName;
         }
-        public class Form
+        public class Form : SharedModel
         {
             public List<Item> Families = new List<Item>();
         }

@@ -5,11 +5,11 @@
 {
     if (Model != null) {
 
-        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(ErrorModel));
-        if (IsRightType == true && ErrorHelper.ModelHasValidErrors((ErrorModel)Model))
+        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(SharedModel));
+        if (IsRightType == true && ErrorHelper.ModelHasValidErrors((SharedModel)Model))
         {
         <div class="alert alert-danger" role="alert">
-        @foreach (var error in ErrorHelper.GetAllErrors(((ErrorModel)Model)))
+        @foreach (var error in ErrorHelper.GetAllErrors(((SharedModel)Model)))
         {
             <p>@error</p>
         }

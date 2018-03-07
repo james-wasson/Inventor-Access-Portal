@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>All Inventions</h1>
+<h1>All Inventions @Model.ExtendedTitle</h1>
 <table class="table table-bordered table-responsive">
     <thead>
         <tr>
@@ -18,7 +18,7 @@
         {
             foreach (var invention in Model.Inventions)
             {
-                <tr>
+                <tr onclick="location.href = '@(Url.Action("RecentActivities", "Home", new { projectNumber = invention.ProjectNumber, extendedTitle = invention.ProjectTitle  }))'">
                     <td>@invention.Status</td>
                     <td>@invention.ProjectNumber</td>
                     <td>@invention.ProjectTitle</td>

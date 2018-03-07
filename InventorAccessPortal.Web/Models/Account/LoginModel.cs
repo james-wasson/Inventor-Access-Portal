@@ -14,7 +14,7 @@ namespace InventorAccessPortal.Web.Models.Account
         [Description("Username or Password is empty.")]
         EmptyUsernameOrPassword = 1
     }
-    public class LoginModel : ErrorModel
+    public class LoginModel : SharedModel
     {
         public string UsernameOrEmail { get; set; }
         public string Password { get; set; }
