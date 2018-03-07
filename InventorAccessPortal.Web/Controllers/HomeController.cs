@@ -8,6 +8,7 @@ using InventorAccessPortal.Web.Models.Home;
 using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.Web.Util;
+using InventorAccessPortal.DB.Enum;
 
 
 namespace InventorAccessPortal.Web.Controllers
@@ -23,26 +24,35 @@ namespace InventorAccessPortal.Web.Controllers
             return RedirectToAction("RecentActivities", "Home");
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            return View();
-        }
-
         /// <summary>
-        /// Uses the model for the Recent Activities form and fills the appropriate data fields
+        /// Returns the view for recent activites
         /// </summary>
-        /// <returns> Page with table containing data according to the model </returns>
-        public ActionResult RecentActivities()
+        /// <param name="fileNumber">a filter by attribute</param>
+        /// <param name="projectNumber">a filter by attribute</param>
+        /// <returns>the view containing the recent activites model</returns>
+        public ActionResult RecentActivities(String fileNumber = null, String projectNumber = null, String extendedTitle = null)
         {
             using (var e = new DbContext())
             {
                 var recentActivitesObject = DataForms.GetRecentActivites(SessionHelper.GetSessionUser(), e);
                 var model = new RecentActivitiesModel.Form();
+                // extends the page name
+                model.SetExtendedTitle(extendedTitle);
+                // filters
+                if (fileNumber != null)
+                {
+                    recentActivitesObject = recentActivitesObject.Where(p => p.FileNumber.File_Number1 == fileNumber).ToList();
+                    if (!model.HasExtendedTitle()) // if no extended name try to find one
+                        model.SetExtendedTitle(recentActivitesObject.FirstOrDefault()?.FileNumber.File_Name);
+                }
+                if (projectNumber != null)
+                {
+                    recentActivitesObject = recentActivitesObject.Where(p => p.FileNumber.Project_Number.ToString() == projectNumber).ToList();
+                    if (!model.HasExtendedTitle()) // if no extended name try to find one
+                        model.SetExtendedTitle(recentActivitesObject.FirstOrDefault()?.FileNumber.Project_Numbers.Project_Name);
+                }
+                
+
                 foreach (var fileNumWithTransAct in recentActivitesObject)
                 {
                     var fileNum = fileNumWithTransAct.FileNumber;
@@ -67,6 +77,8 @@ namespace InventorAccessPortal.Web.Controllers
             }
         }
 
+
+
         /// <summary>
         /// Uses the model for the Inventions form and fills the appropriate data fields 
         /// </summary>
@@ -76,6 +88,7 @@ namespace InventorAccessPortal.Web.Controllers
             using (var e = new DbContext())
             {
                 var data = DataForms.GetInventionsForm(SessionHelper.GetSessionUser(), e);
+                
                 var model = new InventionsModel.Form()
                 {
                     Inventions = data.ProjectNumber.Select(p =>
@@ -92,28 +105,40 @@ namespace InventorAccessPortal.Web.Controllers
         }
 
         /// <summary>
-        /// Uses the model for the Files form and fills the appropriate data fields
+        /// Process data from database for the FileForm for the current user
         /// </summary>
-        /// <returns> Page with table containing data according to the model </returns>
-        public ActionResult FilesForm()
+        /// <param name="familyNumber">A Filter that can be used</param>
+        /// <param name="extendedTitle">An extended title that can be used</param>
+        /// <returns>View containing the FilesModel</returns>
+        public ActionResult FilesForm(String familyNumber = null, String extendedTitle = null)
         {
             using (var e = new DbContext())
             {
                 var data = DataForms.GetFilesForm(SessionHelper.GetSessionUser(), e);
-                var model = new FilesModel.Form()
+                // new model
+                var model = new FilesModel.Form();
+                // extends the page name
+                model.SetExtendedTitle(extendedTitle);
+                // filters
+                if (familyNumber != null)
                 {
-                    Files = data.FileNumbers.Select(p =>
-                        new FilesModel.Item()
-                        {
-                             Continuity = p.Continuity,
-                             FileName = p.File_Name,
-                             FileNum = p.File_Number1,
-                             LawFirm = p.Law_Firm,
-                             ProjectNum = p.Project_Number.HasValue ? p.Project_Number.ToString() : "",
-                             SerialNum = p.Serial_Number,
-                             Status = p.Status
-                        }).ToList()
-                };
+                    data.FileNumbers = data.FileNumbers.Where(p => p.Family_Listings.Select(q => q.Family_Number).Contains(familyNumber)).ToList();
+                    // if no extended name try to find one
+                    if (!model.HasExtendedTitle())
+                        model.SetExtendedTitle(data.FileNumbers.FirstOrDefault()?.Project_Numbers.Project_Name);
+                }
+
+                model.Files = data.FileNumbers.Select(p =>
+                    new FilesModel.Item()
+                    {
+                        Continuity = p.Continuity,
+                        FileName = p.File_Name,
+                        FileNum = p.File_Number1,
+                        LawFirm = p.Law_Firm,
+                        ProjectNum = p.Project_Number.HasValue ? p.Project_Number.ToString() : "",
+                        SerialNum = p.Serial_Number,
+                        Status = p.Status
+                    }).ToList();
 
                 return View(model);
             }
@@ -129,19 +154,15 @@ namespace InventorAccessPortal.Web.Controllers
             {
                 var familesObject = DataForms.GetFamiliesForm(SessionHelper.GetSessionUser(), e);
                 var model = new FamiliesModel.Form();
-                foreach (var fileNumWithFamily in familesObject)
+                foreach (var familyWithFileNums in familesObject)
                 {
-                    var fileNum = fileNumWithFamily.FileNumber;
-                    foreach (var fam in fileNumWithFamily.Families)
+                    model.Families.Add(new FamiliesModel.Item
                     {
-                        model.Families.Add(new FamiliesModel.Item()
-                        {
-                            FileName = fileNum.File_Name,
-                            FamilyName = fam.Family_Name,
-                            FamilyNum = fam.Family_Number,
-                            Status = fileNum.Status
-                        });
-                    }
+                        FamilyName = familyWithFileNums.Family.Family_Name,
+                        FamilyNum = familyWithFileNums.Family.Family_Number,
+                        // if any file is still active the family is considered active
+                        Status = familyWithFileNums.FileNumbers.Any(p => p.Status == StatusEnum.Active) ? StatusEnum.Active : StatusEnum.Inactive
+                    });
                 }
                 return View(model);
             }

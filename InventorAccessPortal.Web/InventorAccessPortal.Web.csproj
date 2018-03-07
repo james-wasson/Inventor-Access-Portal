@@ -202,7 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\SharedModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
     <Compile Include="Models\Home\InventionsModel.cs" />
@@ -283,8 +283,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -302,6 +300,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\RecentActivities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

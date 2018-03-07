@@ -102,6 +102,7 @@
     <Compile Include="Ending_Fiscal_Year.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Enum\StatusEnum.cs" />
     <Compile Include="Family.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>

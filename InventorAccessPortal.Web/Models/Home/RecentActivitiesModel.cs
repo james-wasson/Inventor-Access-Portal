@@ -19,7 +19,7 @@ namespace InventorAccessPortal.Web.Models.Home
             public string SerialNum;
             public string LawFirm;
         }
-        public class Form : ErrorModel
+        public class Form : SharedModel
         {
             public List<Item> RecentActivities = new List<Item>();
         }

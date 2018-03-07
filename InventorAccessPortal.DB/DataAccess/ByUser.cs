@@ -17,5 +17,15 @@ namespace InventorAccessPortal.DB.DataAccess
                         .Contains(user.InvestigatorName)
                 );
         }
+
+        public static IQueryable<Family> GetFamilies(CachedUser user, DbContext e)
+        {
+            return e.Families.Where(p =>
+                p.Family_Listings.Where(q =>
+                    q.File_Numbers.Project_Numbers.All_Investigators
+                        .Select(y => y.Investigator).Contains(user.InvestigatorName)
+                ).Count() > 0
+            );
+        }
     }
 }

@@ -67,16 +67,16 @@ namespace InventorAccessPortal.DB.DataAccess
         /// </summary>
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
-        /// <returns>Two list of related information</returns>
+        /// <returns>family with FileNumbers related to that family</returns>
         public static List<FamiliesDataItem> GetFamiliesForm(CachedUser user, DbContext context)
         {
             if (user == null) return new List<FamiliesDataItem>();
-            var fileNums = ByUser.GetFileNumber(user, context).Where(p => p.Family_Listings.Any());
+            var families = ByUser.GetFamilies(user, context);
 
-            return fileNums.Select(p => new FamiliesDataItem
+            return families.Select(p => new FamiliesDataItem
             {
-                Families = p.Family_Listings.Select(q => q.Family).Distinct().ToList(),
-                FileNumber = p
+                Family = p,
+                FileNumbers = p.Family_Listings.Select(q => q.File_Numbers).ToList()
             }).ToList();
         }
     }
