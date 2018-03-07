@@ -202,6 +202,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Account\LoginModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
