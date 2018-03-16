@@ -26,7 +26,7 @@ namespace InventorAccessPortal.Web.Util
                 return "An unknown error occured.";
         }
 
-        public static List<string> GetAllErrors(ErrorModel Model)
+        public static List<string> GetAllErrors(SharedModel Model)
         {
             var rv = new List<string>();
             foreach (var err in Model._Errors)
@@ -36,7 +36,7 @@ namespace InventorAccessPortal.Web.Util
             return rv.Distinct().ToList();
         }
 
-        public static bool ModelHasValidErrors(ErrorModel Model)
+        public static bool ModelHasValidErrors(SharedModel Model)
         {
             if (Model == null || Model._Errors == null || Model._Errors.Count <= 0)
             {

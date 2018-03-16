@@ -7,16 +7,18 @@ using InventorAccessPortal.Web.Util;
 
 namespace InventorAccessPortal.Web.Models.Account
 {
-    public enum LoginErrorCodes
+    public enum RegisterErrorCodes
     {
         [Description("Invalid Username or Password.")]
         InvalidUsernameOrPassword = 0,
         [Description("Username or Password is empty.")]
         EmptyUsernameOrPassword = 1
     }
-    public class LoginModel : SharedModel
+    public class RegisterModel : SharedModel
     {
-        public string UsernameOrEmail { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
         public string Password { get; set; }
+        public string PasswordVerify { get; set; }
     }
 } 
