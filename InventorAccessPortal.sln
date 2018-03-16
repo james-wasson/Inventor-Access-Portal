@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorAccessPortal.Web.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorAccessPortal.DB", "InventorAccessPortal.DB\InventorAccessPortal.DB.csproj", "{881DB57A-358F-47F7-84DF-F17A6506B7B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventorAccessPortal.Mail", "InventorAccessPortal.Mail\InventorAccessPortal.Mail.csproj", "{61B1FAED-B0A3-42D3-B960-160E70C6A9D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{881DB57A-358F-47F7-84DF-F17A6506B7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{881DB57A-358F-47F7-84DF-F17A6506B7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{881DB57A-358F-47F7-84DF-F17A6506B7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B1FAED-B0A3-42D3-B960-160E70C6A9D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B1FAED-B0A3-42D3-B960-160E70C6A9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B1FAED-B0A3-42D3-B960-160E70C6A9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B1FAED-B0A3-42D3-B960-160E70C6A9D1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
