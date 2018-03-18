@@ -13,7 +13,7 @@ namespace InventorAccessPortal.DB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class IAP_Entities : System.Data.Entity.DbContext
+    public partial class IAP_Entities : DbContext
     {
         public IAP_Entities()
             : base("name=IAP_Entities")
@@ -37,7 +37,6 @@ namespace InventorAccessPortal.DB
         public virtual DbSet<File_Number> File_Numbers { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<Investigator> Investigators { get; set; }
-        public virtual DbSet<Login_datum> Login_Data { get; set; }
         public virtual DbSet<Organization> Organizations { get; set; }
         public virtual DbSet<Project_Number> Project_Numbers { get; set; }
         public virtual DbSet<Records_Status> Records_Status { get; set; }
@@ -45,5 +44,8 @@ namespace InventorAccessPortal.DB
         public virtual DbSet<Starting_Fiscal_Year> Starting_Fiscal_Years { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Transaction> Transactions { get; set; }
+        public virtual DbSet<Web_Login_datum> Web_Login_Data { get; set; }
+        public virtual DbSet<Web_Action_datum> Web_Action_Data { get; set; }
+        public virtual DbSet<Web_Action_Type> Web_Action_Types { get; set; }
     }
 }

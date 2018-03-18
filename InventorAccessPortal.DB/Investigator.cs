@@ -39,8 +39,8 @@ namespace InventorAccessPortal.DB
         public virtual Department Department { get; set; }
         public virtual Gender Gender1 { get; set; }
         public virtual Organization Organization1 { get; set; }
-        public virtual Login_datum Login_Data { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Project_Number> Project_Numbers { get; set; }
+        public virtual Web_Login_datum Web_Login_Data { get; set; }
     }
 }

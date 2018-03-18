@@ -9,7 +9,7 @@ namespace InventorAccessPortal.DB.DataAccess
 {
     class ByUser
     {
-        public static IQueryable<File_Number> GetFileNumber(CachedUser user, DbContext e)
+        public static IQueryable<File_Number> GetFileNumber(CachedUser user, EntityContext e)
         {
             return e.File_Numbers.Where(p =>
                     p.Project_Numbers.All_Investigators
@@ -18,7 +18,7 @@ namespace InventorAccessPortal.DB.DataAccess
                 );
         }
 
-        public static IQueryable<Family> GetFamilies(CachedUser user, DbContext e)
+        public static IQueryable<Family> GetFamilies(CachedUser user, EntityContext e)
         {
             return e.Families.Where(p =>
                 p.Family_Listings.Where(q =>

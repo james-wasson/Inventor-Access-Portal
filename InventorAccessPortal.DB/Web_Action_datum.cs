@@ -12,16 +12,17 @@ namespace InventorAccessPortal.DB
     using System;
     using System.Collections.Generic;
     
-    public partial class Login_datum
+    public partial class Web_Action_datum
     {
         public string Investigator_Name { get; set; }
-        public string Username { get; set; }
-        public string Salt { get; set; }
-        public string Password { get; set; }
-        public Nullable<bool> Suspended { get; set; }
-        public Nullable<bool> Temp_Password { get; set; }
-        public string DataSource { get; set; }
+        public int Id { get; set; }
+        public string Guid { get; set; }
+        public string Json_Data { get; set; }
+        public int Action_Number { get; set; }
+        public System.DateTime Created { get; set; }
+        public Nullable<System.DateTime> Expires { get; set; }
     
-        public virtual Investigator Investigator { get; set; }
+        public virtual Web_Action_Type Web_Action_Types { get; set; }
+        public virtual Web_Login_datum Web_Login_Data { get; set; }
     }
 }

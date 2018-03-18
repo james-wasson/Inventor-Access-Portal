@@ -13,7 +13,7 @@ namespace InventorAccessPortal.Web.Models.Home
             public int ProjectNumber;
             public string ProjectTitle;
         }
-        public class Form : SharedModel
+        public class Form : _TitleModel
         {
             public List<Item> Inventions = new List<Item>();
         }

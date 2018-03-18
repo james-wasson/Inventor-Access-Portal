@@ -78,6 +78,7 @@
     <Compile Include="All_Investigator.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Auth\Account.cs" />
     <Compile Include="Code.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
@@ -94,6 +95,7 @@
     <Compile Include="Auth\Authorize.cs" />
     <Compile Include="Auth\PasswordVerify.cs" />
     <Compile Include="Auth\Encrypt.cs" />
+    <Compile Include="DataAccess\ActionData.cs" />
     <Compile Include="DataAccess\ByUser.cs" />
     <Compile Include="DataAccess\GetCachedUser.cs" />
     <Compile Include="Department.cs">
@@ -102,7 +104,8 @@
     <Compile Include="Ending_Fiscal_Year.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Enum\StatusEnum.cs" />
+    <Compile Include="Enums\ActionEnum.cs" />
+    <Compile Include="Enums\StatusEnum.cs" />
     <Compile Include="Family.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
@@ -130,13 +133,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IAP_Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\DataForms.cs" />
     <Compile Include="Investigator.cs">
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Login_datum.cs">
-      <DependentUpon>IAP_Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\DataForms.cs" />
     <Compile Include="Objects\CachedUser.cs" />
     <Compile Include="Objects\FamiliesDataItem.cs" />
     <Compile Include="Objects\FilesData.cs" />
@@ -170,6 +170,15 @@
       <DependentUpon>IAP_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Utils\GetName.cs" />
+    <Compile Include="Web_Action_datum.cs">
+      <DependentUpon>IAP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web_Action_Type.cs">
+      <DependentUpon>IAP_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Web_Login_datum.cs">
+      <DependentUpon>IAP_Model.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

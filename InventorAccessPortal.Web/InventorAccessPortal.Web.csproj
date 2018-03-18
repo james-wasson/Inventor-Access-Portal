@@ -56,6 +56,9 @@
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
@@ -201,19 +204,24 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Mailer\CompleteRegistration.cs" />
+    <Compile Include="Models\Emails\CompleteRegistrationModel.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\SharedModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
+    <Compile Include="Enums\ErrorCodes.cs" />
+    <Compile Include="Models\Partial\EmailModel.cs" />
+    <Compile Include="Models\Partial\ErrorModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
     <Compile Include="Models\Home\InventionsModel.cs" />
     <Compile Include="Models\Home\RecentActivitiesModel.cs" />
+    <Compile Include="Enums\WarningCodes.cs" />
     <Compile Include="Models\Reports\FileModel.cs" />
     <Compile Include="Models\Reports\ProjectModel.cs" />
+    <Compile Include="Models\Partial\SharedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AccountHelper.cs" />
-    <Compile Include="Util\EmailHelper.cs" />
-    <Compile Include="Util\ErrorHelper.cs" />
+    <Compile Include="Util\CredentialsHelper.cs" />
     <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +279,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\Emails\CompleteRegistration.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -284,6 +293,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -298,10 +309,12 @@
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Views\Shared\_HeadersPartial.cshtml" />
     <Content Include="Views\Shared\_ErrorPartial.cshtml" />
+    <Content Include="Views\Shared\_IgnoreFormWarnings.cshtml" />
+    <Content Include="Views\Shared\_EmailLayout.cshtml" />
+    <Content Include="Views\Account\EmailConfirmed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RecentActivities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

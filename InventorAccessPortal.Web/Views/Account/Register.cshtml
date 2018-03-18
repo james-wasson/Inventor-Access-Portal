@@ -7,6 +7,7 @@
 <h1>Register</h1>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
+
     @Html.AntiForgeryToken()
     <div>
         <table>
@@ -20,14 +21,15 @@
             </tr>
             <tr>
                 <td>Password:</td>
-                <td>@Html.PasswordFor(p => p.Password)</td>
+                <td>@Html.PasswordFor(p => p.Password, new { value = Model.Password })</td>
             </tr>
             <tr>
                 <td>Re-enter Password:</td>
-                <td>@Html.PasswordFor(P => P.PasswordVerify)</td>
+                <td>@Html.PasswordFor(p => p.PasswordVerify, new { value = Model.PasswordVerify })</td>
             </tr>
         </table>
         <input type="submit" value="Register" />
     </div>
+    @Html.Partial("~/Views/Shared/_IgnoreFormWarnings.cshtml")
 }
 
