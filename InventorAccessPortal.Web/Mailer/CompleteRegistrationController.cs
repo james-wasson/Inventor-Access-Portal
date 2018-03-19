@@ -55,8 +55,8 @@ namespace InventorAccessPortal.Web.Mailer
             };
             // send mail
             var bodyHtml = RazorExtensions.RazorToHtml(EmailView, emailModel, this.ControllerContext);
-            var subject = "Inventor Access Portal, Technology of Techtransfer Account Registration";
-            var mailSent = SendEmail.Send(subject, bodyHtml, "jameswasson1@gmail.com", true);
+            var subject = "Email Confirmation, Inventor Access Portal";
+            var mailSent = SendEmail.Send(subject, bodyHtml, email, true);
             if (!mailSent)
             {
                 return View(ErrorView);

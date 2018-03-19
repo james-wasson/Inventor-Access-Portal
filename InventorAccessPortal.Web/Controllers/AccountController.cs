@@ -131,7 +131,7 @@ namespace InventorAccessPortal.Web.Controllers
                 isValid = false;
             }
 
-            if (isValid && !model.HasWarnings()) // check for more serious warnings
+            if (isValid) // check for more serious warnings
             {
                 using (var e = new EntityContext()) // db context
                 {

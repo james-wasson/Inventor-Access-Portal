@@ -25,9 +25,14 @@ namespace InventorAccessPortal.Web.Mailer
             {
                 // if it is html, move styles to inline styles
                 if (isHtml) try { body = CssInliner.Inliner.InlineCssIntoHtml(body); } catch (Exception ex) { }
-
-                MailMessage mail = new MailMessage(FromAddress, toAddres);
-                mail.Subject = subject + " [" + NumberOfSentEmails.ToString() + "]";
+                MailMessage mail = new MailMessage(FromAddress, toAddres); // production
+#if DEBUG
+                mail = new MailMessage(FromAddress, FromAddress);
+#endif
+                mail.Subject = subject + " [" + NumberOfSentEmails.ToString() + "]"; // production
+#if DEBUG
+                mail.Subject = "TEST EMAIL - " + subject + " [" + NumberOfSentEmails.ToString() + "]";
+#endif
                 mail.Body = body;
                 mail.IsBodyHtml = isHtml;
                 Client.Send(mail);
