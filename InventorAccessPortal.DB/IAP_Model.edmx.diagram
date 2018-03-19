@@ -46,8 +46,8 @@
         <AssociationConnector Association="IAP_Model.Project_Numbers_StatusProject_Numbers" ManuallyRouted="false" />
         <EntityTypeShape EntityType="IAP_Model.Web_Login_datum" Width="1.5" PointX="9.125" PointY="22.75" />
         <AssociationConnector Association="IAP_Model.FK_Web_Login_Data_Investigators" />
-        <EntityTypeShape EntityType="IAP_Model.Web_Action_datum" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="IAP_Model.Web_Action_Type" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="IAP_Model.Web_Action_datum" Width="1.5" PointX="11.375" PointY="22.875" />
+        <EntityTypeShape EntityType="IAP_Model.Web_Action_Type" Width="1.5" PointX="9.125" PointY="19.375" />
         <AssociationConnector Association="IAP_Model.FK_Web_Action_Data_Web_Action_Types" />
         <AssociationConnector Association="IAP_Model.FK_Web_Action_Data_Web_Login_Data" />
       </Diagram>

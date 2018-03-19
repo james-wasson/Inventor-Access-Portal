@@ -11,6 +11,8 @@ using System.Web.Security;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.Web.Mailer;
+using InventorAccessPortal.Web.Mailer.Models;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -159,12 +161,11 @@ namespace InventorAccessPortal.Web.Controllers
                         }
                         else
                         {
-                            //if username and password is correct, create session and return Success
-                            SessionHelper.SetSessionUser(cachedUser);
-                            FormsAuthentication.SetAuthCookie(cachedUser.Username, true);
-
-                            // goes to home screen or previous screen
-                            FormsAuthentication.RedirectFromLoginPage(cachedUser.Username, true);
+                            return RedirectToAction("Send", "CompleteRegistration", new {
+                                email = cachedUser.Email,
+                                username = cachedUser.Username,
+                                investigatorName = cachedUser.InvestigatorName
+                            });
                         }
                     }
                 }

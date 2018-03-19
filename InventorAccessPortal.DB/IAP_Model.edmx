@@ -188,9 +188,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Guid" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Json Data" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Expires" Type="datetime2" Precision="7" />
           <Property Name="Action Number" Type="int" Nullable="false" />
-          <Property Name="Created" Type="datetime" Nullable="false" />
-          <Property Name="Expires" Type="datetime" />
         </EntityType>
         <EntityType Name="Web Action Types">
           <Key>
@@ -327,7 +327,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Web Action Data_Web Login Data">
-          <End Role="Web Login Data" Type="Self.Web Login Data" Multiplicity="1" />
+          <End Role="Web Login Data" Type="Self.Web Login Data" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Web Action Data" Type="Self.Web Action Data" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Web Login Data">
@@ -1207,7 +1209,7 @@
             <End Role="Web_Login_datum" EntitySet="Web_Login_Data" />
             <End Role="Web_Action_datum" EntitySet="Web_Action_Data" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Web_Login_datum">
           <Key>
             <PropertyRef Name="Investigator_Name" />
@@ -1243,9 +1245,9 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Guid" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Json_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Action_Number" Type="Int32" Nullable="false" />
-          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Expires" Type="DateTime" Precision="3" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Expires" Type="DateTime" Precision="7" />
+          <Property Name="Action_Number" Type="IAP_Model.ActionNumberEnum" Nullable="false" />
           <NavigationProperty Name="Web_Action_Types" Relationship="IAP_Model.FK_Web_Action_Data_Web_Action_Types" FromRole="Web_Action_datum" ToRole="Web_Action_Type" />
           <NavigationProperty Name="Web_Login_Data" Relationship="IAP_Model.FK_Web_Action_Data_Web_Login_Data" FromRole="Web_Action_datum" ToRole="Web_Login_datum" />
         </EntityType>
@@ -1253,8 +1255,8 @@
           <Key>
             <PropertyRef Name="Action_Number" />
           </Key>
-          <Property Name="Action_Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Action_Name" Type="String" Nullable="false" />
+          <Property Name="Action_Number" Type="IAP_Model.ActionNumberEnum" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Web_Action_Data" Relationship="IAP_Model.FK_Web_Action_Data_Web_Action_Types" FromRole="Web_Action_Type" ToRole="Web_Action_datum" />
         </EntityType>
         <Association Name="FK_Web_Action_Data_Web_Action_Types">
@@ -1281,6 +1283,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="ActionNumberEnum">
+        <Member Name="Register" Value="1" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1498,9 +1503,9 @@
           <EntitySetMapping Name="Web_Action_Data">
             <EntityTypeMapping TypeName="IAP_Model.Web_Action_datum">
               <MappingFragment StoreEntitySet="Web Action Data">
+                <ScalarProperty Name="Action_Number" ColumnName="Action Number" />
                 <ScalarProperty Name="Expires" ColumnName="Expires" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
-                <ScalarProperty Name="Action_Number" ColumnName="Action Number" />
                 <ScalarProperty Name="Json_Data" ColumnName="Json Data" />
                 <ScalarProperty Name="Guid" ColumnName="Guid" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

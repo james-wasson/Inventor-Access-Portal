@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 using InventorAccessPortal.Web.Models;
 
-namespace InventorAccessPortal.Web.Models
+namespace InventorAccessPortal.Web.Mailer.Models
 {
-    public class EmailModel : _ErrorModel
+    public class _EmailModel : _ErrorModel
     {
 
     }

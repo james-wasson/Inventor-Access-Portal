@@ -18,9 +18,9 @@ namespace InventorAccessPortal.DB
         public int Id { get; set; }
         public string Guid { get; set; }
         public string Json_Data { get; set; }
-        public int Action_Number { get; set; }
         public System.DateTime Created { get; set; }
         public Nullable<System.DateTime> Expires { get; set; }
+        public ActionNumberEnum Action_Number { get; set; }
     
         public virtual Web_Action_Type Web_Action_Types { get; set; }
         public virtual Web_Login_datum Web_Login_Data { get; set; }

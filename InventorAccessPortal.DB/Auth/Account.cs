@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InventorAccessPortal.DB.Auth;
 using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.DB.DataAccess;
 
 namespace InventorAccessPortal.DB.Auth
 {
@@ -38,7 +39,7 @@ namespace InventorAccessPortal.DB.Auth
                 };
                 e.Web_Login_Data.Add(loginData);
                 e.SaveChanges();
-                return Authorize.CredentialsByUsername(username, password, e);
+                return GetCachedUser.GetNew(loginData);
             }
             catch (Exception ex)
             {

@@ -43,6 +43,15 @@ namespace InventorAccessPortal.Web
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.css"
                       ));
+
+            /*
+             * Email Bundles
+             * lightweight js and css
+             */
+
+            bundles.Add(new StyleBundle("~/Content/Lib/Email/css").Include(
+                      "~/Mailer/Styles/less/main.css"
+                      ));
         }
     }
 }

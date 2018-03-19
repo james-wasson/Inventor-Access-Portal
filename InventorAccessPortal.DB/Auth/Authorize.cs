@@ -62,7 +62,7 @@ namespace InventorAccessPortal.DB.Auth
             // check if password is verified
             if (row != null && PasswordVerify.VerifyHashedPassword(row.Password, row.Salt, password) == PasswordVerify.Failed)
                 AuthorizeErrors.Add(AuthorizeErrorsEnum.PasswordNotVerified);
-            return GetAuthorizeErrors().Any();
+            return !GetAuthorizeErrors().Any(); // true if no errors
         }
 
         /// <summary>
@@ -78,7 +78,8 @@ namespace InventorAccessPortal.DB.Auth
         }
 
         /// <summary>
-        /// Checks if the Email is already registered with an account
+        /// Checks if the Email is already registered with an account,
+        /// NOTE: If email confirmed is null, it lets you register anyway
         /// </summary>
         /// <param name="email"></param>
         /// <param name="context"></param>
@@ -89,7 +90,7 @@ namespace InventorAccessPortal.DB.Auth
             var lowerEmail = email.ToLower();
             var a = context.Investigators.Where(p => p.Email_Address.ToLower() == lowerEmail).Select(q => q.Web_Login_Data).ToList();
             var loginRow = context.Investigators.FirstOrDefault(p => p.Email_Address.ToLower() == lowerEmail)?.Web_Login_Data;
-            if (loginRow == null || (String.IsNullOrEmpty(loginRow.Username) && String.IsNullOrEmpty(loginRow.Password))) return false;
+            if (loginRow == null || loginRow.Email_Confirmed == false ||(String.IsNullOrEmpty(loginRow.Username) && String.IsNullOrEmpty(loginRow.Password))) return false;
             return true;
         }
 
@@ -116,6 +117,22 @@ namespace InventorAccessPortal.DB.Auth
             LoginSuspended,
             EmailNotConfirmed,
             PasswordNotVerified
+        }
+
+        public static bool ConfirmEmail(string email, string username, string investigatorName, EntityContext dbContext = null) {
+            dbContext.CheckInit();
+
+            var lowerEmail = email.ToLower();
+            var loginData = dbContext.Web_Login_Data.FirstOrDefault(p => 
+                p.Username == username && 
+                p.Investigator.Email_Address.ToLower() == lowerEmail && 
+                p.Investigator_Name == investigatorName
+            );
+            if (loginData == null) return false;
+            loginData.Email_Confirmed = true;
+            try { dbContext.SaveChanges(); } catch (Exception ex) { return false; }
+            
+            return true;
         }
     }
 }

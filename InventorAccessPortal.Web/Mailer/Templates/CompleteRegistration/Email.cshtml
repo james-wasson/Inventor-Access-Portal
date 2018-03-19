@@ -1,0 +1,12 @@
+﻿@using InventorAccessPortal.Web.Extennsions
+@model InventorAccessPortal.Web.Mailer.Models.CompleteRegistration.EmailModel
+
+@{
+    ViewBag.Title = "Complete Registration";
+    Layout = "~/Mailer/Templates/Shared/_EmailLayout.cshtml";
+     String Path = Html.GetBaseUri(HttpContext.Current) + "/CompleteRegistration/Received?actionGuid=" + Model.ActionGuid.ToString();
+}
+
+<p>Click on the link below to complete your registration:</p>
+<a href="@Path" target="_blank">@Path</a>
+

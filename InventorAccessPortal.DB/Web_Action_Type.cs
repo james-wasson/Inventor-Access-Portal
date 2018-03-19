@@ -20,7 +20,7 @@ namespace InventorAccessPortal.DB
             this.Web_Action_Data = new HashSet<Web_Action_datum>();
         }
     
-        public int Action_Number { get; set; }
+        public ActionNumberEnum Action_Number { get; set; }
         public string Action_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
