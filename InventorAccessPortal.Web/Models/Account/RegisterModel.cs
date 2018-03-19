@@ -14,4 +14,4 @@ namespace InventorAccessPortal.Web.Models.Account
         public string Password { get; set; }
         public string PasswordVerify { get; set; }
     }
-} 
+}

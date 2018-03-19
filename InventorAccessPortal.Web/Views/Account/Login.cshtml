@@ -8,10 +8,20 @@
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.TextBoxFor(p => p.UsernameOrEmail)
-    @Html.PasswordFor(p => p.Password)
-    <input type="submit" value="Sign In">
     @Html.Partial("~/Views/Shared/_IgnoreFormWarnings.cshtml")
+    <div>
+        <table>
+            <tr>
+                <td>Username or Email: </td>
+                <td>@Html.TextBoxFor(p => p.UsernameOrEmail)</td>
+            </tr>
+            <tr>
+                <td>Password: </td>
+                <td>@Html.PasswordFor(p => p.Password)</td>
+            </tr>
+        </table>
+        <input type="submit" value="Sign In">
+    </div>
 }
 
 

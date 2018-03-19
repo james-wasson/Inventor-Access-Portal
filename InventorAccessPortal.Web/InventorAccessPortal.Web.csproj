@@ -220,10 +220,10 @@
     <Compile Include="Mailer\Models\CompleteRegistration\EmailModel.cs" />
     <Compile Include="Mailer\SendEmail.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
-    <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Mailer\Models\_EmailModel.cs" />
     <Compile Include="Models\Partial\ErrorModel.cs" />
+    <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
     <Compile Include="Models\Home\InventionsModel.cs" />
