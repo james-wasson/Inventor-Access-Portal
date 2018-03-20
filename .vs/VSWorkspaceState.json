@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\InventorAccessPortal.Web",
-    "\\InventorAccessPortal.Web\\Models",
-    "\\InventorAccessPortal.Web\\Models\\Account",
-    "\\InventorAccessPortal.Web\\Views",
-    "\\InventorAccessPortal.Web\\Views\\Account"
+    "\\InventorAccessPortal.Web"
   ],
-  "SelectedNode": "\\InventorAccessPortal.Web\\InventorAccessPortal.Web.csproj",
+  "SelectedNode": "\\.gitignore",
   "PreviewInSolutionExplorer": false
 }
