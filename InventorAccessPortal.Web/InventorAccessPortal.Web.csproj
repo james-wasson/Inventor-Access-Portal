@@ -263,6 +263,12 @@
     <Content Include="Content\less\sidebar.min.css">
       <DependentUpon>sidebar.css</DependentUpon>
     </Content>
+    <Content Include="Content\less\table.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\table.min.css">
+      <DependentUpon>table.css</DependentUpon>
+    </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -279,6 +285,7 @@
     <Content Include="Scripts\detect-element-resize.js" />
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
+    <Content Include="Scripts\dev\main\resizeForContentBody.js" />
     <Content Include="Scripts\dev\main\sidebarExpander.js" />
     <Content Include="Scripts\dev\main\resizeForFooter.js" />
     <Content Include="Scripts\dev\main\resizeForSidebar.js" />

@@ -57,7 +57,7 @@ namespace InventorAccessPortal.Web
              * lightweight js and css
              */
 
-            bundles.Add(new StyleBundle("~/Content/Lib/Email/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Email/css").Include(
                       "~/Mailer/Styles/less/main.css"
                       ));
         }

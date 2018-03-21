@@ -15,7 +15,6 @@ body {
 #content {
     overflow-y: hidden;
     overflow-x: hidden;
-    margin-bottom: 15px;
     margin-top: 15px;
     transition: all 0.3s;
     position: relative !important;
@@ -26,9 +25,11 @@ body {
     }
 
     #content-body {
+        min-height: 100%;
         overflow: auto;
         background-color: @textBackgroundColor;
         padding: 5px 10px;
+        padding-bottom: 0;
     }
 }
 
