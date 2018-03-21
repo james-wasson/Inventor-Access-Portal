@@ -10,5 +10,9 @@
   {
     "outputFile": "Content/less/footer.css",
     "inputFile": "Content/less/footer.less"
+  },
+  {
+    "outputFile": "Content/less/main.css",
+    "inputFile": "Content/less/main.less"
   }
 ]

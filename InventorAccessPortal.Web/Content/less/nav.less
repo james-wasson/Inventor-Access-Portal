@@ -9,11 +9,12 @@
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    height: 100vh;
     background: #7386D5;
     color: #fff;
     transition: all 0.3s;
-    position: relative;
+    position: fixed;
+    z-index: 1000;
+    height: 100vh;
 
     .sidebar-header {
         padding: 20px;
@@ -29,6 +30,7 @@
             top: 0;
             right: 0;
             z-index: 9999;
+
             .icon:after {
                 font-family: "FontAwesome";
                 content: @leftToggle;
@@ -128,16 +130,28 @@
         text-align: center;
         margin-left: -80px !important;
 
-        .sidebar-header .sidebar-toggle {
-            font-family: "FontAwesome";
-            position: absolute;
-            top: 0;
-            right: -30px;
-            -webkit-transition: right 0.2s; /* Safari */
-            transition: right 0.2s;
+        .sidebar-header {
+            .sidebar-expanded {
+                display: none;
+            }
 
-            .icon:after {
-                content: @rightToggle;
+            .sidebar-collapsed {
+                display: none;
+            }
+
+            .sidebar-toggle {
+                display: block !important;
+                font-family: "FontAwesome";
+                position: absolute;
+                top: 0;
+                right: -30px;
+                -webkit-transition: right 0.2s; /* Safari */
+                transition: right 0.2s;
+                z-index: 9999;
+
+                .icon:after {
+                    content: @rightToggle;
+                }
             }
         }
 
@@ -146,19 +160,10 @@
 
             .sidebar-header {
                 .sidebar-collapsed {
-                    display: none;
-                }
-
-                .sidebar-expanded {
-                    display: none;
-                }
-
-                .sidebar-collapsed {
                     display: block;
                 }
 
                 .sidebar-toggle {
-                    position: absolute;
                     top: 0;
                     right: 0;
                     -webkit-transition: right 0.2s; /* Safari */
@@ -168,6 +173,18 @@
                         content: @leftToggle !important;
                     }
                 }
+            }
+
+            .components {
+                * {
+                    display: block;
+                }
+            }
+        }
+
+        .components {
+            * {
+                display: none;
             }
         }
 
@@ -190,8 +207,8 @@
         & a[aria-expanded="false"]::before, &.active a[aria-expanded="true"]::before {
             top: auto;
             bottom: 5px;
-            right: 50%;
-            transform: translateX(50%);
+            right: 100%;
+            transform: translateX(100%);
         }
     }
 }

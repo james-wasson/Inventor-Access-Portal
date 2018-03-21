@@ -1,6 +1,15 @@
-﻿.sticky-footer {
-    position: fixed;
+﻿@import "theme.less";
+
+.sticky-footer {
+    position: sticky;
     bottom: 0;
+    margin-top: 5px;
+    padding: 10px;
+    background-color: @darkBackgroundColor;
+
+    * {
+        margin: 0;
+    }
 
     #ConfidentialityFooter {
         font: "Helvetica Bold";

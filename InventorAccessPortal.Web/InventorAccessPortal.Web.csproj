@@ -252,6 +252,12 @@
     <Content Include="Content\less\footer.min.css">
       <DependentUpon>footer.css</DependentUpon>
     </Content>
+    <Content Include="Content\less\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
     <Content Include="Content\less\nav.css">
       <DependentUpon>nav.less</DependentUpon>
     </Content>
@@ -274,7 +280,6 @@
     <Content Include="Scripts\detect-element-resize.js" />
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
-    <Content Include="Scripts\dev\main\makeFooterRoom.js" />
     <Content Include="Scripts\dev\main\nav.js" />
     <Content Include="Scripts\dev\main\toastrSetup.js" />
     <Content Include="Scripts\jquery.resize.js" />
@@ -313,6 +318,7 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="Mailer\Templates\Shared\_EmailFooterPartial.cshtml" />
+    <Content Include="Content\less\main.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
