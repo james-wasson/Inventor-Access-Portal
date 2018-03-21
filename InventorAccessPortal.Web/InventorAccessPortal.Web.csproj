@@ -243,7 +243,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\pagecontent.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\less\footer.css">
@@ -281,6 +280,7 @@
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
     <Content Include="Scripts\dev\main\nav.js" />
+    <Content Include="Scripts\dev\main\resizeForSidebar.js" />
     <Content Include="Scripts\dev\main\toastrSetup.js" />
     <Content Include="Scripts\jquery.resize.js" />
     <Content Include="Scripts\less-1.5.1.js" />
@@ -288,7 +288,6 @@
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\css\Site.css" />
     <Content Include="Content\less\nav.less" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -366,6 +365,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

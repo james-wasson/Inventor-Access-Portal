@@ -19,7 +19,9 @@
     <div class="wrapper">
         @Html.Partial("_SidebarPartial")
         <div id="content" class="container-fluid">
-            @RenderBody()
+            <div class="content-body">
+                @RenderBody()
+            </div>
             @Html.Partial("_FooterPartial")
         </div>
     </div>

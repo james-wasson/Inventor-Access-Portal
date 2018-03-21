@@ -1,11 +1,14 @@
 ﻿@import "theme.less";
 
-.wrapper {
-    background-color: @backgroundColor;
-}
-
 body {
     padding-top: 0;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+    background-color: @backgroundColor;
+    min-height: 100vh;
 }
 
 #content {
@@ -13,23 +16,15 @@ body {
     transition: all 0.3s;
     position: relative !important;
     width: 100%;
-    overflow: auto;
-}
+    /* Override bootstraps row margin */
+    & > .row {
+        height: 100%;
+    }
 
-/* Override bootstraps row margin */
-#content > .row {
-    height: 100%;
-}
-
-.wrapper {
-    display: flex;
-    align-items: stretch;
-}
-
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    .content-body {
+        background-color: @textBackgroundColor;
+        padding: 5px 10px;
+    }
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 

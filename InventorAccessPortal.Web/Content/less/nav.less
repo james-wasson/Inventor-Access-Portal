@@ -18,7 +18,6 @@
 
     .sidebar-header {
         padding: 20px;
-        background: #6d7fcc;
 
         .sidebar-collapsed {
             display: none;
@@ -89,8 +88,12 @@
         }
 
         ul li a {
-            padding: 20px 10px;
+            padding: 20px 5px;
             text-align: center;
+            word-wrap: break-word;
+            white-space: normal;
+            display: block;
+            width: 100%;
             font-size: 0.85em;
         }
 
@@ -125,17 +128,14 @@
        negative left margin
     */
     #sidebar {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 0;
+        max-width: 0;
         text-align: center;
-        margin-left: -80px !important;
 
         .sidebar-header {
-            .sidebar-expanded {
-                display: none;
-            }
+            background-color: transparent !important;
 
-            .sidebar-collapsed {
+            .sidebar-expanded, .sidebar-collapsed {
                 display: none;
             }
 
@@ -156,6 +156,8 @@
         }
 
         &.active {
+            min-width: 80px;
+            max-width: 80px;
             margin-left: 0 !important;
 
             .sidebar-header {
@@ -186,22 +188,6 @@
             * {
                 display: none;
             }
-        }
-
-        ul li a {
-            padding: 20px 10px;
-            font-size: 0.85em;
-        }
-
-        ul li a icon {
-            margin-right: 0;
-            display: block;
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        ul ul a {
-            padding: 10px !important;
         }
 
         & a[aria-expanded="false"]::before, &.active a[aria-expanded="true"]::before {
