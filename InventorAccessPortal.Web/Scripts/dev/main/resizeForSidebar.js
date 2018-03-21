@@ -1,6 +1,6 @@
 ﻿$().ready(function () {
-    $sidebar = $("#sidebar");
-    $space = $("#spaceForSidebar");
+    var $sidebar = $("#sidebar");
+    var $space = $("#spaceForSidebar");
     function resizeContent() {
         $space.css("min-width", $sidebar.outerWidth() + "px");
     } resizeContent();
