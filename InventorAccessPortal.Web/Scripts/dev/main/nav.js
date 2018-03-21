@@ -1,5 +1,7 @@
 ﻿// will collapse the nav is screen is too small
 $().ready(function () {
+    'use strict';
+
     var $sidebar = $("#sidebar");
     var $toggle = $sidebar.find(".sidebar-toggle");
     var $toggleIcon = $toggle.find(".icon");

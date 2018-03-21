@@ -20,15 +20,16 @@
             </tr>
             <tr>
                 <td>Password:</td>
-                <td>@Html.PasswordFor(p => p.Password, new { value = Model.Password })</td>
+                <td>@Html.PasswordFor(p => p.Password, new { value = Model.Password, @class = "verifyThisPassword", data_verifier = "#passwordVerification" })</td>
             </tr>
             <tr>
                 <td>Re-enter Password:</td>
-                <td>@Html.PasswordFor(p => p.PasswordVerify, new { value = Model.PasswordVerify })</td>
+                <td>@Html.PasswordFor(p => p.PasswordVerify, new { value = Model.PasswordVerify, id = "passwordVerification" })</td>
             </tr>
         </table>
         <input type="submit" value="Register" />
     </div>
     @Html.Partial("~/Views/Shared/_IgnoreFormWarnings.cshtml")
+    @Scripts.Render("~/bundles/account/scripts")
 }
 

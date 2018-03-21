@@ -6,5 +6,9 @@
   {
     "outputFile": "Mailer/Styles/less/main.css",
     "inputFile": "Mailer/Styles/less/main.less"
+  },
+  {
+    "outputFile": "Content/less/footer.css",
+    "inputFile": "Content/less/footer.less"
   }
 ]
