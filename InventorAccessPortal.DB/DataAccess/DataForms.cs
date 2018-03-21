@@ -15,7 +15,7 @@ namespace InventorAccessPortal.DB.DataAccess
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
         /// <returns>Three list of related information</returns>
-        public static List<RecentActivitesDataItem> GetRecentActivites(CachedUser user, DbContext context)
+        public static List<RecentActivitesDataItem> GetRecentActivites(CachedUser user, EntityContext context)
         {
             if (user == null) return new List<RecentActivitesDataItem>();
             // finds it project number has a investigator that is the same as the CachedUser
@@ -36,7 +36,7 @@ namespace InventorAccessPortal.DB.DataAccess
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
         /// <returns>Two list of related information</returns>
-        public static InventionsData GetInventionsForm(CachedUser user, DbContext context)
+        public static InventionsData GetInventionsForm(CachedUser user, EntityContext context)
         {
             if (user == null) return new InventionsData();
             return new InventionsData()
@@ -53,7 +53,7 @@ namespace InventorAccessPortal.DB.DataAccess
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
         /// <returns>Two list of related information</returns>
-        public static FilesData GetFilesForm(CachedUser user, DbContext context)
+        public static FilesData GetFilesForm(CachedUser user, EntityContext context)
         {
             if (user == null) return new FilesData();
             return new FilesData()
@@ -68,7 +68,7 @@ namespace InventorAccessPortal.DB.DataAccess
         /// <param UserClass="user"></param>
         /// <param DatabaseContext="context"></param>
         /// <returns>family with FileNumbers related to that family</returns>
-        public static List<FamiliesDataItem> GetFamiliesForm(CachedUser user, DbContext context)
+        public static List<FamiliesDataItem> GetFamiliesForm(CachedUser user, EntityContext context)
         {
             if (user == null) return new List<FamiliesDataItem>();
             var families = ByUser.GetFamilies(user, context);

@@ -3,21 +3,41 @@
 
 @try
 {
-    if (Model != null) {
-
-        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(SharedModel));
-        if (IsRightType == true && ErrorHelper.ModelHasValidErrors((SharedModel)Model))
+    if (Model != null)
+    {
+        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ErrorModel));
+        if (IsRightType == true)
         {
-        <div class="alert alert-danger" role="alert">
-        @foreach (var error in ErrorHelper.GetAllErrors(((SharedModel)Model)))
-        {
-            <p>@error</p>
-        }
-        </div>
+            var castModel = (_ErrorModel)Model;
+            if (castModel.GetErrors().Count > 0)
+            {
+                <div class="alert alert-danger" role="alert">
+                    <h4>Please fix the below issues.</h4>
+                    @foreach (var error in castModel.GetErrors())
+                    {
+                        <p>@error</p>
+                    }
+                </div>
+            }
+            if (castModel.GetWarnings().Count > 0)
+            {
+                <div class="alert alert-warning" role="alert">
+                    <h4>Take note of these issues and fix them, or resubmit to accept as is.</h4>
+                    @foreach (var warn in castModel.GetWarnings())
+                    {
+                        <p>@warn</p>
+                    }
+                </div>
+            }
+            
         }
     }
 }
-finally
+catch (Exception ex)
 {
+    <div class="alert alert-danger" role="alert">
+        <p>There Was some error while trying to displaying the errors or warnings.</p>
+    </div>
 }
+
 

@@ -8,7 +8,7 @@ using InventorAccessPortal.Web.Models.Home;
 using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.Web.Util;
-using InventorAccessPortal.DB.Enum;
+using InventorAccessPortal.DB.Enums;
 
 
 namespace InventorAccessPortal.Web.Controllers
@@ -32,7 +32,7 @@ namespace InventorAccessPortal.Web.Controllers
         /// <returns>the view containing the recent activites model</returns>
         public ActionResult RecentActivities(String fileNumber = null, String projectNumber = null, String extendedTitle = null)
         {
-            using (var e = new DbContext())
+            using (var e = new EntityContext())
             {
                 var recentActivitesObject = DataForms.GetRecentActivites(SessionHelper.GetSessionUser(), e);
                 var model = new RecentActivitiesModel.Form();
@@ -85,7 +85,7 @@ namespace InventorAccessPortal.Web.Controllers
         /// <returns> Page with table containing data according to the model </returns>
         public ActionResult InventionsForm()
         {
-            using (var e = new DbContext())
+            using (var e = new EntityContext())
             {
                 var data = DataForms.GetInventionsForm(SessionHelper.GetSessionUser(), e);
                 
@@ -112,7 +112,7 @@ namespace InventorAccessPortal.Web.Controllers
         /// <returns>View containing the FilesModel</returns>
         public ActionResult FilesForm(String familyNumber = null, String extendedTitle = null)
         {
-            using (var e = new DbContext())
+            using (var e = new EntityContext())
             {
                 var data = DataForms.GetFilesForm(SessionHelper.GetSessionUser(), e);
                 // new model
@@ -150,7 +150,7 @@ namespace InventorAccessPortal.Web.Controllers
         /// <returns> Page with table containing the data according to the model </returns>
         public ActionResult FamiliesForm()
         {
-            using (var e = new DbContext())
+            using (var e = new EntityContext())
             {
                 var familesObject = DataForms.GetFamiliesForm(SessionHelper.GetSessionUser(), e);
                 var model = new FamiliesModel.Form();

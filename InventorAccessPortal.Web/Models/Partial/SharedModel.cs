@@ -8,9 +8,8 @@ namespace InventorAccessPortal.Web.Models
     /// <summary>
     /// Sets the basic format for extending a model
     /// </summary>
-    public class SharedModel
+    public class _TitleModel : _ErrorModel
     {
-        public List<Enum> _Errors = new List<Enum>();
         // extended title
         public String ExtendedTitle { get; private set; } = "";
         public void SetExtendedTitle(String t)

@@ -16,6 +16,7 @@ namespace InventorAccessPortal.Web.Util
         /// <param name="u">CachedUser</param>
         public static void SetSessionUser(CachedUser u)
         {
+            if (u == null) return;
             HttpContext.Current.Session["userID"] = u.Username;
             HttpContext.Current.Session["CachedUser"] = u;
         }
@@ -66,7 +67,7 @@ namespace InventorAccessPortal.Web.Util
             if (user == null || user.InvestigatorName != HttpContext.Current.User.Identity.Name)
             {
                 // store new user
-                using (var e = new DbContext())
+                using (var e = new EntityContext())
                 {
                     user = GetCachedUser.UserByUsername(HttpContext.Current.User.Identity.Name, e);
                     SetSessionUser(user);

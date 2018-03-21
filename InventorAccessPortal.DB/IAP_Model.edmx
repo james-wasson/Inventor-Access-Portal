@@ -114,18 +114,6 @@
           <Property Name="Gender" Type="nvarchar" MaxLength="255" />
           <Property Name="DataSource" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="Login Data">
-          <Key>
-            <PropertyRef Name="Investigator Name" />
-          </Key>
-          <Property Name="Investigator Name" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="255" />
-          <Property Name="Salt" Type="nvarchar(max)" />
-          <Property Name="Password" Type="nvarchar(max)" />
-          <Property Name="Suspended" Type="bit" />
-          <Property Name="Temp Password" Type="bit" />
-          <Property Name="DataSource" Type="varchar" MaxLength="50" Nullable="false" />
-        </EntityType>
         <EntityType Name="Organizations">
           <Key>
             <PropertyRef Name="Organization Name" />
@@ -191,6 +179,38 @@
           <Property Name="Code" Type="nvarchar" MaxLength="255" />
           <Property Name="FY Date" Type="int" />
           <Property Name="DataSource" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web Action Data">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Investigator Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Guid" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Json Data" Type="nvarchar(max)" />
+          <Property Name="Created" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Expires" Type="datetime2" Precision="7" />
+          <Property Name="Action Number" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web Action Types">
+          <Key>
+            <PropertyRef Name="Action Number" />
+          </Key>
+          <Property Name="Action Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Action Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Web Login Data">
+          <Key>
+            <PropertyRef Name="Investigator Name" />
+          </Key>
+          <Property Name="Investigator Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="255" />
+          <Property Name="Salt" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Suspended" Type="bit" />
+          <Property Name="Temp Password" Type="bit" />
+          <Property Name="DataSource" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email Confirmed" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="All Investigators$InvestigatorsAdditional Investigators">
           <End Role="Investigators" Type="Self.Investigators" Multiplicity="0..1" />
@@ -294,6 +314,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Web Action Data_Web Action Types">
+          <End Role="Web Action Types" Type="Self.Web Action Types" Multiplicity="1" />
+          <End Role="Web Action Data" Type="Self.Web Action Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web Action Types">
+              <PropertyRef Name="Action Number" />
+            </Principal>
+            <Dependent Role="Web Action Data">
+              <PropertyRef Name="Action Number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Web Action Data_Web Login Data">
+          <End Role="Web Login Data" Type="Self.Web Login Data" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Web Action Data" Type="Self.Web Action Data" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web Login Data">
+              <PropertyRef Name="Investigator Name" />
+            </Principal>
+            <Dependent Role="Web Action Data">
+              <PropertyRef Name="Investigator Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Web_Login Data_Investigators">
+          <End Role="Investigators" Type="Self.Investigators" Multiplicity="1" />
+          <End Role="Web Login Data" Type="Self.Web Login Data" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Investigators">
+              <PropertyRef Name="Investigator Name" />
+            </Principal>
+            <Dependent Role="Web Login Data">
+              <PropertyRef Name="Investigator Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Investigators$CollegesInvestigators">
           <End Role="Colleges" Type="Self.Colleges" Multiplicity="0..1" />
           <End Role="Investigators" Type="Self.Investigators" Multiplicity="*" />
@@ -339,18 +397,6 @@
             </Principal>
             <Dependent Role="Investigators">
               <PropertyRef Name="Organization" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Login Data$InvestigatorsLogin Data">
-          <End Role="Investigators" Type="Self.Investigators" Multiplicity="1" />
-          <End Role="Login Data" Type="Self.Login Data" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Investigators">
-              <PropertyRef Name="Investigator Name" />
-            </Principal>
-            <Dependent Role="Login Data">
-              <PropertyRef Name="Investigator Name" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -471,7 +517,6 @@
           <EntitySet Name="File Numbers" EntityType="Self.File Numbers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Investigators" EntityType="Self.Investigators" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Login Data" EntityType="Self.Login Data" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizations" EntityType="Self.Organizations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Project Numbers" EntityType="Self.Project Numbers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Records Status" EntityType="Self.Records Status" Schema="dbo" store:Type="Tables" />
@@ -479,6 +524,9 @@
           <EntitySet Name="Starting Fiscal Year" EntityType="Self.Starting Fiscal Year" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Transactions" EntityType="Self.Transactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web Action Data" EntityType="Self.Web Action Data" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web Action Types" EntityType="Self.Web Action Types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Web Login Data" EntityType="Self.Web Login Data" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="All Investigators$InvestigatorsAdditional Investigators" Association="Self.All Investigators$InvestigatorsAdditional Investigators">
             <End Role="Investigators" EntitySet="Investigators" />
             <End Role="All Investigators" EntitySet="All Investigators" />
@@ -511,6 +559,18 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="File Numbers" EntitySet="File Numbers" />
           </AssociationSet>
+          <AssociationSet Name="FK_Web Action Data_Web Action Types" Association="Self.FK_Web Action Data_Web Action Types">
+            <End Role="Web Action Types" EntitySet="Web Action Types" />
+            <End Role="Web Action Data" EntitySet="Web Action Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Web Action Data_Web Login Data" Association="Self.FK_Web Action Data_Web Login Data">
+            <End Role="Web Login Data" EntitySet="Web Login Data" />
+            <End Role="Web Action Data" EntitySet="Web Action Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Web_Login Data_Investigators" Association="Self.FK_Web_Login Data_Investigators">
+            <End Role="Investigators" EntitySet="Investigators" />
+            <End Role="Web Login Data" EntitySet="Web Login Data" />
+          </AssociationSet>
           <AssociationSet Name="Investigators$CollegesInvestigators" Association="Self.Investigators$CollegesInvestigators">
             <End Role="Colleges" EntitySet="Colleges" />
             <End Role="Investigators" EntitySet="Investigators" />
@@ -526,10 +586,6 @@
           <AssociationSet Name="Investigators$OrganizationInvestigators" Association="Self.Investigators$OrganizationInvestigators">
             <End Role="Organizations" EntitySet="Organizations" />
             <End Role="Investigators" EntitySet="Investigators" />
-          </AssociationSet>
-          <AssociationSet Name="Login Data$InvestigatorsLogin Data" Association="Self.Login Data$InvestigatorsLogin Data">
-            <End Role="Investigators" EntitySet="Investigators" />
-            <End Role="Login Data" EntitySet="Login Data" />
           </AssociationSet>
           <AssociationSet Name="Project Numbers$Ending Fiscal YearProject Numbers" Association="Self.Project Numbers$Ending Fiscal YearProject Numbers">
             <End Role="Ending Fiscal Year" EntitySet="Ending Fiscal Year" />
@@ -700,21 +756,8 @@
           <NavigationProperty Name="Department" Relationship="Self.Investigators_DepartmentsInvestigators" FromRole="Investigators" ToRole="Departments" />
           <NavigationProperty Name="Gender1" Relationship="Self.Investigators_GenderInvestigators" FromRole="Investigators" ToRole="Gender" />
           <NavigationProperty Name="Organization1" Relationship="Self.Investigators_OrganizationInvestigators" FromRole="Investigators" ToRole="Organizations" />
-          <NavigationProperty Name="Login_Data" Relationship="Self.Login_Data_InvestigatorsLogin_Data" FromRole="Investigators" ToRole="Login_Data" />
           <NavigationProperty Name="Project_Numbers" Relationship="Self.Project_Numbers_InvestigatorsProject_Numbers" FromRole="Investigators" ToRole="Project_Numbers" />
-        </EntityType>
-        <EntityType Name="Login_datum">
-          <Key>
-            <PropertyRef Name="Investigator_Name" />
-          </Key>
-          <Property Name="Investigator_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Suspended" Type="Boolean" />
-          <Property Name="Temp_Password" Type="Boolean" />
-          <Property Name="DataSource" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Investigator" Relationship="Self.Login_Data_InvestigatorsLogin_Data" FromRole="Login_Data" ToRole="Investigators" />
+          <NavigationProperty Name="Web_Login_Data" Relationship="IAP_Model.FK_Web_Login_Data_Investigators" FromRole="Investigator" ToRole="Web_Login_datum" />
         </EntityType>
         <EntityType Name="Organization">
           <Key>
@@ -999,18 +1042,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Login_Data_InvestigatorsLogin_Data">
-          <End Role="Investigators" Type="Self.Investigator" Multiplicity="1" />
-          <End Role="Login_Data" Type="Self.Login_datum" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Investigators">
-              <PropertyRef Name="Investigator_Name" />
-            </Principal>
-            <Dependent Role="Login_Data">
-              <PropertyRef Name="Investigator_Name" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="Project_Numbers_InvestigatorsProject_Numbers">
           <End Role="Investigators" Type="Self.Investigator" Multiplicity="0..1" />
           <End Role="Project_Numbers" Type="Self.Project_Number" Multiplicity="*" />
@@ -1076,7 +1107,6 @@
           <EntitySet Name="File_Numbers" EntityType="Self.File_Number" />
           <EntitySet Name="Genders" EntityType="Self.Gender" />
           <EntitySet Name="Investigators" EntityType="Self.Investigator" />
-          <EntitySet Name="Login_Data" EntityType="Self.Login_datum" />
           <EntitySet Name="Organizations" EntityType="Self.Organization" />
           <EntitySet Name="Project_Numbers" EntityType="Self.Project_Number" />
           <EntitySet Name="Records_Status" EntityType="Self.Records_Status" />
@@ -1148,10 +1178,6 @@
             <End Role="Organizations" EntitySet="Organizations" />
             <End Role="Investigators" EntitySet="Investigators" />
           </AssociationSet>
-          <AssociationSet Name="Login_Data_InvestigatorsLogin_Data" Association="Self.Login_Data_InvestigatorsLogin_Data">
-            <End Role="Investigators" EntitySet="Investigators" />
-            <End Role="Login_Data" EntitySet="Login_Data" />
-          </AssociationSet>
           <AssociationSet Name="Project_Numbers_InvestigatorsProject_Numbers" Association="Self.Project_Numbers_InvestigatorsProject_Numbers">
             <End Role="Investigators" EntitySet="Investigators" />
             <End Role="Project_Numbers" EntitySet="Project_Numbers" />
@@ -1168,7 +1194,98 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Project_Numbers" EntitySet="Project_Numbers" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Web_Login_Data" EntityType="IAP_Model.Web_Login_datum" />
+          <AssociationSet Name="FK_Web_Login_Data_Investigators" Association="IAP_Model.FK_Web_Login_Data_Investigators">
+            <End Role="Investigator" EntitySet="Investigators" />
+            <End Role="Web_Login_datum" EntitySet="Web_Login_Data" />
+          </AssociationSet>
+          <EntitySet Name="Web_Action_Data" EntityType="IAP_Model.Web_Action_datum" />
+          <EntitySet Name="Web_Action_Types" EntityType="IAP_Model.Web_Action_Type" />
+          <AssociationSet Name="FK_Web_Action_Data_Web_Action_Types" Association="IAP_Model.FK_Web_Action_Data_Web_Action_Types">
+            <End Role="Web_Action_Type" EntitySet="Web_Action_Types" />
+            <End Role="Web_Action_datum" EntitySet="Web_Action_Data" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Web_Action_Data_Web_Login_Data" Association="IAP_Model.FK_Web_Action_Data_Web_Login_Data">
+            <End Role="Web_Login_datum" EntitySet="Web_Login_Data" />
+            <End Role="Web_Action_datum" EntitySet="Web_Action_Data" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Web_Login_datum">
+          <Key>
+            <PropertyRef Name="Investigator_Name" />
+          </Key>
+          <Property Name="Investigator_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Suspended" Type="Boolean" />
+          <Property Name="Temp_Password" Type="Boolean" />
+          <Property Name="DataSource" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email_Confirmed" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Investigator" Relationship="IAP_Model.FK_Web_Login_Data_Investigators" FromRole="Web_Login_datum" ToRole="Investigator" />
+          <NavigationProperty Name="Web_Action_Data" Relationship="IAP_Model.FK_Web_Action_Data_Web_Login_Data" FromRole="Web_Login_datum" ToRole="Web_Action_datum" />
+        </EntityType>
+        <Association Name="FK_Web_Login_Data_Investigators">
+          <End Type="IAP_Model.Investigator" Role="Investigator" Multiplicity="1" />
+          <End Type="IAP_Model.Web_Login_datum" Role="Web_Login_datum" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Investigator">
+              <PropertyRef Name="Investigator_Name" />
+            </Principal>
+            <Dependent Role="Web_Login_datum">
+              <PropertyRef Name="Investigator_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Web_Action_datum">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Investigator_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Guid" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Json_Data" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Expires" Type="DateTime" Precision="7" />
+          <Property Name="Action_Number" Type="IAP_Model.ActionNumberEnum" Nullable="false" />
+          <NavigationProperty Name="Web_Action_Types" Relationship="IAP_Model.FK_Web_Action_Data_Web_Action_Types" FromRole="Web_Action_datum" ToRole="Web_Action_Type" />
+          <NavigationProperty Name="Web_Login_Data" Relationship="IAP_Model.FK_Web_Action_Data_Web_Login_Data" FromRole="Web_Action_datum" ToRole="Web_Login_datum" />
+        </EntityType>
+        <EntityType Name="Web_Action_Type">
+          <Key>
+            <PropertyRef Name="Action_Number" />
+          </Key>
+          <Property Name="Action_Number" Type="IAP_Model.ActionNumberEnum" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Action_Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Web_Action_Data" Relationship="IAP_Model.FK_Web_Action_Data_Web_Action_Types" FromRole="Web_Action_Type" ToRole="Web_Action_datum" />
+        </EntityType>
+        <Association Name="FK_Web_Action_Data_Web_Action_Types">
+          <End Type="IAP_Model.Web_Action_Type" Role="Web_Action_Type" Multiplicity="1" />
+          <End Type="IAP_Model.Web_Action_datum" Role="Web_Action_datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Action_Type">
+              <PropertyRef Name="Action_Number" />
+            </Principal>
+            <Dependent Role="Web_Action_datum">
+              <PropertyRef Name="Action_Number" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Web_Action_Data_Web_Login_Data">
+          <End Type="IAP_Model.Web_Login_datum" Role="Web_Login_datum" Multiplicity="1" />
+          <End Type="IAP_Model.Web_Action_datum" Role="Web_Action_datum" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Web_Login_datum">
+              <PropertyRef Name="Investigator_Name" />
+            </Principal>
+            <Dependent Role="Web_Action_datum">
+              <PropertyRef Name="Investigator_Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="ActionNumberEnum">
+        <Member Name="Register" Value="1" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1296,19 +1413,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Login_Data">
-            <EntityTypeMapping TypeName="IAP_Model.Login_datum">
-              <MappingFragment StoreEntitySet="Login Data">
-                <ScalarProperty Name="Investigator_Name" ColumnName="Investigator Name" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Suspended" ColumnName="Suspended" />
-                <ScalarProperty Name="Temp_Password" ColumnName="Temp Password" />
-                <ScalarProperty Name="DataSource" ColumnName="DataSource" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Organizations">
             <EntityTypeMapping TypeName="IAP_Model.Organization">
               <MappingFragment StoreEntitySet="Organizations">
@@ -1379,6 +1483,41 @@
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="FY_Date" ColumnName="FY Date" />
                 <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Login_Data">
+            <EntityTypeMapping TypeName="IAP_Model.Web_Login_datum">
+              <MappingFragment StoreEntitySet="Web Login Data">
+                <ScalarProperty Name="Email_Confirmed" ColumnName="Email Confirmed" />
+                <ScalarProperty Name="DataSource" ColumnName="DataSource" />
+                <ScalarProperty Name="Temp_Password" ColumnName="Temp Password" />
+                <ScalarProperty Name="Suspended" ColumnName="Suspended" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Investigator_Name" ColumnName="Investigator Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Action_Data">
+            <EntityTypeMapping TypeName="IAP_Model.Web_Action_datum">
+              <MappingFragment StoreEntitySet="Web Action Data">
+                <ScalarProperty Name="Action_Number" ColumnName="Action Number" />
+                <ScalarProperty Name="Expires" ColumnName="Expires" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Json_Data" ColumnName="Json Data" />
+                <ScalarProperty Name="Guid" ColumnName="Guid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Investigator_Name" ColumnName="Investigator Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Web_Action_Types">
+            <EntityTypeMapping TypeName="IAP_Model.Web_Action_Type">
+              <MappingFragment StoreEntitySet="Web Action Types">
+                <ScalarProperty Name="Action_Name" ColumnName="Action Name" />
+                <ScalarProperty Name="Action_Number" ColumnName="Action Number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

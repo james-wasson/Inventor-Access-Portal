@@ -46,16 +46,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CssInliner, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\CssInliner.0.1.1\lib\net40\CssInliner.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ExCSS, Version=1.0.0.0, Culture=neutral, PublicKeyToken=083c9b8a05122ede, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExCSS.1.1.0\lib\net40\ExCSS.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.6\lib\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mvc.Mailer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel" />
     <Reference Include="System.Configuration.Install" />
@@ -126,9 +141,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -198,25 +210,32 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Extensions\RazorExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mailer\CompleteRegistrationController.cs" />
+    <Compile Include="Mailer\EmailBaseController.cs" />
+    <Compile Include="Mailer\Models\CompleteRegistration\DataModel.cs" />
+    <Compile Include="Mailer\Models\CompleteRegistration\EmailModel.cs" />
+    <Compile Include="Mailer\SendEmail.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
-
-    <Compile Include="Models\SharedModel.cs" />
-
+    <Compile Include="Enums\ErrorCodes.cs" />
+    <Compile Include="Mailer\Models\_EmailModel.cs" />
+    <Compile Include="Models\Partial\ErrorModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
-
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
     <Compile Include="Models\Home\InventionsModel.cs" />
     <Compile Include="Models\Home\RecentActivitiesModel.cs" />
+    <Compile Include="Enums\WarningCodes.cs" />
     <Compile Include="Models\Reports\FileModel.cs" />
     <Compile Include="Models\Reports\ProjectModel.cs" />
+    <Compile Include="Models\Partial\SharedModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AccountHelper.cs" />
-    <Compile Include="Util\EmailHelper.cs" />
-    <Compile Include="Util\ErrorHelper.cs" />
+    <Compile Include="Util\CredentialsHelper.cs" />
+    <Compile Include="Extensions\HtmlHelperExtensions.cs" />
     <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +254,13 @@
     </Content>
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Mailer\Styles\less\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Mailer\Styles\less\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Mailer\Templates\CompleteRegistration\Email.cshtml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Dev\Cookies.js" />
@@ -263,6 +289,13 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Mailer\Templates\Web.config" />
+    <Content Include="Mailer\Styles\less\main.less" />
+    <Content Include="Content\less\theme.less" />
+    <Content Include="Mailer\Templates\CompleteRegistration\Sent.cshtml" />
+    <Content Include="Mailer\Templates\Shared\Error.cshtml" />
+    <Content Include="Mailer\Templates\CompleteRegistration\Received.cshtml" />
+    <Content Include="Mailer\Templates\CompleteRegistration\ConfirmationError.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -287,6 +320,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -301,10 +336,11 @@
     <Content Include="Views\Shared\_SidebarPartial.cshtml" />
     <Content Include="Views\Shared\_HeadersPartial.cshtml" />
     <Content Include="Views\Shared\_ErrorPartial.cshtml" />
+    <Content Include="Views\Shared\_IgnoreFormWarnings.cshtml" />
+    <Content Include="Mailer\Templates\Shared\_EmailLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\RecentActivities\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

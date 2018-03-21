@@ -10,7 +10,7 @@ namespace InventorAccessPortal.DB
     {
         public static PasswordVerificationResult Success = PasswordVerificationResult.Success;
         public static PasswordVerificationResult Failed = PasswordVerificationResult.Failed;
-        private static string HashPassword(string password, string salt = null)
+        public static string HashPassword(string password, string salt = null)
         {
             return Encrypt.GetSAH512Hash((salt != null ? password + salt : password));
         }

@@ -19,7 +19,7 @@ namespace InventorAccessPortal.Web.Models.Home
             public string LawFirm;
             public string ProjectNum;
         }
-        public class Form : SharedModel
+        public class Form : _TitleModel
         {
             public List<Item> Files = new List<Item>();
         }
