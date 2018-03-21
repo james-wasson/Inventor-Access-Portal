@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0b3b17f662a1417fa3c6d1d81542daa1" Name="Diagram1">
+        <EntityTypeShape EntityType="IAP_Model.All_Investigator" Width="1.5" PointX="9.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Code" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.College" Width="1.5" PointX="1.5" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Combo_Family" Width="1.5" PointX="9" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Combo_Family_Listing" Width="1.5" PointX="11.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Department" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Ending_Fiscal_Year" Width="1.5" PointX="3.75" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Family" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Family_Listing" Width="1.5" PointX="8.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.File_Number" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Gender" Width="1.5" PointX="1.5" PointY="24" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Investigator" Width="1.5" PointX="3.75" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Organization" Width="1.5" PointX="1.5" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Project_Number" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Records_Status" Width="1.5" PointX="3.75" PointY="26.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Reminder" Width="1.5" PointX="5.25" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Starting_Fiscal_Year" Width="1.5" PointX="3.25" PointY="29.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Status" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="IAP_Model.Transaction" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="IAP_Model.All_Investigators_InvestigatorsAdditional_Investigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.All_Investigators_Project_NumbersAdditional_Investigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Combo_Family_Listings_CodesCombo_Family_Listings" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Transactions_CodesTransactions" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Investigators_CollegesInvestigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Combo_Family_Listings_Combo_FamiliesCombo_Family_Listings" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Investigators_DepartmentsInvestigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Project_Numbers_Ending_Fiscal_YearProject_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Family_Listings_FamiliesFamily_Listings" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Family_Listings_File_NumbersFamily_Listings" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.File_Numbers_Project_NumbersFile_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.File_Numbers_StatusFile_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Reminders_File_NumbersReminders" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Transactions_File_NumbersTransactions" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Investigators_GenderInvestigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Investigators_OrganizationInvestigators" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Project_Numbers_InvestigatorsProject_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Project_Numbers_Records_StatusProject_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Project_Numbers_Starting_Fiscal_YearProject_Numbers" ManuallyRouted="false" />
+        <AssociationConnector Association="IAP_Model.Project_Numbers_StatusProject_Numbers" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="IAP_Model.Web_Login_datum" Width="1.5" PointX="9.125" PointY="22.75" />
+        <AssociationConnector Association="IAP_Model.FK_Web_Login_Data_Investigators" />
+        <EntityTypeShape EntityType="IAP_Model.Web_Action_datum" Width="1.5" PointX="11.375" PointY="22.875" />
+        <EntityTypeShape EntityType="IAP_Model.Web_Action_Type" Width="1.5" PointX="9.125" PointY="19.375" />
+        <AssociationConnector Association="IAP_Model.FK_Web_Action_Data_Web_Action_Types" />
+        <AssociationConnector Association="IAP_Model.FK_Web_Action_Data_Web_Login_Data" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

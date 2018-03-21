@@ -1,0 +1,25 @@
+﻿@using InventorAccessPortal.Web.Util;
+@using InventorAccessPortal.Web.Models;
+
+@try
+{
+    if (Model != null)
+    {
+        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ErrorModel));
+        if (IsRightType == true)
+        {
+            var castModel = (_ErrorModel)Model;
+            castModel.IgnoreWarnings();
+            if (castModel._IgnoredWarnings != null)
+            {
+                for (int i = 0; i < castModel._IgnoredWarnings.Count; i++)
+                {
+                    @Html.Hidden("_IgnoredWarnings[" + i + "]", castModel._IgnoredWarnings[i])
+                }
+            }
+        }
+    }
+}
+finally { }
+
+

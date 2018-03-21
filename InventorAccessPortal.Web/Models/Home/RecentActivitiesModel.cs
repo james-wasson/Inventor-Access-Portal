@@ -5,7 +5,7 @@ using System.Web;
 
 namespace InventorAccessPortal.Web.Models.Home
 {
-    public class RecentActivities
+    public class RecentActivitiesModel
     {
         public class Item
         {
@@ -19,9 +19,9 @@ namespace InventorAccessPortal.Web.Models.Home
             public string SerialNum;
             public string LawFirm;
         }
-        public class Form
+        public class Form : _TitleModel
         {
-            public List<Item> RecentActivities;
+            public List<Item> RecentActivities = new List<Item>();
         }
     }
 }

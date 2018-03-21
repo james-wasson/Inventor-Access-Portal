@@ -1,12 +1,12 @@
-﻿@model InventorAccessPortal.Web.Models.Home.RecentActivities.Form
+﻿@model InventorAccessPortal.Web.Models.Home.RecentActivitiesModel.Form
 @{
     ViewBag.Title = "Recent Activities";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Recent Activities</h1>
-<div>
-    <table>
+<h1>Recent Activities @Model.ExtendedTitle</h1>
+<table class="table table-bordered table-responsive">
+    <thead>
         <tr>
             <th>Date</th>
             <th>Activity</th>
@@ -18,9 +18,11 @@
             <th>Serial Number</th>
             <th>Law Firm</th>
         </tr>
+    </thead>
+    <tbody>
         @if (Model != null)
         {
-            foreach (var recentAct in @Model.RecentActivities)
+            foreach (var recentAct in Model.RecentActivities)
             {
                 <tr>
                     <td>@recentAct.Date</td>
@@ -35,5 +37,5 @@
                 </tr>
             }
         }
-    </table>
-</div>
+    </tbody>
+</table>

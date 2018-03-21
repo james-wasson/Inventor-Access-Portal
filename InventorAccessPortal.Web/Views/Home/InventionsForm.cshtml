@@ -1,28 +1,30 @@
-﻿@model InventorAccessPortal.Web.Models.Home.Inventions.Form
+﻿@model InventorAccessPortal.Web.Models.Home.InventionsModel.Form
 @{
     ViewBag.Title = "Inventions Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>All Inventions</h1>
-<div>
-    <table>
+<h1>All Inventions @Model.ExtendedTitle</h1>
+<table class="table table-bordered table-responsive">
+    <thead>
         <tr>
             <th>Status</th>
             <th>Project Number</th>
             <th>Project Title</th>
         </tr>
+    </thead>
+    <tbody>
         @if (Model != null)
         {
-            foreach (var invention in @Model.Inventions)
+            foreach (var invention in Model.Inventions)
             {
-                <tr>
+                <tr onclick="location.href = '@(Url.Action("RecentActivities", "Home", new { projectNumber = invention.ProjectNumber, extendedTitle = invention.ProjectTitle  }))'">
                     <td>@invention.Status</td>
                     <td>@invention.ProjectNumber</td>
                     <td>@invention.ProjectTitle</td>
                 </tr>
             }
         }
-    </table>
-    @Html.ActionLink("Project Form Template", "ProjectReport", "ProjectForms")
-</div>
+    </tbody>
+</table>
+@Html.ActionLink("Project Form Template", "Project", "Reports")

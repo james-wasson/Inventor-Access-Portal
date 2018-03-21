@@ -1,35 +1,93 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using InventorAccessPortal.DB;
-using InventorAccessPortal.DB.Auth;
-using InventorAccessPortal.DB.Objects.Collections;
+using System.ComponentModel.DataAnnotations;
+using InventorAccessPortal.Web.Enums;
 
 namespace InventorAccessPortal.Web.Util
 {
-    public class CredentialsHelper
+    public static class PasswordRequirements
     {
-        public static async void Login(String UsernameOrEmail, String password)
+        public const int MinLength = 16;
+        public const int MaxLength = 255;
+        public static bool IsSpecialChacter(char a)
         {
-            InvestigatorLoginRow LoginInfo = await GetAuthorization(UsernameOrEmail, password);
-            // Set some cookie stuff here, maybe return some data etc
+            return char.IsSymbol(a) || char.IsPunctuation(a);
         }
-        // GET: Authorization
-        public static async Task<InvestigatorLoginRow> GetAuthorization(String UsernameOrEmail, String password)
+        public static bool IsPasswordCharValid(char a)
         {
-            using (var e = new Context())
-            {
-                if (EmailHelper.isValid(UsernameOrEmail)) // is email
-                {
-                    return await Authorize.CredentialsByEmail(UsernameOrEmail, password, e);
-                }
-                else // is username
-                {
-                    return await Authorize.CredentialsByUsername(UsernameOrEmail, password, e);
-                }
+            if (a == '\0') return false;
+            return true;
+        }
+    }
+    public static class UsernameRequirements
+    {
+        public const int MinLength = 4;
+        public const int MaxLength = 255;
+        public static bool IsUsernameCharValid(char a)
+        {
+            if (a == '\0' || a == '@' || char.IsWhiteSpace(a)) return false;
+            return true;
+        }
+    }
+    public static class EmailRequirements
+    {
+        public const int MaxLength = 255;
+    }
+
+    /// <summary>
+    /// A Helper function inplimenting the above classes
+    /// </summary>
+    public static class CredentialsHelper
+    {
+        #region Email Validation
+        // email validation
+        public static bool IsEmailValid(string email)
+        {
+            return new EmailAddressAttribute().IsValid(email) && email.Length <= EmailRequirements.MaxLength;
+        }
+        #endregion
+
+        #region Password Validation
+        public static bool IsPasswordValid(string password)
+        {
+            return (
+                !String.IsNullOrEmpty(password) && 
+                password.Length >= PasswordRequirements.MinLength &&
+                password.Length <= PasswordRequirements.MaxLength &&
+                password.All(p => PasswordRequirements.IsPasswordCharValid(p))
+            );
+        }
+        
+        public static List<Enum> GetPasswordWarnings(string password)
+        {
+            var rv = new List<Enum>();
+            if (!(password.Any(p => Char.IsUpper(p)) && password.Any(p => Char.IsLower(p)))) {
+                rv.Add(PasswordWarnings.UpperAndLower);
             }
+            if (!password.Any(p => PasswordRequirements.IsSpecialChacter(p)))
+            {
+                rv.Add(PasswordWarnings.SpecialCharacter);
+            }
+            if (!password.Any(p => char.IsDigit(p)))
+            {
+                rv.Add(PasswordWarnings.Number);
+            }
+            return rv;
         }
+        #endregion
+
+        #region Username Validation
+        public static bool IsUsernameValid(string username)
+        {
+            return (
+                !String.IsNullOrEmpty(username) && 
+                username.Length >= UsernameRequirements.MinLength &&
+                username.Length <= UsernameRequirements.MinLength &&
+                username.All(p => UsernameRequirements.IsUsernameCharValid(p))
+            );
+        }
+        #endregion
     }
 }

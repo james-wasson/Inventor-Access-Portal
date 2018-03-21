@@ -1,12 +1,12 @@
-﻿@model InventorAccessPortal.Web.Models.Home.Files.Form
+﻿@model InventorAccessPortal.Web.Models.Home.FilesModel.Form
 @{
     ViewBag.Title = "Files Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>All Files</h1>
-<div>
-    <table>
+<h1>All Files @Model.ExtendedTitle</h1>
+<table class="table table-bordered table-responsive">
+    <thead>
         <tr>
             <th>Status</th>
             <th>File Number</th>
@@ -16,11 +16,13 @@
             <th>Law Firm</th>
             <th>Project Number</th>
         </tr>
+    </thead>
+    <tbody>
         @if (Model != null)
         {
-            foreach (var file in @Model.Files)
+            foreach (var file in Model.Files)
             {
-                <tr>
+                <tr onclick="location.href = '@(Url.Action("RecentActivities", "Home", new { fileNumber = file.FileNum, extendedTitle = file.FileName }))'">
                     <td>@file.Status</td>
                     <td>@file.FileNum</td>
                     <td>@file.FileName</td>
@@ -31,8 +33,8 @@
                 </tr>
             }
         }
-    </table>
-    @Html.ActionLink("File Report Template", "FileReport", "ProjectForms")
-</div>
+    </tbody>
+</table>
+@Html.ActionLink("File Report Template", "File", "Reports")
 
 
