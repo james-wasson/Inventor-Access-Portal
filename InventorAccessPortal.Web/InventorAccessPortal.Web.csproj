@@ -257,11 +257,11 @@
     <Content Include="Content\less\main.min.css">
       <DependentUpon>main.css</DependentUpon>
     </Content>
-    <Content Include="Content\less\nav.css">
-      <DependentUpon>nav.less</DependentUpon>
+    <Content Include="Content\less\sidebar.css">
+      <DependentUpon>sidebar.less</DependentUpon>
     </Content>
-    <Content Include="Content\less\nav.min.css">
-      <DependentUpon>nav.css</DependentUpon>
+    <Content Include="Content\less\sidebar.min.css">
+      <DependentUpon>sidebar.css</DependentUpon>
     </Content>
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -279,7 +279,7 @@
     <Content Include="Scripts\detect-element-resize.js" />
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
-    <Content Include="Scripts\dev\main\nav.js" />
+    <Content Include="Scripts\dev\main\sidebarExpander.js" />
     <Content Include="Scripts\dev\main\resizeForFooter.js" />
     <Content Include="Scripts\dev\main\resizeForSidebar.js" />
     <Content Include="Scripts\dev\main\toastrSetup.js" />
@@ -289,7 +289,7 @@
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\less\nav.less" />
+    <Content Include="Content\less\sidebar.less" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -319,6 +319,7 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Mailer\Templates\Shared\_EmailFooterPartial.cshtml" />
     <Content Include="Content\less\main.less" />
+    <Content Include="Content\less\table.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -345,8 +346,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />

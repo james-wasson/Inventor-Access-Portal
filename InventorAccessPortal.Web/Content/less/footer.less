@@ -1,14 +1,30 @@
 ﻿@import "theme.less";
 
-.sticky-footer {
+#footer {
     margin-right: 15px; /* this is the padding in container-fluid */
     position: fixed;
     padding: 10px;
+    padding-top: 15px;
     bottom: 0;
     background-color: @darkBackgroundColor;
+
+    * {
+        margin: 0;
+    }
+
+    .footerBorder {
+        position: absolute;
+        top: 0px;
+        left: 0;
+        margin-top: 5px; /*How far away you want the borser from the top*/
+        width: 100%;
+        border-top: 4px solid @accentColor;
+    }
 
     #ConfidentialityFooter {
         font: "Helvetica Bold";
         font-size: 14px;
+        font-weight: bold;
+        color: @lightTextColor;
     }
 }

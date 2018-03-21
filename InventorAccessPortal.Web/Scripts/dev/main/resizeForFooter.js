@@ -1,6 +1,7 @@
 ﻿$().ready(function () {
     var $footer = $("#footer");
     var $space = $("#spaceForFooter");
+    var $content = $("#content-body");
     function resizeContent() {
         $space.css("height", $footer.outerHeight() + "px");
     } resizeContent();

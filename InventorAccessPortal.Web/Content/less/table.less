@@ -1,0 +1,14 @@
+﻿@import "theme.less";
+
+.table {
+    .table-link a, .table-link {
+        color: @accentColor;
+        font-weight: bold;
+    }
+
+    .table-striped > tbody > tr:nth-child(2n+1) {
+        & > td, & > th {
+            background-color: @accentColor;
+        }
+    }
+}
