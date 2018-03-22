@@ -285,7 +285,6 @@
     <Content Include="Scripts\detect-element-resize.js" />
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
-    <Content Include="Scripts\dev\main\resizeForContentBody.js" />
     <Content Include="Scripts\dev\main\sidebarExpander.js" />
     <Content Include="Scripts\dev\main\resizeForFooter.js" />
     <Content Include="Scripts\dev\main\resizeForSidebar.js" />
