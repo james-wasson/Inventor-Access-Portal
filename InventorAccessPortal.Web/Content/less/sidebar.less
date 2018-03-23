@@ -5,11 +5,12 @@
 ----------------------------------------------------- */
 @leftToggle: "\f100"; /*double angle left*/
 @rightToggle: "\f101"; /*double angle right*/
+@import "theme.less";
 
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #f3efec;
     color: #fff;
     transition: all 0.3s;
     position: fixed;
@@ -51,7 +52,7 @@
             text-align: left;
 
             &:hover {
-                color: #7386D5;
+                color: @lightColor;
                 background: #fff;
             }
 
@@ -67,7 +68,8 @@
     }
 
     .btn {
-        background-color: dodgerblue;
+        background-color: @lightColor;
+        border-color: @accentColor;
     }
 
     &.active {
