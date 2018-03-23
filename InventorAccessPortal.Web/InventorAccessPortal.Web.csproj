@@ -286,7 +286,7 @@
     <Content Include="Scripts\dev\account\passwordCompare.js" />
     <Content Include="Scripts\dev\main\cookies.js" />
     <Content Include="Scripts\dev\main\sidebarExpander.js" />
-    <Content Include="Scripts\dev\main\resizeForFooter.js" />
+    <Content Include="Scripts\dev\main\resizeForContent.js" />
     <Content Include="Scripts\dev\main\resizeForSidebar.js" />
     <Content Include="Scripts\dev\main\toastrSetup.js" />
     <Content Include="Scripts\jquery.resize.js" />

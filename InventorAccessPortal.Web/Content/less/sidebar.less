@@ -14,7 +14,8 @@
     transition: all 0.3s;
     position: fixed;
     z-index: 1000;
-    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
 
     .sidebar-header {
         padding: 20px;
@@ -39,8 +40,8 @@
 
     ul {
         &.components {
-            padding: 20px 0;
             border-bottom: 1px solid #47748b;
+            margin-top: 10px;
         }
 
         li a {
@@ -178,14 +179,14 @@
             }
 
             .components {
-                * {
+                *, & {
                     display: block;
                 }
             }
         }
 
         .components {
-            * {
+            *, & {
                 display: none;
             }
         }

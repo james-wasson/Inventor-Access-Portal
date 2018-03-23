@@ -1,6 +1,8 @@
 ﻿@import "theme.less";
 
 body {
+    overflow-y: auto;
+    overflow-x: auto;
     padding-top: 0;
 }
 
@@ -13,8 +15,7 @@ body {
 }
 
 #content {
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden;
     margin-top: 15px;
     transition: all 0.3s;
     position: relative !important;
@@ -25,7 +26,6 @@ body {
     }
 
     #content-body {
-        min-height: 100%;
         overflow: auto;
         background-color: @textBackgroundColor;
         padding: 5px 10px;
@@ -45,5 +45,17 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+a {
+    color: @linkColor;
+    font-weight: bold;
+    display: inline-block;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: @linkColor;
+    cursor:pointer;
 }
 
