@@ -1,13 +1,15 @@
-﻿@using System.Configuration;
+﻿@using InventorAccessPortal.Web.Util;
+@using System.Configuration;
 @{
     var message = ConfigurationManager.AppSettings["ConfidentialityNotice"].ToString();
 }
-
-<div id="spaceForFooter">
-    <footer id="footer">
-        <div class="footerBorder"></div>
-        <p id="ConfidentialityFooter">
-            <strong>CONFIDENTIAL:</strong> @message
-        </p>
-    </footer>
-</div>
+@if (AccountHelper.IsLoggedIn()) { 
+    <div id="spaceForFooter">
+        <footer id="footer">
+            <div class="footerBorder"></div>
+            <p id="ConfidentialityFooter">
+                <strong>CONFIDENTIAL:</strong> @message
+            </p>
+        </footer>
+    </div>
+}
