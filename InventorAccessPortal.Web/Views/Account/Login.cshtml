@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>Login</h1>
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "LoginForm" }))
 {
     @Html.AntiForgeryToken()
     @Html.Partial("~/Views/Shared/_IgnoreFormWarnings.cshtml")
@@ -20,8 +20,16 @@
                 <td>@Html.PasswordFor(p => p.Password)</td>
             </tr>
         </table>
-        <input type="submit" value="Sign In">
+        <input type="button" value="Sign In" data-toggle="modal" data-target="#ConfidentialityModal">
     </div>
 }
+@Html.Partial("~/Views/Shared/Modals/_ConfidentialityNotice.cshtml")
+
+<script>
+    ConfidentialityModalAction.setOnAction(function (action) {
+        if (action === "submit")
+            $("#LoginForm").submit();
+    });
+</script>
 
 

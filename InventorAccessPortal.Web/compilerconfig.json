@@ -18,5 +18,9 @@
   {
     "outputFile": "Content/less/table.css",
     "inputFile": "Content/less/table.less"
+  },
+  {
+    "outputFile": "Content/less/modal.css",
+    "inputFile": "Content/less/modal.less"
   }
 ]
