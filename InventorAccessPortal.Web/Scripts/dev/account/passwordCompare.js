@@ -29,7 +29,7 @@
     });
 
     function equalFunction($t1, $t2) {
-        return $t1.val() == $t2.val();
+        return $t1.val() === $t2.val();
     }
 
 });
