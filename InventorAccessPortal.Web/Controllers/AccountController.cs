@@ -11,6 +11,7 @@ using System.Web.Security;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.DB.Objects;
+using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.Web.Mailer;
 using InventorAccessPortal.Web.Mailer.Models;
 
@@ -97,6 +98,7 @@ namespace InventorAccessPortal.Web.Controllers
             return View(new RegisterModel());
         }
 
+
         [ValidateAntiForgeryToken, HttpPost]
         public ActionResult Register(RegisterModel model)
         {
@@ -173,5 +175,7 @@ namespace InventorAccessPortal.Web.Controllers
             // if we got here there was an error
             return View(model);
         }
+
+       
     }
 }

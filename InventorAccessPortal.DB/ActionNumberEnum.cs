@@ -13,6 +13,7 @@ namespace InventorAccessPortal.DB
     
     public enum ActionNumberEnum : int
     {
-        Register = 1
+        Register = 1,
+        ResetPassword = 2
     }
 }
