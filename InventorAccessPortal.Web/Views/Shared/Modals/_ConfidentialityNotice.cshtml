@@ -1,0 +1,50 @@
+﻿@using System.Configuration;
+@{
+    var message = ConfigurationManager.AppSettings["ConfidentialityNotice"].ToString();
+}
+
+<div id="ConfidentialityModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Terms of Use</h4>
+                <button type="button" class="close modalCancel modalCancelX" data-dismiss="modal" aria-label="Close" onclick="ConfidentialityModalAction.setAction('cancel')">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong>CONFIDENTIAL:</strong> @message
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary modalSubmit" data-dismiss="modal" onclick="ConfidentialityModalAction.setAction('submit')">Agree</button>
+                <button type="button" class="btn btn-secondary modalCancel" data-dismiss="modal" onclick="ConfidentialityModalAction.setAction('cancel')">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var ConfidentialityModalAction = (function () {
+        var Action = "";
+        var OnActionFunction = function () { };
+        $(document).ready(function () {
+            $('#ConfidentialityModal').on('hidden.bs.modal', function (e) {
+                OnActionFunction(Action);
+            });
+        });
+
+        return {
+            setAction: function (action) {
+                Action = action;
+            },
+            setOnAction: function (fun) {
+                if ($.isFunction(fun))
+                    OnActionFunction = fun;
+                else
+                    console.warn("Cannot set modal action that is not a function");
+            }
+        }
+    }());
+
+</script>
+

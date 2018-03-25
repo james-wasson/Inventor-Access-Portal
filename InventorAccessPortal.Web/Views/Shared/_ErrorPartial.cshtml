@@ -1,43 +1,42 @@
 ﻿@using InventorAccessPortal.Web.Util;
 @using InventorAccessPortal.Web.Models;
 
-@try
-{
-    if (Model != null)
-    {
-        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ErrorModel));
-        if (IsRightType == true)
+
+<script type="text/javascript" name="initalErrorScript">
+        @try
         {
-            var castModel = (_ErrorModel)Model;
-            if (castModel.GetErrors().Count > 0)
+            if (Model != null)
             {
-                <div class="alert alert-danger" role="alert">
-                    <h4>Please fix the below issues.</h4>
-                    @foreach (var error in castModel.GetErrors())
+                bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ErrorModel));
+                if (IsRightType == true)
+                {
+                    var castModel = (_ErrorModel)Model;
+                    if (castModel.GetErrors().Count > 0)
                     {
-                        <p>@error</p>
+                        foreach (var error in castModel.GetErrors())
+                        {
+                            <text>toastr['error']("@error");</text>
+                        }
                     }
-                </div>
-            }
-            if (castModel.GetWarnings().Count > 0)
-            {
-                <div class="alert alert-warning" role="alert">
-                    <h4>Take note of these issues and fix them, or resubmit to accept as is.</h4>
-                    @foreach (var warn in castModel.GetWarnings())
+                    if (castModel.GetWarnings().Count > 0)
                     {
-                        <p>@warn</p>
+                        foreach (var warn in castModel.GetWarnings())
+                        {
+                            <text>toastr['warning']("@warn");</text>
+                        }
+                        <text>toastr['warning']("Resubmit to ignore warnings.");</text>
                     }
-                </div>
+
+                }
+
             }
-            
         }
-    }
-}
-catch (Exception ex)
-{
-    <div class="alert alert-danger" role="alert">
-        <p>There Was some error while trying to displaying the errors or warnings.</p>
-    </div>
-}
+        catch (Exception ex)
+        {
+            <text>toastr['error']("There Was some error while trying to displaying the errors or warnings.", "@ex.Message");</text>
+        }
+</script>
+
+
 
 

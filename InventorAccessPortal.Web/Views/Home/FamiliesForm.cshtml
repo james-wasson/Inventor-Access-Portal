@@ -6,12 +6,13 @@
 
 
 <h1>All Families @Model.ExtendedTitle</h1>
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive table-striped">
     <thead>
         <tr>
             <th>Status</th>
             <th>Family Number</th>
             <th>Family Name</th>
+            <th>Related</th>
         </tr>
     </thead>
     <tbody>
@@ -19,10 +20,15 @@
          {
             foreach (var family in Model.Families)
             {
-            <tr onclick="location.href = '@(Url.Action("FilesForm", "Home", new { familyNumber = family.FamilyNum, extendedTitle = family.FamilyName  }))'">
+            <tr>
                 <td>@family.Status</td>
                 <td>@family.FamilyNum</td>
                 <td>@family.FamilyName</td>
+                <td class="text-center table-link">
+                    <a href="@(Url.Action("FilesForm", "Home", new { familyNumber = family.FamilyNum, extendedTitle = family.FamilyName  }))">
+                        <span class="fa fa-share"></span> Files
+                    </a>
+                </td>
             </tr>
             }
          }

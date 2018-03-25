@@ -5,18 +5,21 @@
 ----------------------------------------------------- */
 @leftToggle: "\f100"; /*double angle left*/
 @rightToggle: "\f101"; /*double angle right*/
+@import "theme.less";
 
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #f3efec;
     color: #fff;
     transition: all 0.3s;
-    position: relative;
+    position: fixed;
+    z-index: 1000;
+    min-height: 100vh;
+    max-height: 100vh;
 
     .sidebar-header {
         padding: 20px;
-        background: #6d7fcc;
 
         .sidebar-collapsed {
             display: none;
@@ -27,6 +30,8 @@
             position: absolute;
             top: 0;
             right: 0;
+            z-index: 9999;
+
             .icon:after {
                 font-family: "FontAwesome";
                 content: @leftToggle;
@@ -36,8 +41,8 @@
 
     ul {
         &.components {
-            padding: 20px 0;
             border-bottom: 1px solid #47748b;
+            margin-top: 10px;
         }
 
         li a {
@@ -47,7 +52,7 @@
             text-align: left;
 
             &:hover {
-                color: #7386D5;
+                color: @lightColor;
                 background: #fff;
             }
 
@@ -63,7 +68,8 @@
     }
 
     .btn {
-        background-color: dodgerblue;
+        background-color: @lightColor;
+        border-color: @accentColor;
     }
 
     &.active {
@@ -85,8 +91,12 @@
         }
 
         ul li a {
-            padding: 20px 10px;
+            padding: 20px 5px;
             text-align: center;
+            word-wrap: break-word;
+            white-space: normal;
+            display: block;
+            width: 100%;
             font-size: 0.85em;
         }
 
@@ -121,42 +131,44 @@
        negative left margin
     */
     #sidebar {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: 0;
+        max-width: 0;
         text-align: center;
-        margin-left: -80px !important;
 
-        .sidebar-header .sidebar-toggle {
-            font-family: "FontAwesome";
-            position: absolute;
-            top: 0;
-            right: -30px;
-            -webkit-transition: right 0.2s; /* Safari */
-            transition: right 0.2s;
+        .sidebar-header {
+            background-color: transparent !important;
 
-            .icon:after {
-                content: @rightToggle;
+            .sidebar-expanded, .sidebar-collapsed {
+                display: none;
+            }
+
+            .sidebar-toggle {
+                display: block !important;
+                font-family: "FontAwesome";
+                position: absolute;
+                top: 0;
+                right: -30px;
+                -webkit-transition: right 0.2s; /* Safari */
+                transition: right 0.2s;
+                z-index: 9999;
+
+                .icon:after {
+                    content: @rightToggle;
+                }
             }
         }
 
         &.active {
+            min-width: 80px;
+            max-width: 80px;
             margin-left: 0 !important;
 
             .sidebar-header {
-                .sidebar-collapsed {
-                    display: none;
-                }
-
-                .sidebar-expanded {
-                    display: none;
-                }
-
                 .sidebar-collapsed {
                     display: block;
                 }
 
                 .sidebar-toggle {
-                    position: absolute;
                     top: 0;
                     right: 0;
                     -webkit-transition: right 0.2s; /* Safari */
@@ -167,29 +179,25 @@
                     }
                 }
             }
+
+            .components {
+                *, & {
+                    display: block;
+                }
+            }
         }
 
-        ul li a {
-            padding: 20px 10px;
-            font-size: 0.85em;
-        }
-
-        ul li a icon {
-            margin-right: 0;
-            display: block;
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        ul ul a {
-            padding: 10px !important;
+        .components {
+            *, & {
+                display: none;
+            }
         }
 
         & a[aria-expanded="false"]::before, &.active a[aria-expanded="true"]::before {
             top: auto;
             bottom: 5px;
-            right: 50%;
-            transform: translateX(50%);
+            right: 100%;
+            transform: translateX(100%);
         }
     }
 }

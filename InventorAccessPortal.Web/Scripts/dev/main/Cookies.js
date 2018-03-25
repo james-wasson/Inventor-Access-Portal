@@ -1,4 +1,6 @@
 ﻿var cookie = (function () {
+    'use strict';
+
     function get(cname) {
         var name = cname + "=";
         var decodedCookie = decodeURIComponent(document.cookie);

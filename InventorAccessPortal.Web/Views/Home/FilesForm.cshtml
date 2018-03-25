@@ -5,7 +5,7 @@
 }
 
 <h1>All Files @Model.ExtendedTitle</h1>
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive table-striped">
     <thead>
         <tr>
             <th>Status</th>
@@ -15,6 +15,7 @@
             <th>Continuity</th>
             <th>Law Firm</th>
             <th>Project Number</th>
+            <th>Related</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +23,7 @@
         {
             foreach (var file in Model.Files)
             {
-                <tr onclick="location.href = '@(Url.Action("RecentActivities", "Home", new { fileNumber = file.FileNum, extendedTitle = file.FileName }))'">
+                <tr>
                     <td>@file.Status</td>
                     <td>@file.FileNum</td>
                     <td>@file.FileName</td>
@@ -30,6 +31,11 @@
                     <td>@file.Continuity</td>
                     <td>@file.LawFirm</td>
                     <td>@file.ProjectNum</td>
+                    <td class="text-center table-link">
+                        <a href="@(Url.Action("RecentActivities", "Home", new { fileNumber = file.FileNum, extendedTitle = file.FileName }))">
+                            <span class="fa fa-share"></span> Activites
+                        </a>
+                    </td>
                 </tr>
             }
         }

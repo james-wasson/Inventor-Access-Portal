@@ -7,10 +7,10 @@
     <title>@ViewBag.Title - Inventor Access Portal</title>
 </head>
 <body>
-    @Html.InlineStyles("~/Content/Lib/Email/css")
+    @Html.InlineStyles("~/Content/Email/css")
     <div id="content">
         @RenderBody()
-        @Html.Partial("_FooterPartial")
+        @Html.Partial("~/Mailer/Templates/Shared/_EmailFooterPartial.cshtml")
     </div>
 </body>
 </html>

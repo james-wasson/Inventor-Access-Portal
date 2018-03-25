@@ -13,14 +13,18 @@
 <body>
     @Scripts.Render("~/bundles/Lib/jquery")
     @Scripts.Render("~/bundles/Lib/bootstrap")
+    @Scripts.Render("~/bundles/Lib/toastr")
     @Scripts.Render("~/bundles/scripts")
+    @Html.Partial("_ErrorPartial")
     <div class="wrapper">
         @Html.Partial("_SidebarPartial")
-        <div id="content">
-            @Html.Partial("_ErrorPartial")
-            @RenderBody()
+        <div id="content" class="container-fluid">
+            <div id="content-body">
+                @RenderBody()
+            </div>
             @Html.Partial("_FooterPartial")
         </div>
+       
     </div>
 
 

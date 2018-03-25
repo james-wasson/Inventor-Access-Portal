@@ -5,12 +5,13 @@
 }
 
 <h1>All Inventions @Model.ExtendedTitle</h1>
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive table-striped">
     <thead>
         <tr>
             <th>Status</th>
             <th>Project Number</th>
             <th>Project Title</th>
+            <th>Related</th>
         </tr>
     </thead>
     <tbody>
@@ -18,10 +19,15 @@
         {
             foreach (var invention in Model.Inventions)
             {
-                <tr onclick="location.href = '@(Url.Action("RecentActivities", "Home", new { projectNumber = invention.ProjectNumber, extendedTitle = invention.ProjectTitle  }))'">
+                <tr>
                     <td>@invention.Status</td>
                     <td>@invention.ProjectNumber</td>
                     <td>@invention.ProjectTitle</td>
+                    <td class="text-center table-link">
+                        <a href="@(Url.Action("RecentActivities", "Home", new { projectNumber = invention.ProjectNumber, extendedTitle = invention.ProjectTitle  }))">
+                            <span class="fa fa-share"></span> Activites
+                        </a>
+                    </td>
                 </tr>
             }
         }

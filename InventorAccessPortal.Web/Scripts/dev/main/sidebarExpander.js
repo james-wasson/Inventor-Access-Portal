@@ -1,9 +1,13 @@
 ﻿// will collapse the nav is screen is too small
 $().ready(function () {
+    'use strict';
+
     var $sidebar = $("#sidebar");
     var $toggle = $sidebar.find(".sidebar-toggle");
     var $toggleIcon = $toggle.find(".icon");
     var isActive = $sidebar.hasClass("active");
+
+    var transitionElements = [$sidebar, $toggle];
     
     // sets the active class on sidebar is b is true, remove if b i false
     // if override is set will always be active
@@ -26,9 +30,13 @@ $().ready(function () {
     (function () {
         var c = cookie.get("SidebarIsActive");
         if (c != null) isActive = (c == "true");
-        $sidebar.css("transition", "none");// removes bouncing issue
+        for (var e in transitionElements) // removes transition, bouncing issue
+            transitionElements[e].css("transition", "none"); 
         setActive(isActive);
-        $sidebar.prop('style').removeProperty("transition"); // adds transition back
+        setTimeout(function () { // adds transition back
+            for (var e in transitionElements) 
+                transitionElements[e].prop('style').removeProperty("transition");
+        }, 50);
     }());
 
     // on collapse click

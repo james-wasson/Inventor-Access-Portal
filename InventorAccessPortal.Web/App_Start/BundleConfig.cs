@@ -11,13 +11,16 @@ namespace InventorAccessPortal.Web
             /*
              * DEV Bundles
              */
-
             bundles.Add(new ScriptBundle("~/Content/css")
                 .IncludeDirectory("~/Content/css/", "*.css", true)
                 .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/Dev/", "*.js", true)
+                .IncludeDirectory("~/Scripts/dev/main", "*.js", true)
+                );
+
+            bundles.Add(new ScriptBundle("~/bundles/account/scripts")
+                .IncludeDirectory("~/Scripts/dev/account", "*.js", true)
                 );
 
             /*
@@ -25,7 +28,11 @@ namespace InventorAccessPortal.Web
             */
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/detect-element-resize.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Lib/toastr").Include(
+                "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -41,7 +48,8 @@ namespace InventorAccessPortal.Web
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/font-awesome.css"
+                      "~/Content/font-awesome.css",
+                      "~/Content/toastr.css"
                       ));
 
             /*
@@ -49,7 +57,7 @@ namespace InventorAccessPortal.Web
              * lightweight js and css
              */
 
-            bundles.Add(new StyleBundle("~/Content/Lib/Email/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Email/css").Include(
                       "~/Mailer/Styles/less/main.css"
                       ));
         }

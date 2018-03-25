@@ -243,15 +243,40 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\css\pagecontent.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\less\nav.css">
-      <DependentUpon>nav.less</DependentUpon>
+    <Content Include="Content\less\footer.css">
+      <DependentUpon>footer.less</DependentUpon>
     </Content>
-    <Content Include="Content\less\nav.min.css">
-      <DependentUpon>nav.css</DependentUpon>
+    <Content Include="Content\less\footer.min.css">
+      <DependentUpon>footer.css</DependentUpon>
     </Content>
+    <Content Include="Content\less\main.css">
+      <DependentUpon>main.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\main.min.css">
+      <DependentUpon>main.css</DependentUpon>
+    </Content>
+    <Content Include="Content\less\modal.css">
+      <DependentUpon>modal.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\modal.min.css">
+      <DependentUpon>modal.css</DependentUpon>
+    </Content>
+    <Content Include="Content\less\sidebar.css">
+      <DependentUpon>sidebar.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\sidebar.min.css">
+      <DependentUpon>sidebar.css</DependentUpon>
+    </Content>
+    <Content Include="Content\less\table.css">
+      <DependentUpon>table.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\table.min.css">
+      <DependentUpon>table.css</DependentUpon>
+    </Content>
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Mailer\Styles\less\main.css">
@@ -263,15 +288,20 @@
     <Content Include="Mailer\Templates\CompleteRegistration\Email.cshtml" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\Dev\Cookies.js" />
-    <Content Include="Scripts\Dev\nav.js" />
+    <Content Include="Scripts\detect-element-resize.js" />
+    <Content Include="Scripts\dev\account\passwordCompare.js" />
+    <Content Include="Scripts\dev\main\cookies.js" />
+    <Content Include="Scripts\dev\main\sidebarExpander.js" />
+    <Content Include="Scripts\dev\main\resizeForFooter.js" />
+    <Content Include="Scripts\dev\main\resizeForSidebar.js" />
+    <Content Include="Scripts\dev\main\toastrSetup.js" />
+    <Content Include="Scripts\jquery.resize.js" />
     <Content Include="Scripts\less-1.5.1.js" />
     <Content Include="Scripts\less-1.5.1.min.js" />
     <Content Include="Scripts\jquery.easyui.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\css\Site.css" />
-    <Content Include="Content\less\nav.less" />
+    <Content Include="Content\less\sidebar.less" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -296,6 +326,16 @@
     <Content Include="Mailer\Templates\Shared\Error.cshtml" />
     <Content Include="Mailer\Templates\CompleteRegistration\Received.cshtml" />
     <Content Include="Mailer\Templates\CompleteRegistration\ConfirmationError.cshtml" />
+    <Content Include="Content\less\footer.less" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Mailer\Templates\Shared\_EmailFooterPartial.cshtml" />
+    <Content Include="Content\less\main.less" />
+    <Content Include="Content\less\table.less" />
+    <Content Include="Content\less\modal.less" />
+    <Content Include="ConnectionStrings.Secret.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -307,6 +347,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -320,8 +362,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
@@ -338,9 +378,14 @@
     <Content Include="Views\Shared\_ErrorPartial.cshtml" />
     <Content Include="Views\Shared\_IgnoreFormWarnings.cshtml" />
     <Content Include="Mailer\Templates\Shared\_EmailLayout.cshtml" />
+    <Content Include="Views\Shared\Modals\_ConfidentialityNotice.cshtml" />
+    <None Include="SMTP.Secret.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\css\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
