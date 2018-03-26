@@ -217,13 +217,13 @@
     <Compile Include="Mailer\EmailBaseController.cs" />
     <Compile Include="Mailer\Models\CompleteRegistration\DataModel.cs" />
     <Compile Include="Mailer\Models\CompleteRegistration\EmailModel.cs" />
-    <Compile Include="Mailer\Models\ResetPassword\PasswordModel.cs" />
+    <Compile Include="Mailer\Models\ResetPassword\EmailModel.cs" />
     <Compile Include="Mailer\ResetPasswordController.cs" />
     <Compile Include="Mailer\SendEmail.cs" />
     <Compile Include="Models\Account\LoginModel.cs" />
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Mailer\Models\_EmailModel.cs" />
-    <Compile Include="Models\Account\ResetPasswordModel.cs" />
+    <Compile Include="Mailer\Models\ResetPassword\DataModel.cs" />
     <Compile Include="Models\Partial\ErrorModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
@@ -300,7 +300,7 @@
     <Content Include="Mailer\Templates\ResetPassword\ResetPasswordError.cshtml" />
     <Content Include="Mailer\Templates\ResetPassword\Sent.cshtml" />
     <Content Include="Mailer\Templates\ResetPassword\Email.cshtml" />
-    <Content Include="Views\ResetPassword\Received.cshtml" />
+    <Content Include="Mailer\Templates\ResetPassword\Received.cshtml" />
     <Content Include="Mailer\Templates\ResetPassword\ResetPasswordSuccess.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -378,8 +378,7 @@
     <None Include="SMTP.Secret.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\ResetPassword\ResetPassword.cshtml" />
-    <Content Include="Views\ResetPassword\ActualResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

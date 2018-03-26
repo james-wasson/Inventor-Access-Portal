@@ -8,6 +8,6 @@ namespace InventorAccessPortal.Web.Mailer.Models
 {
     public class _EmailModel : _ErrorModel
     {
-
+        public Guid ActionGuid;
     }
 }

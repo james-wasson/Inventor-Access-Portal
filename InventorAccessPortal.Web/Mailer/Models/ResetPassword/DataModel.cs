@@ -5,7 +5,7 @@ using System.Linq;
 using System.Web;
 using InventorAccessPortal.Web.Util;
 
-namespace InventorAccessPortal.Web.Models.Account
+namespace InventorAccessPortal.Web..Mailer.Models.ResetPassword
 {
     public class ResetPasswordModel : _ErrorModel
     {
