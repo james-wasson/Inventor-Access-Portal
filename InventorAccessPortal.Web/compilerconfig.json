@@ -22,5 +22,9 @@
   {
     "outputFile": "Content/less/modal.css",
     "inputFile": "Content/less/modal.less"
+  },
+  {
+    "outputFile": "Content/less/Scrollbar.css",
+    "inputFile": "Content/less/Scrollbar.less"
   }
 ]

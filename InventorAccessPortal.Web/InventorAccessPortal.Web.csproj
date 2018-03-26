@@ -241,6 +241,10 @@
     <Compile Include="Util\SessionHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\font-awesome.css" />
@@ -262,6 +266,12 @@
     </Content>
     <Content Include="Content\less\modal.min.css">
       <DependentUpon>modal.css</DependentUpon>
+    </Content>
+    <Content Include="Content\less\Scrollbar.css">
+      <DependentUpon>Scrollbar.less</DependentUpon>
+    </Content>
+    <Content Include="Content\less\Scrollbar.min.css">
+      <DependentUpon>Scrollbar.css</DependentUpon>
     </Content>
     <Content Include="Content\less\sidebar.css">
       <DependentUpon>sidebar.less</DependentUpon>
@@ -302,6 +312,11 @@
     <Content Include="Mailer\Templates\ResetPassword\Email.cshtml" />
     <Content Include="Views\ResetPassword\Received.cshtml" />
     <Content Include="Mailer\Templates\ResetPassword\ResetPasswordSuccess.cshtml" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\less\Scrollbar.less" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

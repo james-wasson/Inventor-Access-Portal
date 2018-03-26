@@ -5,11 +5,14 @@
 ----------------------------------------------------- */
 @leftToggle: "\f100"; /*double angle left*/
 @rightToggle: "\f101"; /*double angle right*/
+@expandedWidth: 250px;
+@thinWidth: 100px;
+@headerHeight: 80px;
 @import "theme.less";
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: @expandedWidth;
+    max-width: @expandedWidth;
     background: #f3efec;
     color: #fff;
     transition: all 0.3s;
@@ -19,7 +22,13 @@
     max-height: 100vh;
 
     .sidebar-header {
+        max-height: @headerHeight;
+        min-height: @headerHeight;
+        text-align: center;
+        vertical-align: middle;
         padding: 20px;
+        padding-top: 0;
+        margin-top: 30px;
 
         .sidebar-collapsed {
             display: none;
@@ -27,10 +36,23 @@
         }
 
         .sidebar-toggle {
+            display: block !important;
+            font-family: "FontAwesome";
             position: absolute;
             top: 0;
             right: 0;
             z-index: 9999;
+            height: 30px;
+            width: 30px;
+            padding: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 5px;
+            border: none;
+
+
+            .icon {
+                vertical-align: text-bottom;
+            }
 
             .icon:after {
                 font-family: "FontAwesome";
@@ -41,8 +63,10 @@
 
     ul {
         &.components {
-            border-bottom: 1px solid #47748b;
             margin-top: 10px;
+            margin-bottom: 0;
+            max-height: calc(~"100vh" - @headerHeight); /*Less is compiling this weird*/
+            overflow-y: auto;
         }
 
         li a {
@@ -54,10 +78,15 @@
             &:hover {
                 color: @lightColor;
                 background: #fff;
+
+                .icon {
+                    color: @lightColor;
+                }
             }
 
             .icon {
-                margin-right: 10px;
+                color: #fff;
+                margin-left: 5px;
             }
         }
 
@@ -69,12 +98,14 @@
 
     .btn {
         background-color: @lightColor;
-        border-color: @accentColor;
+        border: none;
+        border-bottom: 2px solid @accentColor;
+        border-radius: 0;
     }
 
     &.active {
-        min-width: 80px;
-        max-width: 80px;
+        min-width: @thinWidth;
+        max-width: @thinWidth;
 
         .sidebar-header {
             .sidebar-expanded, & .CTAs {
@@ -82,29 +113,30 @@
             }
 
             .sidebar-collapsed {
+                padding-top: 10px;
                 display: block !important;
             }
 
-            .sidebar-toggle .icon:after {
-                content: @rightToggle !important;
+            .sidebar-toggle {
+                .icon:after {
+                    content: @rightToggle !important;
+                }
             }
         }
 
         ul li a {
-            padding: 20px 5px;
             text-align: center;
             word-wrap: break-word;
             white-space: normal;
             display: block;
             width: 100%;
-            font-size: 0.85em;
+            font-size: 16px;
         }
 
         ul li a .icon {
-            margin-right: 0;
+            margin: 0;
             display: block;
             font-size: 1.8em;
-            margin-bottom: 5px;
         }
 
         ul ul a {
@@ -143,14 +175,11 @@
             }
 
             .sidebar-toggle {
-                display: block !important;
-                font-family: "FontAwesome";
-                position: absolute;
-                top: 0;
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 5px;
                 right: -30px;
                 -webkit-transition: right 0.2s; /* Safari */
                 transition: right 0.2s;
-                z-index: 9999;
 
                 .icon:after {
                     content: @rightToggle;
@@ -159,8 +188,8 @@
         }
 
         &.active {
-            min-width: 80px;
-            max-width: 80px;
+            min-width: @thinWidth;
+            max-width: @thinWidth;
             margin-left: 0 !important;
 
             .sidebar-header {
@@ -169,7 +198,8 @@
                 }
 
                 .sidebar-toggle {
-                    top: 0;
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 0;
                     right: 0;
                     -webkit-transition: right 0.2s; /* Safari */
                     transition: right 0.2s;
