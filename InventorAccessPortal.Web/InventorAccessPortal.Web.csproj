@@ -224,6 +224,7 @@
     <Compile Include="Enums\ErrorCodes.cs" />
     <Compile Include="Mailer\Models\_EmailModel.cs" />
     <Compile Include="Mailer\Models\ResetPassword\DataModel.cs" />
+    <Compile Include="Models\Account\ResetPasswordModel.cs" />
     <Compile Include="Models\Partial\ErrorModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />

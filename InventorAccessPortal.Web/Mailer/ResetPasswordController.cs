@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InventorAccessPortal.Web.Mailer.Models.CompleteRegistration;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.Auth;
 using System.Web.Razor;
-using System.Net.Mail;
-using System.IO;
-using CssInliner;
-using InventorAccessPortal.Web.Models;
 using InventorAccessPortal.Web.Models.Account;
 using InventorAccessPortal.Web.Util;
 using System.Web.Security;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.Web.Mailer;
-using InventorAccessPortal.Web.Mailer.Models;
+using InventorAccessPortal.Web.Mailer.Models.ResetPassword;
 namespace InventorAccessPortal.Web.Mailer
 {
     [AllowAnonymous]
@@ -32,7 +27,7 @@ namespace InventorAccessPortal.Web.Mailer
             ResetPasswordSuccessView = GetNewViewPath("ResetPasswordSuccess");
         }
         [ValidateAntiForgeryToken, HttpPost]
-        public ActionResult ActualResetPassword(ResetPasswordModel model)
+        public ActionResult ActualResetPassword(DataModel model)
         {
                 // clears the errors from the model
                 model.ClearErrorAndWarning();
@@ -47,7 +42,7 @@ namespace InventorAccessPortal.Web.Mailer
                 if (!CredentialsHelper.IsPasswordValid(model.Password)) // check password is valid
                 {
                     model.AddError(RegistrationErrors.InvalidPassword);
-                    //isValid = false;
+                    isValid = false;
                 }
                 else // if password is valid get warnings
                 {
@@ -74,7 +69,7 @@ namespace InventorAccessPortal.Web.Mailer
                     }
                 }
             // if we got here there was an error
-            return View(new ResetPasswordModel() { Email = model.Email });
+            return View(ReceivedView, model);
         }
 
 
@@ -84,9 +79,7 @@ namespace InventorAccessPortal.Web.Mailer
                 return View(ErrorView);
             var dataModel = new DataModel()
             {
-                Email = email,
-                Username = username,
-                InvestigatorName = investigatorName
+                Email = email
             };
             // set Action in database
             Guid? guid = null;
@@ -130,11 +123,7 @@ namespace InventorAccessPortal.Web.Mailer
                 {
                     return View(ResetPasswordErrorView);
                 }
-                var success = Authorize.ConfirmEmail(model.Email, model.Username, actionRow.Investigator_Name, e);
-                if (!success)
-                {
-                    return View(ResetPasswordErrorView);
-                }
+
                 e.Web_Action_Data.Remove(actionRow);
                 e.SaveChanges();
 

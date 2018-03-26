@@ -12,8 +12,6 @@ using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.DataAccess;
-using InventorAccessPortal.Web.Mailer;
-using InventorAccessPortal.Web.Mailer.Models;
 
 namespace InventorAccessPortal.Web.Controllers
 {
