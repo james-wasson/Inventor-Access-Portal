@@ -13,7 +13,7 @@
 #sidebar {
     min-width: @expandedWidth;
     max-width: @expandedWidth;
-    background: #f3efec;
+    background: @highlightBackgroundColor;
     color: #fff;
     transition: all 0.3s;
     position: fixed;
@@ -24,6 +24,7 @@
     .sidebar-header {
         max-height: @headerHeight;
         min-height: @headerHeight;
+        color: @darkBackgroundColor;
         text-align: center;
         vertical-align: middle;
         padding: 20px;
@@ -169,6 +170,7 @@
 
         .sidebar-header {
             background-color: transparent !important;
+            color: @darkBackgroundColor;
 
             .sidebar-expanded, .sidebar-collapsed {
                 display: none;
