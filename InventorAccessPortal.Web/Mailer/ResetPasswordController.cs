@@ -3,93 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using InventorAccessPortal.Web.Mailer.Models.CompleteRegistration;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.DB.DataAccess;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.Auth;
 using System.Web.Razor;
-using System.Net.Mail;
-using System.IO;
-using CssInliner;
-using InventorAccessPortal.Web.Models;
 using InventorAccessPortal.Web.Models.Account;
 using InventorAccessPortal.Web.Util;
 using System.Web.Security;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.Web.Mailer;
-using InventorAccessPortal.Web.Mailer.Models;
+using InventorAccessPortal.Web.Mailer.Models.ResetPassword;
 namespace InventorAccessPortal.Web.Mailer
 {
     [AllowAnonymous]
     public class ResetPasswordController : EmailBaseController
     {
-        public ActionResult ResetPassword()
-        {
-            return View(new ResetPasswordModel());
-        }
-        [ValidateAntiForgeryToken, HttpPost]
-        public ActionResult ResetPassword(ResetPasswordModel model)
-        {
-            // clears the errors from the model
-            model.ClearErrorAndWarning();
-            // check for simple warnings
-            var isValid = true;
-            // makes sure we don't have any empty fields
-            if (String.IsNullOrEmpty(model.Email))
-            {
-                model.AddError(GlobalErrors.EmptyFields);
-                isValid = false;
-            }
-            if (!CredentialsHelper.IsEmailValid(model.Email)) // check email is valid
-            {
-                model.AddError(ResetPasswordErrors.InvalidEmail);
-                isValid = false;
-            }
-
-            if (isValid) // check for more serious warnings
-            {
-                using (var e = new EntityContext()) // db context
-                {
-                    // check if email exists in the database, we need the email to register
-                    if (!Authorize.EmailExists(model.Email, e))
-                    {
-                        model.AddError(ResetPasswordErrors.EmailNotAssociatedWithUser);
-                        isValid = false;
-                    }
-                    else if (!Authorize.EmailIsRegistered(model.Email, e)) // if it does check if it is already registered
-                    {
-                        model.AddError(ResetPasswordErrors.EmailNotRegistered);
-                        isValid = false;
-                    }
-
-                    if (isValid && !model.HasWarnings()) // we have checked everything we need to check
-                    {
-                        CachedUser cachedUser = GetCachedUser.UserByEmail(model.Email, e);
-                        if (cachedUser == null)
-                        {
-                            model.AddError(RegistrationErrors.UnknowError);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Send", "ResetPassword", new
-                            {
-                                email = cachedUser.Email,
-                                username = cachedUser.Username,
-                                investigatorName = cachedUser.InvestigatorName
-                            });
-                        }
-                    }
-                }
-            }
-            // if we got here there was an error
-            return View(model);
-        }
-
-        //public ActionResult ActualResetPassword()
-        //{
-        //    return View(new ResetPasswordModel());
-        // }
         String ResetPasswordSuccessView;
         String ResetPasswordErrorView;
         public ResetPasswordController()
@@ -98,7 +27,7 @@ namespace InventorAccessPortal.Web.Mailer
             ResetPasswordSuccessView = GetNewViewPath("ResetPasswordSuccess");
         }
         [ValidateAntiForgeryToken, HttpPost]
-        public ActionResult ActualResetPassword(ResetPasswordModel model)
+        public ActionResult ActualResetPassword(DataModel model)
         {
                 // clears the errors from the model
                 model.ClearErrorAndWarning();
@@ -113,7 +42,7 @@ namespace InventorAccessPortal.Web.Mailer
                 if (!CredentialsHelper.IsPasswordValid(model.Password)) // check password is valid
                 {
                     model.AddError(RegistrationErrors.InvalidPassword);
-                    //isValid = false;
+                    isValid = false;
                 }
                 else // if password is valid get warnings
                 {
@@ -140,7 +69,7 @@ namespace InventorAccessPortal.Web.Mailer
                     }
                 }
             // if we got here there was an error
-            return View(new ResetPasswordModel() { Email = model.Email });
+            return View(ReceivedView, model);
         }
 
 
@@ -150,9 +79,7 @@ namespace InventorAccessPortal.Web.Mailer
                 return View(ErrorView);
             var dataModel = new DataModel()
             {
-                Email = email,
-                Username = username,
-                InvestigatorName = investigatorName
+                Email = email
             };
             // set Action in database
             Guid? guid = null;
@@ -196,15 +123,11 @@ namespace InventorAccessPortal.Web.Mailer
                 {
                     return View(ResetPasswordErrorView);
                 }
-                var success = Authorize.ConfirmEmail(model.Email, model.Username, actionRow.Investigator_Name, e);
-                if (!success)
-                {
-                    return View(ResetPasswordErrorView);
-                }
+
                 e.Web_Action_Data.Remove(actionRow);
                 e.SaveChanges();
 
-                return View(new ResetPasswordModel() { Email = model.Email });
+                return View(ReceivedView, model);
             }
         }
     }

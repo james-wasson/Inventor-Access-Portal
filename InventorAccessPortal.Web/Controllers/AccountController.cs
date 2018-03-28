@@ -12,8 +12,6 @@ using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.DB.Objects;
 using InventorAccessPortal.DB.DataAccess;
-using InventorAccessPortal.Web.Mailer;
-using InventorAccessPortal.Web.Mailer.Models;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -176,6 +174,68 @@ namespace InventorAccessPortal.Web.Controllers
             return View(model);
         }
 
-       
+        public ActionResult ResetPassword()
+        {
+            return View(new ResetPasswordModel());
+        }
+
+        [ValidateAntiForgeryToken, HttpPost]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            // clears the errors from the model
+            model.ClearErrorAndWarning();
+            // check for simple warnings
+            var isValid = true;
+            // makes sure we don't have any empty fields
+            if (String.IsNullOrEmpty(model.Email))
+            {
+                model.AddError(GlobalErrors.EmptyFields);
+                isValid = false;
+            }
+            if (!CredentialsHelper.IsEmailValid(model.Email)) // check email is valid
+            {
+                model.AddError(ResetPasswordErrors.InvalidEmail);
+                isValid = false;
+            }
+
+            if (isValid) // check for more serious warnings
+            {
+                using (var e = new EntityContext()) // db context
+                {
+                    // check if email exists in the database, we need the email to register
+                    if (!Authorize.EmailExists(model.Email, e))
+                    {
+                        model.AddError(ResetPasswordErrors.EmailNotAssociatedWithUser);
+                        isValid = false;
+                    }
+                    else if (!Authorize.EmailIsRegistered(model.Email, e)) // if it does check if it is already registered
+                    {
+                        model.AddError(ResetPasswordErrors.EmailNotRegistered);
+                        isValid = false;
+                    }
+
+                    if (isValid && !model.HasWarnings()) // we have checked everything we need to check
+                    {
+                        CachedUser cachedUser = GetCachedUser.UserByEmail(model.Email, e);
+                        if (cachedUser == null)
+                        {
+                            model.AddError(RegistrationErrors.UnknowError);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Send", "ResetPassword", new
+                            {
+                                email = cachedUser.Email,
+                                username = cachedUser.Username,
+                                investigatorName = cachedUser.InvestigatorName
+                            });
+                        }
+                    }
+                }
+            }
+            // if we got here there was an error
+            return View(model);
+        }
+
     }
 }

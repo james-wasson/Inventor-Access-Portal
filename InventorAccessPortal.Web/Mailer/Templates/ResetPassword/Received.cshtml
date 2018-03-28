@@ -1,5 +1,4 @@
-﻿@model InventorAccessPortal.Web.Models.Account.ResetPasswordModel
-@using InventorAccessPortal.Web.Models.Account
+﻿@model InventorAccessPortal.Web.Mailer.Models.ResetPassword.DataModel
 @{
     ViewBag.Title = "ResetPassword";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -11,18 +10,14 @@
     <div class="form-group row">
         <label for="email" class="col-sm-2 col-form-label">Email:</label>
         <div class="col-sm-10">
-            @Html.TextBoxFor(p => p.Email, new { id = "email" })
-            <div class="form-text text-muted">
-                <small>
-                    Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters
-                </small>
-            </div>
+            @Html.HiddenFor(p => p.Email)
+            <span class="font-weight-bold">@Model.Email</span>
         </div>
     </div>
     <div class="form-group row">
         <label for="password" class="col-sm-2 col-form-label">Password:</label>
         <div class="col-sm-10">
-           @Html.PasswordFor(p => p.Password, new { id = "password", value = Model.Password, @class = "verifyThisPassword", data_verifier = "#passwordVerification" })
+           @Html.PasswordFor(p => p.Password, new { value = Model.Password, id = "password", @class = "verifyThisPassword", data_verifier = "#passwordVerification" })
             <div class="form-text text-muted">
                 <small>Passwords length must be 16-255 characters</small>
             </div>
