@@ -1,8 +1,10 @@
 ﻿@model InventorAccessPortal.Web.Models.Account.RegisterModel
 @using InventorAccessPortal.Web.Models.Account
 @{
-    ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Register";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>Register</h1>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
@@ -10,23 +12,24 @@
     @Html.AntiForgeryToken()
 
     <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(p => p.Email, new { id = "email", style = "display: inline;" })
+            <span class="form-text text-muted" style="margin-left: 5px; display: inline;"><small>Email registered with the Office Of Technology Transfer</small></span>
+            <div class="form-text text-muted">
+                <small>
+                    Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
         <label for="usernameOrEmail" class="col-sm-2 col-form-label">Username:</label>
         <div class="col-sm-10">
             @Html.TextBoxFor(p => p.Username, new { id = "usernameOrEmail" })
             <div class="form-text text-muted">
                 <small>
                     Username must be between 4 and 255 characters and not contain charcters: @@ , or space
-                </small>
-            </div>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email:</label>
-        <div class="col-sm-10">
-            @Html.TextBoxFor(p => p.Email, new { id = "email" })
-            <div class="form-text text-muted">
-                <small>
-                    Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters
                 </small>
             </div>
         </div>
