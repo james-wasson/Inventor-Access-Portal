@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace InventorAccessPortal.Web
@@ -9,6 +10,10 @@ namespace InventorAccessPortal.Web
         {
             filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute());
+#if !DEBUG
+            GlobalFilters.Filters.Add(new RequireHttpsAttribute());
+            AntiForgeryConfig.RequireSsl = true;
+#endif
         }
     }
 }
