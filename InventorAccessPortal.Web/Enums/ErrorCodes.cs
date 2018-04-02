@@ -34,6 +34,16 @@ namespace InventorAccessPortal.Web.Enums
         UnknownError = 3,
     }
 
+    public enum ResetPasswordErrors
+    {
+        [Description("This Email is not assigned a user and is not Registered. If you need to setup an account please contact: support@domain.com")]
+        EmailNotAssociatedWithUser = 0,
+        [Description("Invalid Email, Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters")]
+        InvalidEmail = 1,
+        [Description("This Email has not been registered yet")]
+        EmailNotRegistered = 2
+    }
+
     public enum GlobalErrors {
 
         [Description("Required fields cannot be empty.")]

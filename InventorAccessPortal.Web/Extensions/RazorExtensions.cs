@@ -17,9 +17,23 @@ namespace System.Web.Razor
             using (output = new StringWriter())
             {
                 var viewData = new ViewDataDictionary(model);
-                var viewContext = new ViewContext(controllerContext, result.View, viewData, controllerContext.Controller.TempData, output);
-                result.View.Render(viewContext, output);
-                result.ViewEngine.ReleaseView(controllerContext, result.View);
+                if (controllerContext == null || result.View == null || viewData == null || controllerContext.Controller.TempData == null)
+                {
+                    if (controllerContext == null)
+                        return "Error1";
+                    if (result.View == null)
+                        return "Error2";
+                    if (viewData == null)
+                        return "Error3";
+                    if (controllerContext.Controller.TempData == null)
+                        return "Error4";
+                }
+                else
+                {
+                    var viewContext = new ViewContext(controllerContext, result.View, viewData, controllerContext.Controller.TempData, output);
+                    result.View.Render(viewContext, output);
+                    result.ViewEngine.ReleaseView(controllerContext, result.View);
+                }
             }
 
             return output.ToString();
