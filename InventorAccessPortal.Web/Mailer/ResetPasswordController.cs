@@ -29,6 +29,16 @@ namespace InventorAccessPortal.Web.Mailer
         [ValidateAntiForgeryToken, HttpPost]
         public ActionResult ActualResetPassword(DataModel model)
         {
+            using (var e = new EntityContext())
+            {
+                var data = ActionData.GetAction<DataModel>(Guid.Parse(model.Guid), e);
+                model.Email = data.Item1.Email;
+                var actionRow = data.Item2;
+                if (model == null || actionRow == null || actionRow.Investigator_Name == null)
+                {
+                    return View(ResetPasswordErrorView);
+                }
+
                 // clears the errors from the model
                 model.ClearErrorAndWarning();
                 // check for simple warnings
@@ -52,11 +62,14 @@ namespace InventorAccessPortal.Web.Mailer
 
                 if (isValid) // check for more serious warnings
                 {
-                    using (var e = new EntityContext()) // db context
+                    using (var e2 = new EntityContext()) // db context
                     {
                         if (isValid && !model.HasWarnings()) // we have checked everything we need to check
                         {
-                            var success = Authorize.ResetPassword(model.Email, model.Password, e);
+                            var success = Authorize.ResetPassword(model.Email, model.Password, e2);
+
+                            e.Web_Action_Data.Remove(actionRow);
+                            e.SaveChanges();
                             if (!success)
                             {
                                 return View(ResetPasswordErrorView);
@@ -68,6 +81,8 @@ namespace InventorAccessPortal.Web.Mailer
                         }
                     }
                 }
+
+            }
             // if we got here there was an error
             return View(ReceivedView, model);
         }
@@ -123,10 +138,9 @@ namespace InventorAccessPortal.Web.Mailer
                 {
                     return View(ResetPasswordErrorView);
                 }
-
-                e.Web_Action_Data.Remove(actionRow);
-                e.SaveChanges();
-
+                model.Guid = actionGuid;
+                //e.Web_Action_Data.Remove(actionRow);
+                //e.SaveChanges();
                 return View(ReceivedView, model);
             }
         }

@@ -236,6 +236,66 @@ namespace InventorAccessPortal.Web.Controllers
             // if we got here there was an error
             return View(model);
         }
+        public ActionResult LoginResetPassword()
+        {
+            var user = SessionHelper.GetSessionUser();
+            var model = new Mailer.Models.ResetPassword.DataModel();
+            model.Email = user.Email;
+            return View(model);
+        }
 
+        [ValidateAntiForgeryToken, HttpPost]
+        public ActionResult LoginResetPassword(Mailer.Models.ResetPassword.DataModel model)
+        {
+            String ControllerName = this.GetType().Name;
+            ControllerName = ControllerName.Replace("Controller", "");
+            String ViewStructure = "~/Views/{0}/{1}.cshtml";
+            String ResetPasswordErrorView = String.Format(ViewStructure, ControllerName, "ResetPasswordError");
+            String ResetPasswordSuccessView = String.Format(ViewStructure, ControllerName, "ResetPasswordSuccess");
+            String LoginResetPasswordView = String.Format(ViewStructure, ControllerName, "LoginResetPassword");
+            var user = SessionHelper.GetSessionUser();
+            model.Email = user.Email;
+            // clears the errors from the model
+            model.ClearErrorAndWarning();
+            // check for simple warnings
+            var isValid = true;
+            // makes sure we don't have any empty fields
+            if (String.IsNullOrEmpty(model.Password) || String.IsNullOrEmpty(model.Email))
+            {
+                model.AddError(GlobalErrors.EmptyFields);
+                isValid = false;
+            }
+            if (!CredentialsHelper.IsPasswordValid(model.Password)) // check password is valid
+            {
+                model.AddError(RegistrationErrors.InvalidPassword);
+                isValid = false;
+            }
+            else // if password is valid get warnings
+            {
+                model.AddWarnings(CredentialsHelper.GetPasswordWarnings(model.Password));
+            }
+
+
+            if (isValid) // check for more serious warnings
+            {
+                using (var e2 = new EntityContext()) // db context
+                {
+                    if (isValid && !model.HasWarnings()) // we have checked everything we need to check
+                    {
+                        var success = Authorize.ResetPassword(model.Email, model.Password, e2);
+                        if (!success)
+                        {
+                            return View(ResetPasswordErrorView);
+                        }
+                        else
+                        {
+                            return View(ResetPasswordSuccessView);
+                        }
+                    }
+                }
+            }
+            // if we got here there was an error
+            return View(LoginResetPasswordView, model);
+        }
     }
 }
