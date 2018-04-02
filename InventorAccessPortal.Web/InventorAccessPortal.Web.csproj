@@ -380,6 +380,9 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\LoginResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordError.cshtml" />
+    <Content Include="Views\Account\ResetPasswordSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
