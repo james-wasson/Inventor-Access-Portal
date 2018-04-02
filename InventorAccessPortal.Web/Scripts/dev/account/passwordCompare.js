@@ -12,13 +12,16 @@
         (function () {
             var $password = p;
             var $verifier = $($password.data("verifier")).first();
+            var $disable = $($password.data("verify-disable")).first();
             var $toastError;
             function checkError() {
                 if (!equalFunction($password, $verifier)) {
+                    $disable.prop('disabled', true);
                     if ($toastError == null) {
                         $toastError = toastr['error']("Passwords do not match.", "", { "closeButton": false});
                     }
                 } else {
+                    $disable.prop('disabled', false);
                     toastr.clear($toastError);
                     $toastError = null;
                 }

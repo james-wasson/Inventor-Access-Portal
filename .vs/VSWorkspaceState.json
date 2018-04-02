@@ -1,8 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\InventorAccessPortal.Web"
+    "\\InventorAccessPortal.Web",
+    "\\InventorAccessPortal.Web\\Mailer",
+    "\\InventorAccessPortal.Web\\Mailer\\Templates",
+    "\\InventorAccessPortal.Web\\Mailer\\Templates\\ResetPassword",
+    "\\InventorAccessPortal.Web\\Scripts",
+    "\\InventorAccessPortal.Web\\Scripts\\dev",
+    "\\InventorAccessPortal.Web\\Scripts\\dev\\account",
+    "\\InventorAccessPortal.Web\\Views",
+    "\\InventorAccessPortal.Web\\Views\\Account"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\InventorAccessPortal.Web\\InventorAccessPortal.Web.csproj",
   "PreviewInSolutionExplorer": false
 }

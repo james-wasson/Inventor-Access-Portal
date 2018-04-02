@@ -11,8 +11,8 @@ namespace InventorAccessPortal.Web
             /*
              * DEV Bundles
              */
-            bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/css/", "*.css", true)
+            bundles.Add(new StyleBundle("~/Content/css")
+                /*.IncludeDirectory("~/Content/css/", "*.css", true)*/
                 .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
@@ -48,9 +48,12 @@ namespace InventorAccessPortal.Web
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/font-awesome.css",
                       "~/Content/toastr.css"
                       ));
+
+            bundles.Add(new StyleBundle("~/Content/font-awesome.css").Include(
+                "~/Content/font-awesome.css"
+                ));
 
             /*
              * Email Bundles
