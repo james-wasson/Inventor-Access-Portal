@@ -134,5 +134,20 @@ namespace InventorAccessPortal.DB.Auth
             
             return true;
         }
+
+        public static bool ResetPassword(string email, string password, EntityContext dbContext = null)
+        {
+            dbContext.CheckInit();
+          
+            var lowerEmail = email.ToLower();
+            var loginData = dbContext.Web_Login_Data.FirstOrDefault(p =>
+                p.Investigator.Email_Address.ToLower() == lowerEmail
+            );
+            if (loginData == null) return false;
+            loginData.Password = PasswordVerify.HashPassword(password, loginData.Salt);
+            try { dbContext.SaveChanges(); } catch (Exception ex) { return false; }
+
+            return true;
+        }
     }
 }
