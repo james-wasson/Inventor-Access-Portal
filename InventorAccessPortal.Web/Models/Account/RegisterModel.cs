@@ -7,7 +7,7 @@ using InventorAccessPortal.Web.Util;
 
 namespace InventorAccessPortal.Web.Models.Account
 {
-    public class RegisterModel : _ErrorModel
+    public class RegisterModel : _ToasterModel
     {
         public string Username { get; set; }
         public string Email { get; set; }

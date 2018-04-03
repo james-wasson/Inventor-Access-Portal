@@ -40,7 +40,7 @@ namespace InventorAccessPortal.Web.Mailer
                 }
 
                 // clears the errors from the model
-                model.ClearErrorAndWarning();
+                model.ClearToaster();
                 // check for simple warnings
                 var isValid = true;
                 // makes sure we don't have any empty fields

@@ -8,7 +8,7 @@ namespace InventorAccessPortal.Web.Models
     /// <summary>
     /// Sets the basic format for extending a model
     /// </summary>
-    public class _TitleModel : _ErrorModel
+    public class _TitleModel : _ToasterModel
     {
         // extended title
         public String ExtendedTitle { get; private set; } = "";

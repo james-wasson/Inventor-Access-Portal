@@ -1,0 +1,48 @@
+﻿@using InventorAccessPortal.Web.Util;
+@using InventorAccessPortal.Web.Models;
+
+
+<script type="text/javascript" name="initalErrorScript">
+        @try
+        {
+            if (Model != null)
+            {
+                bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ToasterModel));
+                if (IsRightType == true)
+                {
+                    var castModel = (_ToasterModel)Model;
+                    if (castModel.GetErrors().Count > 0)
+                    {
+                        foreach (var error in castModel.GetErrors())
+                        {
+                            <text>toastr['error']("@error");</text>
+                        }
+                    }
+                    if (castModel.GetWarnings().Count > 0)
+                    {
+                        foreach (var warn in castModel.GetWarnings())
+                        {
+                            <text>toastr['warning']("@warn");</text>
+                        }
+                        <text>toastr['warning']("Resubmit to ignore warnings.");</text>
+                    }
+                    if (castModel.GetSuccesses().Count > 0)
+                    {
+                        foreach (var success in castModel.GetSuccesses())
+                        {
+                            <text>toastr['success']("@success");</text>
+                        }
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            <text>toastr['error']("There Was some error while trying to displaying the errors or warnings.", "@ex.Message");</text>
+        }
+</script>
+
+
+
+
