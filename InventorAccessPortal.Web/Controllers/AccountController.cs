@@ -32,7 +32,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult Login(LoginModel model)
         {
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // checks if the user passed in their login data
             if (!String.IsNullOrEmpty(model.UsernameOrEmail) && !String.IsNullOrEmpty(model.Password))
             {
@@ -101,7 +101,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult Register(RegisterModel model)
         {
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // check for simple warnings
             var isValid = true;
             // makes sure we don't have any empty fields
@@ -183,7 +183,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult ResetPassword(ResetPasswordModel model)
         {
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // check for simple warnings
             var isValid = true;
             // makes sure we don't have any empty fields
@@ -238,29 +238,18 @@ namespace InventorAccessPortal.Web.Controllers
         }
         public ActionResult LoginResetPassword()
         {
-            var user = SessionHelper.GetSessionUser();
-            var model = new Mailer.Models.ResetPassword.DataModel();
-            model.Email = user.Email;
-            return View(model);
+            return View(new LoginResetPasswordModel());
         }
 
         [ValidateAntiForgeryToken, HttpPost]
-        public ActionResult LoginResetPassword(Mailer.Models.ResetPassword.DataModel model)
+        public ActionResult LoginResetPassword(LoginResetPasswordModel model)
         {
-            String ControllerName = this.GetType().Name;
-            ControllerName = ControllerName.Replace("Controller", "");
-            String ViewStructure = "~/Views/{0}/{1}.cshtml";
-            String ResetPasswordErrorView = String.Format(ViewStructure, ControllerName, "ResetPasswordError");
-            String ResetPasswordSuccessView = String.Format(ViewStructure, ControllerName, "ResetPasswordSuccess");
-            String LoginResetPasswordView = String.Format(ViewStructure, ControllerName, "LoginResetPassword");
-            var user = SessionHelper.GetSessionUser();
-            model.Email = user.Email;
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // check for simple warnings
             var isValid = true;
             // makes sure we don't have any empty fields
-            if (String.IsNullOrEmpty(model.Password) || String.IsNullOrEmpty(model.Email))
+            if (String.IsNullOrEmpty(model.Password))
             {
                 model.AddError(GlobalErrors.EmptyFields);
                 isValid = false;
@@ -276,26 +265,36 @@ namespace InventorAccessPortal.Web.Controllers
             }
 
 
-            if (isValid) // check for more serious warnings
+            if (isValid && !model.HasWarnings())
             {
                 using (var e2 = new EntityContext()) // db context
                 {
-                    if (isValid && !model.HasWarnings()) // we have checked everything we need to check
+                    var currentUser = SessionHelper.GetSessionUser();
+                    if (currentUser == null)
                     {
-                        var success = Authorize.ResetPassword(model.Email, model.Password, e2);
-                        if (!success)
-                        {
-                            return View(ResetPasswordErrorView);
-                        }
-                        else
-                        {
-                            return View(ResetPasswordSuccessView);
-                        }
+                        model.AddError(GlobalErrors.ServerError);
+                        return View(model);
+                    }
+                    var success = Authorize.ResetPassword(currentUser.Email, model.Password, e2);
+                    var newUser = Authorize.CredentialsByEmail(currentUser.Email, model.Password, e2);
+                    if (!success || newUser == null)
+                    {
+                        model.AddError(GlobalErrors.ServerError);
+                        return View(model);
+                    }
+                    else
+                    {
+                        //if username and password is correct, create session and return Success
+                        SessionHelper.SetSessionUser(newUser);
+                        FormsAuthentication.SetAuthCookie(newUser.Username, true);
+                        model = new LoginResetPasswordModel();
+                        model.AddSuccess(ResetPasswordSuccessEnum.PasswordReset);
+                        return View(model);
                     }
                 }
             }
             // if we got here there was an error
-            return View(LoginResetPasswordView, model);
+            return View(model);
         }
     }
 }
