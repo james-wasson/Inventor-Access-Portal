@@ -25,7 +25,7 @@
             foreach (var recentAct in Model.RecentActivities)
             {
                 <tr>
-                    <td>@recentAct.Date</td>
+                    <td><span style="display:none">@recentAct.Date.ToString("mmyyyydd")</span>@recentAct.Date.ToShortDateString()</td>
                     <td>@recentAct.Activity</td>
                     <td>@recentAct.Details</td>
                     <td>@recentAct.Notes</td>

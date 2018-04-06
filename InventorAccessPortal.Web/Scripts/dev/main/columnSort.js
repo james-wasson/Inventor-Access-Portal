@@ -1,9 +1,11 @@
 ﻿
-    $(document).ready(function () {
-        $("table").DataTable({
-            paging: false,
-            searching: false,
-            info: false
-        });
+$(document).ready(function () {
+    $("table").DataTable({
+        paging: true,
+        searching: true,
+        info: true
     });
+});
+
+
 
