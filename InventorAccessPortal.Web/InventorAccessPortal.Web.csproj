@@ -229,7 +229,7 @@
     <Compile Include="Mailer\Models\ResetPassword\DataModel.cs" />
     <Compile Include="Models\Account\LoginResetPasswordModel.cs" />
     <Compile Include="Models\Account\ResetPasswordModel.cs" />
-    <Compile Include="Models\Partial\ErrorModel.cs" />
+    <Compile Include="Models\Partial\ToasterModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Home\FamiliesModel.cs" />
     <Compile Include="Models\Home\FilesModel.cs" />
