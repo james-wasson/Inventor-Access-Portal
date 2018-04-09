@@ -9,13 +9,11 @@ using System.Web.Mvc.Html;
 
 namespace InventorAccessPortal.Web.Models
 {
-    public static class _RenderWarnings {
-
-    }
-    public class _ErrorModel
+    public class _ToasterModel
     {
         private List<String> _Errors = new List<String>();
         private List<String> _Warnings = new List<String>();
+        private List<String> _Successes = new List<String>();
         public List<String> _IgnoredWarnings { get; set; } = new List<String>();
 
         public void AddError(String err)
@@ -54,10 +52,27 @@ namespace InventorAccessPortal.Web.Models
             return _Warnings.Distinct().ToList();
         }
 
-        public void ClearErrorAndWarning()
+        public void AddSuccess(Enum success)
+        {
+            _Successes.Add(GetEnumDescription(success));
+        }
+
+        public void AddSuccesses(List<Enum> successes)
+        {
+            foreach (var success in successes)
+                _Successes.Add(GetEnumDescription(success));
+        }
+
+        public List<String> GetSuccesses()
+        {
+            return _Successes.Distinct().ToList();
+        }
+
+        public void ClearToaster()
         {
             _Errors = new List<String>();
             _Warnings = new List<String>();
+            _Successes = new List<String>();
         }
 
         public bool HasWarnings() {

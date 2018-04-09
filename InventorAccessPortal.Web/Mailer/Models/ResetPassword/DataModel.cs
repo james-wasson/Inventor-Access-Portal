@@ -8,7 +8,7 @@ using InventorAccessPortal.Web.Models;
 
 namespace InventorAccessPortal.Web.Mailer.Models.ResetPassword
 {
-    public class DataModel : _ErrorModel
+    public class DataModel : _ToasterModel
     {
         public string Email { get; set; }
         public string Password { get; set; }

@@ -5,10 +5,10 @@
 {
     if (Model != null)
     {
-        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ErrorModel));
+        bool? IsRightType = Model?.GetType()?.IsSubclassOf(typeof(_ToasterModel));
         if (IsRightType == true)
         {
-            var castModel = (_ErrorModel)Model;
+            var castModel = (_ToasterModel)Model;
             castModel.IgnoreWarnings();
             if (castModel._IgnoredWarnings != null)
             {

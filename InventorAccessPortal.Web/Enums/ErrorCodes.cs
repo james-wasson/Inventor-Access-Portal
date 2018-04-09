@@ -47,6 +47,8 @@ namespace InventorAccessPortal.Web.Enums
     public enum GlobalErrors {
 
         [Description("Required fields cannot be empty.")]
-        EmptyFields = 0
+        EmptyFields = 0,
+        [Description("There was a server error, please try again.")]
+        ServerError = 1
     }
 }

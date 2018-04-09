@@ -35,7 +35,7 @@ namespace InventorAccessPortal.Web
                 "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate.min*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -51,6 +51,7 @@ namespace InventorAccessPortal.Web
                       "~/Content/toastr.css"
                       ));
 
+            /* IIS wont server font awesome unless the bundle and the css match */
             bundles.Add(new StyleBundle("~/Content/font-awesome.css").Include(
                 "~/Content/font-awesome.css"
                 ));
