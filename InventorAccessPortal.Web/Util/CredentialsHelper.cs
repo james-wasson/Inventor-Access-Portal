@@ -84,7 +84,7 @@ namespace InventorAccessPortal.Web.Util
             return (
                 !String.IsNullOrEmpty(username) && 
                 username.Length >= UsernameRequirements.MinLength &&
-                username.Length <= UsernameRequirements.MinLength &&
+                username.Length <= UsernameRequirements.MaxLength &&
                 username.All(p => UsernameRequirements.IsUsernameCharValid(p))
             );
         }
