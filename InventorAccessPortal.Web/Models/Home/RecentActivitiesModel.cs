@@ -9,7 +9,7 @@ namespace InventorAccessPortal.Web.Models.Home
     {
         public class Item
         {
-            public string Date;
+            public DateTime Date;
             public string Activity;
             public string Details;
             public string Notes;

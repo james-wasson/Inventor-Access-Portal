@@ -60,7 +60,7 @@ namespace InventorAccessPortal.Web.Controllers
                     {
                         model.RecentActivities.Add(new RecentActivitiesModel.Item()
                         {
-                            Date = transAct.Transaction_Date.Value.ToShortDateString(),
+                            Date = transAct.Transaction_Date.Value,
                             Activity = transAct.Code,
                             Details = transAct.Details,
                             Notes = transAct.Notes,
