@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title - Inventor Access Portal</title>
     @Styles.Render("~/Content/Lib/css")
+    @Styles.Render("~/Content/font-awesome.css")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/Lib/modernizr")
 </head>
@@ -16,7 +17,7 @@
     @Scripts.Render("~/bundles/Lib/toastr")
     @Scripts.Render("~/bundles/scripts")
     @Scripts.Render("~/bundles/Lib/dataTables")
-    @Html.Partial("_ErrorPartial")
+    @Html.Partial("_ToasterPartial")
     <div class="wrapper">
         @Html.Partial("_SidebarPartial")
         <div id="content" class="container-fluid">
