@@ -41,5 +41,12 @@ namespace InventorAccessPortal.Web.Extennsions
         {
             return htmlHelper.Raw(httpContext.Request.Url.GetLeftPart(UriPartial.Authority));
         }
+
+        public static IHtmlString DisplaySortableDateTime(this HtmlHelper htmlHelper, DateTime dt) {
+            var sortDate = (DateTime.MaxValue.Subtract(dt)).TotalSeconds;
+            var displayDate = dt.ToShortDateString();
+            var html = string.Format("<span style=\"display:none;\">{0}</span>{1}", sortDate, displayDate);
+            return new HtmlString(html);
+        }
     }
 }

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using InventorAccessPortal.Web.Extennsions
 <h1>Recent Activities @Model.ExtendedTitle</h1>
 <table class="table table-bordered table-responsive table-striped" id="sortTable">
     <thead>
@@ -25,7 +26,7 @@
             foreach (var recentAct in Model.RecentActivities)
             {
                 <tr>
-                    <td><span style="display:none">@recentAct.Date.Subtract(new  DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds</span>@recentAct.Date.ToShortDateString()</td>
+                    <td>@Html.DisplaySortableDateTime(recentAct.Date)</td>
                     <td>@recentAct.Activity</td>
                     <td>@recentAct.Details</td>
                     <td>@recentAct.Notes</td>

@@ -26,5 +26,9 @@
   {
     "outputFile": "Content/less/Scrollbar.css",
     "inputFile": "Content/less/Scrollbar.less"
+  },
+  {
+    "outputFile": "Content/less/datatableDev.css",
+    "inputFile": "Content/less/datatableDev.less"
   }
 ]
