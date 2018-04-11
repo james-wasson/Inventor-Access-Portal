@@ -1,0 +1,122 @@
+﻿@import "theme.less";
+
+table.dataTable {
+    width: 100%;
+    margin: 0 auto;
+    clear: both;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    thead {
+        .sorting {
+            background-image: url("../images/sort_both.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .sorting_asc {
+            background-image: url("../images/sort_asc.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .sorting_desc {
+            background-image: url("../images/sort_desc.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .sorting_asc_disabled {
+            background-image: url("../images/sort_asc_disabled.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+
+        .sorting_desc_disabled {
+            background-image: url("../images/sort_desc_disabled.png");
+            background-repeat: no-repeat;
+            background-position: center right;
+        }
+    }
+}
+
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+    zoom: 1;
+    *zoom: 1;
+
+    .dataTables_length {
+        float: left;
+    }
+
+    #sortTable_filter.dataTables_filter {
+        float: right;
+        text-align: right;
+
+        input {
+            margin-left: 0.5em;
+        }
+    }
+
+    #sortTable_info.dataTables_info {
+        clear: both;
+        float: left;
+        padding-top: 0.755em;
+    }
+
+    #sortTable_paginate.dataTables_paginate {
+        float: right;
+        text-align: right;
+        padding-top: 0.25em;
+
+        .paginate_button {
+            box-sizing: border-box;
+            display: inline-block;
+            min-width: 1.5em;
+            padding: 0.5em 1em;
+            margin-left: 2px;
+            text-align: center;
+            text-decoration: none !important;
+            curser: pointer;
+            color: @darkBackgroundColor !important;
+            border: 1px solid transparent;
+            border-radius: 2px;
+
+            &:hover {
+                color: @highlightBackgroundColor !important;
+                border: 1px solid @darkBackgroundColor;
+                background-color: @darkBackgroundColor;
+                background: linear-gradient(to bottom, @darkBackgroundColor 0%, @darkBackgroundColor 100%);
+            }
+
+            &:active {
+                outline: none;
+                background-color: @darkBackgroundColor;
+                background: linear-gradient(to bottom, @highlightBackgroundColor 0%, @highlightBackgroundColor 100%);
+                box-shadow: inset 0 0 3px #111;
+            }
+        
+            .current {
+                &, &:hover {
+                    color: @darkBackgroundColor !important;
+                    border: 1px solid @darkBackgroundColor;
+                    background-color: @highlightBackgroundColor;
+                    background: linear-gradient(to bottom, @highlightBackgroundColor 0%, @highlightBackgroundColor 100%);
+                }
+            }
+
+            .disabled {
+                &, &:hover, &:active {
+                    cursor: default;
+                    color: @lightColor !important;
+                    border: 1px solid transparent;
+                    background: transparent;
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+
