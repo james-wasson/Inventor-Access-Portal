@@ -38,7 +38,8 @@ namespace InventorAccessPortal.Web
                         "~/Scripts/jquery.validate.min*"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/dataTables").Include(
-                        "~/Scripts/jquery.dataTables.min.js"));
+                        "~/Scripts/jquery.dataTables.min.js"
+                        ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
