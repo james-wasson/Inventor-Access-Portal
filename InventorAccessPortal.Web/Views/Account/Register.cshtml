@@ -1,34 +1,56 @@
 ﻿@model InventorAccessPortal.Web.Models.Account.RegisterModel
 @using InventorAccessPortal.Web.Models.Account
 @{
-    ViewBag.Title = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+                /**/
+
+                ViewBag.Title = "Register";
+                Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h1>Register</h1>
 @using (Html.BeginForm("Register", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <div>
-        <table>
-            <tr>
-                <td>Username:</td>
-                <td>@Html.TextBoxFor(p => p.Username)</td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td>@Html.TextBoxFor(p => p.Email)</td>
-            </tr>
-            <tr>
-                <td>Password:</td>
-                <td>@Html.PasswordFor(p => p.Password, new { value = Model.Password })</td>
-            </tr>
-            <tr>
-                <td>Re-enter Password:</td>
-                <td>@Html.PasswordFor(p => p.PasswordVerify, new { value = Model.PasswordVerify })</td>
-            </tr>
-        </table>
-        <input type="submit" value="Register" />
+
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email:</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(p => p.Email, new { id = "email", style = "display: inline;" })
+            <span class="form-text text-muted" style="margin-left: 5px; display: inline;"><small>Email registered with the Office Of Technology Transfer</small></span>
+            <div class="form-text text-muted">
+                <small>
+                    Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters
+                </small>
+            </div>
+        </div>
     </div>
+    <div class="form-group row">
+        <label for="usernameOrEmail" class="col-sm-2 col-form-label">Username:</label>
+        <div class="col-sm-10">
+            @Html.TextBoxFor(p => p.Username, new { id = "usernameOrEmail" })
+            <div class="form-text text-muted">
+                <small>
+                    Username must be between 4 and 255 characters and not contain charcters: @@ , or space
+                </small>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password:</label>
+        <div class="col-sm-10">
+            @Html.PasswordFor(p => p.Password, new { id = "password", value = Model.Password, @class = "verifyThisPassword", data_verifier = "#passwordVerification", data_verify_disable = "#submitRegister" })
+            <div class="form-text text-muted">
+                <small>Passwords length must be 16-255 characters</small>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="passwordVerification" class="col-sm-2 col-form-label">Verify Password:</label>
+        <div class="col-sm-10">
+            @Html.PasswordFor(p => p.PasswordVerify, new { value = Model.PasswordVerify, id = "passwordVerification" })
+        </div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Register" id="submitRegister" />
     @Html.Partial("~/Views/Shared/_IgnoreFormWarnings.cshtml")
+    @Scripts.Render("~/bundles/account/scripts")
 }
 

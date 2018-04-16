@@ -11,13 +11,16 @@ namespace InventorAccessPortal.Web
             /*
              * DEV Bundles
              */
-
-            bundles.Add(new ScriptBundle("~/Content/css")
-                .IncludeDirectory("~/Content/css/", "*.css", true)
+            bundles.Add(new StyleBundle("~/Content/css")
+                /*.IncludeDirectory("~/Content/css/", "*.css", true)*/
                 .IncludeDirectory("~/Content/less/", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts")
-                .IncludeDirectory("~/Scripts/Dev/", "*.js", true)
+                .IncludeDirectory("~/Scripts/dev/main", "*.js", true)
+                );
+
+            bundles.Add(new ScriptBundle("~/bundles/account/scripts")
+                .IncludeDirectory("~/Scripts/dev/account", "*.js", true)
                 );
 
             /*
@@ -25,10 +28,18 @@ namespace InventorAccessPortal.Web
             */
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/detect-element-resize.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Lib/toastr").Include(
+                "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/Lib/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+                        "~/Scripts/jquery.validate.min*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/Lib/dataTables").Include(
+                        "~/Scripts/jquery.dataTables.min.js"
+                        ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
@@ -41,15 +52,20 @@ namespace InventorAccessPortal.Web
 
             bundles.Add(new StyleBundle("~/Content/Lib/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/font-awesome.css"
+                      "~/Content/toastr.css"
                       ));
+
+            /* IIS wont server font awesome unless the bundle and the css match */
+            bundles.Add(new StyleBundle("~/Content/font-awesome.css").Include(
+                "~/Content/font-awesome.css"
+                ));
 
             /*
              * Email Bundles
              * lightweight js and css
              */
 
-            bundles.Add(new StyleBundle("~/Content/Lib/Email/css").Include(
+            bundles.Add(new StyleBundle("~/Content/Email/css").Include(
                       "~/Mailer/Styles/less/main.css"
                       ));
         }

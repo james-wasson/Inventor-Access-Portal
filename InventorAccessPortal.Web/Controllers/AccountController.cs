@@ -11,8 +11,7 @@ using System.Web.Security;
 using InventorAccessPortal.DB;
 using InventorAccessPortal.Web.Enums;
 using InventorAccessPortal.DB.Objects;
-using InventorAccessPortal.Web.Mailer;
-using InventorAccessPortal.Web.Mailer.Models;
+using InventorAccessPortal.DB.DataAccess;
 
 namespace InventorAccessPortal.Web.Controllers
 {
@@ -33,7 +32,7 @@ namespace InventorAccessPortal.Web.Controllers
         public ActionResult Login(LoginModel model)
         {
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // checks if the user passed in their login data
             if (!String.IsNullOrEmpty(model.UsernameOrEmail) && !String.IsNullOrEmpty(model.Password))
             {
@@ -97,11 +96,12 @@ namespace InventorAccessPortal.Web.Controllers
             return View(new RegisterModel());
         }
 
+
         [ValidateAntiForgeryToken, HttpPost]
         public ActionResult Register(RegisterModel model)
         {
             // clears the errors from the model
-            model.ClearErrorAndWarning();
+            model.ClearToaster();
             // check for simple warnings
             var isValid = true;
             // makes sure we don't have any empty fields
@@ -167,6 +167,129 @@ namespace InventorAccessPortal.Web.Controllers
                                 investigatorName = cachedUser.InvestigatorName
                             });
                         }
+                    }
+                }
+            }
+            // if we got here there was an error
+            return View(model);
+        }
+
+        public ActionResult ResetPassword()
+        {
+            return View(new ResetPasswordModel());
+        }
+
+        [ValidateAntiForgeryToken, HttpPost]
+        public ActionResult ResetPassword(ResetPasswordModel model)
+        {
+            // clears the errors from the model
+            model.ClearToaster();
+            // check for simple warnings
+            var isValid = true;
+            // makes sure we don't have any empty fields
+            if (String.IsNullOrEmpty(model.Email))
+            {
+                model.AddError(GlobalErrors.EmptyFields);
+                isValid = false;
+            }
+            if (!CredentialsHelper.IsEmailValid(model.Email)) // check email is valid
+            {
+                model.AddError(ResetPasswordErrors.InvalidEmail);
+                isValid = false;
+            }
+
+            if (isValid) // check for more serious warnings
+            {
+                using (var e = new EntityContext()) // db context
+                {
+                    // check if email exists in the database, we need the email to register
+                    if (!Authorize.EmailExists(model.Email, e))
+                    {
+                        model.AddError(ResetPasswordErrors.EmailNotAssociatedWithUser);
+                        isValid = false;
+                    }
+                    else if (!Authorize.EmailIsRegistered(model.Email, e)) // if it does check if it is already registered
+                    {
+                        model.AddError(ResetPasswordErrors.EmailNotRegistered);
+                        isValid = false;
+                    }
+
+                    if (isValid && !model.HasWarnings()) // we have checked everything we need to check
+                    {
+                        CachedUser cachedUser = GetCachedUser.UserByEmail(model.Email, e);
+                        if (cachedUser == null)
+                        {
+                            model.AddError(RegistrationErrors.UnknowError);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Send", "ResetPassword", new
+                            {
+                                email = cachedUser.Email,
+                                username = cachedUser.Username,
+                                investigatorName = cachedUser.InvestigatorName
+                            });
+                        }
+                    }
+                }
+            }
+            // if we got here there was an error
+            return View(model);
+        }
+        public ActionResult LoginResetPassword()
+        {
+            return View(new LoginResetPasswordModel());
+        }
+
+        [ValidateAntiForgeryToken, HttpPost]
+        public ActionResult LoginResetPassword(LoginResetPasswordModel model)
+        {
+            // clears the errors from the model
+            model.ClearToaster();
+            // check for simple warnings
+            var isValid = true;
+            // makes sure we don't have any empty fields
+            if (String.IsNullOrEmpty(model.Password))
+            {
+                model.AddError(GlobalErrors.EmptyFields);
+                isValid = false;
+            }
+            if (!CredentialsHelper.IsPasswordValid(model.Password)) // check password is valid
+            {
+                model.AddError(RegistrationErrors.InvalidPassword);
+                isValid = false;
+            }
+            else // if password is valid get warnings
+            {
+                model.AddWarnings(CredentialsHelper.GetPasswordWarnings(model.Password));
+            }
+
+
+            if (isValid && !model.HasWarnings())
+            {
+                using (var e2 = new EntityContext()) // db context
+                {
+                    var currentUser = SessionHelper.GetSessionUser();
+                    if (currentUser == null)
+                    {
+                        model.AddError(GlobalErrors.ServerError);
+                        return View(model);
+                    }
+                    var success = Authorize.ResetPassword(currentUser.Email, model.Password, e2);
+                    var newUser = Authorize.CredentialsByEmail(currentUser.Email, model.Password, e2);
+                    if (!success || newUser == null)
+                    {
+                        model.AddError(GlobalErrors.ServerError);
+                        return View(model);
+                    }
+                    else
+                    {
+                        //if username and password is correct, create session and return Success
+                        SessionHelper.SetSessionUser(newUser);
+                        FormsAuthentication.SetAuthCookie(newUser.Username, true);
+                        model = new LoginResetPasswordModel();
+                        model.AddSuccess(ResetPasswordSuccessEnum.PasswordReset);
+                        return View(model);
                     }
                 }
             }

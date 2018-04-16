@@ -17,7 +17,7 @@ namespace InventorAccessPortal.Web.Enums
         UsernameAlreadyExists = 3,
         [Description("This Email has already been registered.")]
         EmailAlreadyExists = 4,
-        [Description("This Email is not assigned a user and cannot be Registered. If you need to setup an account please contact: support@domain.com")]
+        [Description("This Email is not assigned a user and cannot be Registered. If you need to setup an account please contact:  techtran@siumed.edu")]
         EmailNotAssociatedWithUser = 5,
         [Description("Unknow Registration Error.")]
         UnknowError = 6
@@ -34,9 +34,21 @@ namespace InventorAccessPortal.Web.Enums
         UnknownError = 3,
     }
 
+    public enum ResetPasswordErrors
+    {
+        [Description("This Email is not assigned a user and is not Registered. If you need to setup an account please contact:  techtran@siumed.edu")]
+        EmailNotAssociatedWithUser = 0,
+        [Description("Invalid Email, Email must be in format: user@domain.(com, edu, net, etc.) and less than 255 characters")]
+        InvalidEmail = 1,
+        [Description("This Email has not been registered yet")]
+        EmailNotRegistered = 2
+    }
+
     public enum GlobalErrors {
 
         [Description("Required fields cannot be empty.")]
-        EmptyFields = 0
+        EmptyFields = 0,
+        [Description("There was a server error, please try again.")]
+        ServerError = 1
     }
 }

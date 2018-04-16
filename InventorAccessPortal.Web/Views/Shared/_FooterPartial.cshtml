@@ -1,6 +1,15 @@
-﻿
-<footer>
-    <p id="confidentialityfooter">
-        CONFIDENTIAL: This portal contains information which is confidential or privileged and exempt from disclosure under applicable law. The information contained herein is intended only for the use of the individual associated with this account. If you are not an authorized user, any disclosure, copying, distribution or use of this information is strictly prohibited.
-    </p>
-</footer>
+﻿@using InventorAccessPortal.Web.Util;
+@using System.Configuration;
+@{
+    var message = ConfigurationManager.AppSettings["ConfidentialityNotice"].ToString();
+}
+@if (AccountHelper.IsLoggedIn()) { 
+    <div id="spaceForFooter">
+        <footer id="footer">
+            <div class="footerBorder"></div>
+            <p id="ConfidentialityFooter">
+                <strong>CONFIDENTIAL:</strong> @message
+            </p>
+        </footer>
+    </div>
+}

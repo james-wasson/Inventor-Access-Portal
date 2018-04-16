@@ -1,64 +1,78 @@
 ﻿@using InventorAccessPortal.Web.Util
 <!-- Initial layout taken from here https://bootstrapious.com/p/bootstrap-sidebar -->
 
-<nav id="sidebar" class="active">
-    
-    <div class="sidebar-header">
-        <div class="sidebar-toggle btn btn-primary">
-            <span class="icon fa" aria-hidden="true"></span>
-        </div>
-        <h3 class="sidebar-expanded">Inventor Access Portal</h3>
-        <h3 class="sidebar-collapsed">IAP</h3>
-    </div>
+<div id="spaceForSidebar">
+    <nav id="sidebar" class="active">
 
-    <ul class="list-unstyled components">
-        @if (AccountHelper.IsLoggedIn())
-        {
-            <li>
-                <a href="@Url.Action("RecentActivities", "Home")" class="btn btn-primary">
-                    Recent Activities
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("InventionsForm", "Home")" class="btn btn-primary">
-                    Inventions
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("FilesForm", "Home")" class="btn btn-primary">
-                    Files
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("FamiliesForm", "Home")" class="btn btn-primary">
-                    Families
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("LogOff", "Account")" class="btn btn-primary">
-                    LogOff
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-        }
-        else
-        {
-            <li>
-                <a href="@Url.Action("Login", "Account")" class="btn btn-primary">
-                    Login
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-            <li>
-                <a href="@Url.Action("Register", "Account")" class="btn btn-primary">
-                    Register
-                    <span class="icon glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-                </a>
-            </li>
-        }
-    </ul>
-</nav>
+        <div class="sidebar-header">
+            <div class="sidebar-toggle btn btn-primary">
+                <span class="icon fa" aria-hidden="true"></span>
+            </div>
+            <h3 class="sidebar-expanded">Inventor Access Portal</h3>
+            <h3 class="sidebar-collapsed">IAP</h3>
+        </div>
+
+        <ul class="list-unstyled components">
+            @if (AccountHelper.IsLoggedIn())
+            {
+                <li>
+                    <a href="@Url.Action("RecentActivities", "Home")" class="btn btn-primary">
+                        Recent Activities
+                        <span class="icon fa fa-line-chart" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("InventionsForm", "Home")" class="btn btn-primary">
+                        Inventions
+                        <span class="icon fa fa-flask" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("FilesForm", "Home")" class="btn btn-primary">
+                        Invention Filings
+                        <span class="icon fa fa-files-o" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("FamiliesForm", "Home")" class="btn btn-primary">
+                        Families
+                        <span class="icon fa fa-users" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("LoginResetPassword", "Account")" class="btn btn-primary">
+                        Reset Password
+                        <span class="icon fa fa-wrench" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("LogOff", "Account")" class="btn btn-primary">
+                        LogOff
+                        <span class="icon fa fa-sign-out" aria-hidden="true"></span>
+                    </a>
+                </li>
+            }
+            else
+            {
+                <li>
+                    <a href="@Url.Action("Login", "Account")" class="btn btn-primary">
+                        Login
+                        <span class="icon fa fa-sign-in" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("Register", "Account")" class="btn btn-primary">
+                        Register
+                        <span class="icon fa fa-user-plus" aria-hidden="true"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("ResetPassword", "Account")" class="btn btn-primary">
+                        Reset Password
+                        <span class="icon fa fa-wrench" aria-hidden="true"></span>
+                    </a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

@@ -1,4 +1,7 @@
 #removes less auto generated code
+**/*.Secret.config
+
+#removes less auto generated code
 **/less/*.css
 
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)

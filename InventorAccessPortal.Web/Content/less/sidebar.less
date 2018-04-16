@@ -1,0 +1,235 @@
+﻿/* Initial layout taken from here https: //bootstrapious.com/p/bootstrap-sidebar */
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+@leftToggle: "\f100"; /*double angle left*/
+@rightToggle: "\f101"; /*double angle right*/
+@expandedWidth: 250px;
+@thinWidth: 100px;
+@headerHeight: 80px;
+@import "theme.less";
+
+#sidebar {
+    min-width: @expandedWidth;
+    max-width: @expandedWidth;
+    background: @highlightBackgroundColor;
+    color: #fff;
+    transition: all 0.3s;
+    position: fixed;
+    z-index: 1000;
+    min-height: 100vh;
+    max-height: 100vh;
+
+    .sidebar-header {
+        max-height: @headerHeight;
+        min-height: @headerHeight;
+        color: @darkBackgroundColor;
+        text-align: center;
+        vertical-align: middle;
+        padding: 20px;
+        padding-top: 0;
+        margin-top: 30px;
+
+        .sidebar-collapsed {
+            display: none;
+            font-size: 1.8em;
+        }
+
+        .sidebar-toggle {
+            display: block !important;
+            font-family: "FontAwesome";
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 9999;
+            height: 30px;
+            width: 30px;
+            padding: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 5px;
+            border: none;
+
+
+            .icon {
+                vertical-align: text-bottom;
+            }
+
+            .icon:after {
+                font-family: "FontAwesome";
+                content: @leftToggle;
+            }
+        }
+    }
+
+    ul {
+        &.components {
+            margin-top: 10px;
+            margin-bottom: 0;
+            max-height: calc(~"100vh" - @headerHeight); /*Less is compiling this weird*/
+            overflow-y: auto;
+        }
+
+        li a {
+            padding: 10px;
+            font-size: 1.1em;
+            display: block;
+            text-align: left;
+
+            &:hover {
+                color: @lightColor;
+                background: #fff;
+
+                .icon {
+                    color: @lightColor;
+                }
+            }
+
+            .icon {
+                color: #fff;
+                margin-left: 5px;
+            }
+        }
+
+        li.active > a, a[aria-expanded="true"] {
+            color: #fff;
+            background: #6d7fcc;
+        }
+    }
+
+    .btn {
+        background-color: @lightColor;
+        border: none;
+        border-bottom: 2px solid @accentColor;
+        border-radius: 0;
+    }
+
+    &.active {
+        min-width: @thinWidth;
+        max-width: @thinWidth;
+
+        .sidebar-header {
+            .sidebar-expanded, & .CTAs {
+                display: none;
+            }
+
+            .sidebar-collapsed {
+                padding-top: 10px;
+                display: block !important;
+            }
+
+            .sidebar-toggle {
+                .icon:after {
+                    content: @rightToggle !important;
+                }
+            }
+        }
+
+        ul li a {
+            text-align: center;
+            word-wrap: break-word;
+            white-space: normal;
+            display: block;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        ul li a .icon {
+            margin: 0;
+            display: block;
+            font-size: 1.8em;
+        }
+
+        ul ul a {
+            padding: 10px !important;
+        }
+
+        a[aria-expanded="false"]::before, & a[aria-expanded="true"]::before {
+            top: auto;
+            bottom: 5px;
+            right: 50%;
+            -webkit-transform: translateX(50%);
+            -ms-transform: translateX(50%);
+            transform: translateX(50%);
+        }
+    }
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+@media screen and (max-width: 768px) {
+    /* 80px and its content aligned to centre. Pushing it off the screen with the
+       negative left margin
+    */
+    #sidebar {
+        min-width: 0;
+        max-width: 0;
+        text-align: center;
+
+        .sidebar-header {
+            background-color: transparent !important;
+            color: @darkBackgroundColor;
+
+            .sidebar-expanded, .sidebar-collapsed {
+                display: none;
+            }
+
+            .sidebar-toggle {
+                border-bottom-left-radius: 0;
+                border-bottom-right-radius: 5px;
+                right: -30px;
+                -webkit-transition: right 0.2s; /* Safari */
+                transition: right 0.2s;
+
+                .icon:after {
+                    content: @rightToggle;
+                }
+            }
+        }
+
+        &.active {
+            min-width: @thinWidth;
+            max-width: @thinWidth;
+            margin-left: 0 !important;
+
+            .sidebar-header {
+                .sidebar-collapsed {
+                    display: block;
+                }
+
+                .sidebar-toggle {
+                    border-bottom-left-radius: 5px;
+                    border-bottom-right-radius: 0;
+                    right: 0;
+                    -webkit-transition: right 0.2s; /* Safari */
+                    transition: right 0.2s;
+
+                    .icon:after {
+                        content: @leftToggle !important;
+                    }
+                }
+            }
+
+            .components {
+                *, & {
+                    display: block;
+                }
+            }
+        }
+
+        .components {
+            *, & {
+                display: none;
+            }
+        }
+
+        & a[aria-expanded="false"]::before, &.active a[aria-expanded="true"]::before {
+            top: auto;
+            bottom: 5px;
+            right: 100%;
+            transform: translateX(100%);
+        }
+    }
+}

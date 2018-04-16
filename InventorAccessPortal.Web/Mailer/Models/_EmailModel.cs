@@ -6,8 +6,8 @@ using InventorAccessPortal.Web.Models;
 
 namespace InventorAccessPortal.Web.Mailer.Models
 {
-    public class _EmailModel : _ErrorModel
+    public class _EmailModel : _ToasterModel
     {
-
+        public Guid ActionGuid;
     }
 }
