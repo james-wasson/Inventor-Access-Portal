@@ -64,9 +64,9 @@
 
     ul {
         &.components {
-            margin-top: 10px;
-            margin-bottom: 0;
-            max-height: calc(~"100vh" - @headerHeight); /*Less is compiling this weird*/
+            margin-top: 0;
+            padding-bottom: 30px;
+            max-height: calc(~"100vh" - @headerHeight + 20px /*padding top*/); /*Less is compiling this weird*/
             overflow-y: auto;
         }
 
