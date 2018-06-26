@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ssma-script-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Program Files\Microsoft SQL Server Migration Assistant for Access\Schemas\A2SSConsoleScriptSchema.xsd">
+  <config>
+    <output-providers>
+
+      <output-window suppress-messages="true"
+                     destination="stdout"/>
+
+      <upgrade-project action="yes"/>
+
+      <progress-reporting enable="false"
+                          report-messages="false"/>
+
+
+      <object-overwrite action="overwrite" />
+
+    </output-providers>
+  </config>
+
+  <script-commands>
+
+    <create-new-project project-folder="$project_folder$" 
+						project-name="$project_name$" 
+						project-type="$project_type$"
+						overwrite-if-exists="true"/>
+
+    <!-- Connect to source database (access).Add *.mdb files to source metabase tree.-->
+    <load-access-database database-file="$AccessDbPath$"/>
+
+    <!-- Connect to target database -->
+    <connect-target-database server="SQL_SERVER" />
+
+    <!--Schema Mapping-->
+    <map-schema source-schema="$AccessDb$" sql-server-schema="$Database$.dbo" />
+
+    <!-- Example1: Convert entire Schema (with all attributes)-->
+    <convert-schema object-name="$AccessDb$"
+                    object-type="Databases" />
+
+    <!-- Example1: Synchronize target entire Database with all attributes-->
+    <synchronize-target object-name="$Database$.dbo"
+                        on-error="fail-script" />
+
+    <!-- Save project -->
+    <save-project />
+
+    <!--Close project -->
+    <close-project if-modified="save" />
+
+  </script-commands>
+</ssma-script-file>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<servers xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Program Files\Microsoft SQL Server Migration Assistant for Access\Schemas\A2SSConsoleScriptServersSchema.xsd">
+
+  <sql-server name="SQL_SERVER">
+    <windows-authentication>
+      <database value ="$Database$"/>
+      <server value ="$Server$"/>
+      <encrypt value="true"/>
+      <trust-server-certificate value="true"/>
+    </windows-authentication>
+  </sql-server>
+
+  <sql-server name="TEMP_SQL_SERVER">
+    <windows-authentication>
+      <database value ="$TempDatabase$"/>
+      <server value ="$Server$"/>
+      <encrypt value="true"/>
+      <trust-server-certificate value="true"/>
+    </windows-authentication>
+  </sql-server>
+  
+</servers>
+

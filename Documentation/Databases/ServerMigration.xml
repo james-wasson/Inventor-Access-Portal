@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ssma-script-file xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Program Files\Microsoft SQL Server Migration Assistant for Access\Schemas\A2SSConsoleScriptSchema.xsd">
+
+  
+  <!-- Optional section with console configuration options-->
+  <config>
+    <output-providers>
+
+      <output-window suppress-messages="true"
+                     destination="stdout"/>
+
+      <upgrade-project action="yes"/>
+      
+      <data-migration-connection source-use-last-used="true"
+                                 target-server="target_sqlserver"/>
+
+      <progress-reporting enable="false"
+                          report-messages="false"
+                          report-progress="off"/>
+
+      <object-overwrite action="overwrite" />
+
+    </output-providers>
+  </config>
+
+  <script-commands>
+
+    <!--Create a new project -->
+    <create-new-project project-folder="$project_folder$" 
+						project-name="$project_name$" 
+						project-type="$project_type$"
+						overwrite-if-exists="true"/>
+
+    <!-- Connect to source database (access).Add *.mdb files to source metabase tree.-->
+    <load-access-database database-file="$AccessDbPath$"/>
+
+
+    <!-- Connect to target database -->
+    <connect-target-database server="TEMP_SQL_SERVER" />
+
+    <!--Schema Mapping-->
+    <map-schema source-schema="$AccessDb$" sql-server-schema="$TempDatabase$.dbo" />
+
+    <!-- Example1: Convert entire Schema (with all attributes)-->
+    <convert-schema object-name="$AccessDb$"
+                    object-type="Databases" />
+
+    <!-- Example1: Synchronize target entire Database with all attributes-->
+    <synchronize-target object-name="$TempDatabase$.dbo"
+                        on-error="fail-script"
+                        report-errors-to="./errors.txt" />
+
+
+    <!--Example1: Data Migration of all tables in the schema (with all attributes)-->
+    <migrate-data object-name="$AccessDb$.Tables"
+                  object-type="category"
+                  report-errors="false"
+                  verbose="false" />
+    <!--alternative convention for Data Migration Command-->
+
+
+    <!-- Save project -->
+    <save-project />
+
+    <!--Close project -->
+    <close-project if-modified="save" />
+
+  </script-commands>
+</ssma-script-file>

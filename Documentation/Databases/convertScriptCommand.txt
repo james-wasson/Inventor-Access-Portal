@@ -1,0 +1,1 @@
+SSMAforAccessConsole.EXE -s "C:\Databases\ServerMigration.xml" -v "C:\Databases\VariableValueFile.xml" -c "C:\Databases\ServerConnection.xml"

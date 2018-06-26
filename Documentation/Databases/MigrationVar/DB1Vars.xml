@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<variables xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Program Files\Microsoft SQL Server Migration Assistant for Access\Schemas\ConsoleScriptVariablesSchema.xsd">
+
+ <variable name="$WorkingFolder$"  value="."/>
+
+ <variable-group name="AccessConnection">
+    <variable name="$AccessDb$" value="1"/>
+    <variable name="$AccessDbPath$" value="$WorkingFolder$\$AccessDb$.accdb"/>
+  </variable-group>
+
+  <variable-group name="Project">
+    <variable name="$project_name$" value="AccessMigrationProject"/>
+    <variable name="$project_folder$" value="$WorkingFolder$\$project_name$"/>
+    <variable name="$project_type$" value="sql-server-2012"/>
+  </variable-group>
+
+  <variable-group name="Server">
+    <variable name="$TempDatabase$" value="Temp_InventorAccessPortal_SQL"/>
+
+    <variable name="$Database$" value="InventorAccessPortal_SQL"/>
+    <variable name="$Server$" value="DESKTOP-4KNRLI5\SQLEXPRESS"/>
+  </variable-group>
+
+</variables>
